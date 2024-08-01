@@ -77,7 +77,7 @@ MonoBehaviour:
   speed: 5
   characterController: {fileID: 3939113933497943775}
   model: {fileID: 426195432165112362}
-  speedRotation: 0
+  speedRotation: 10
 --- !u!114 &6320816577212199552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517c3ee45ef1c394dbb4d700542be25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMove: 10
   thing:
   - {fileID: 0}
   - {fileID: 0}

@@ -35,8 +35,9 @@ public class Spawner : MonoBehaviour
                     _count--;
                     var prefab = GetComponentInChildren<PrefabProperty>();
                     prefab.transform.SetParent(other.transform.GetChild(0).GetChild(0).GetChild(0));
-                    prefab.transform.position = inventory.spawners[i].transform.position;
+                    StartCoroutine(inventory.PrefabAnimation(prefab.gameObject, inventory.spawners[i]));
                     inventory.thing[i] = prefab.gameObject;
+
                 }
             }
         }
