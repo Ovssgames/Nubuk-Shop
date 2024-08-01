@@ -4,6 +4,5 @@ using UnityEngine;
 public class ScObjFood : ScriptableObject
 {
     public int id;
-    public string name;
     public GameObject model;
 }

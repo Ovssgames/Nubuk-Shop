@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SellShalf : MonoBehaviour
 {
-    public List<GameObject> sellObject;
-    public List<Transform> cells;
+    [SerializeField] ScObjFood type;
+    public List<GameObject> invent;
+    public List<GameObject> cells;
 
     private int _count;
     private int _maxCells;
@@ -23,11 +24,20 @@ public class SellShalf : MonoBehaviour
             var things = inventory.thing;
             for (int i = 0; i < things.Count && _count < _maxCells; i++)
             {
-                if (things[i] != null)
+                if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == type)
                 {
                     _count++;
-                    for (int n = 0; cells[n] == null; n++)
-                        sellObject[n] = things[i];
+                    for (int n = 0; n < cells.Count; n++)
+                    {
+                        if (invent[n] == null)
+                        {
+                            Debug.Log(n);
+                            StartCoroutine(inventory.PrefabAnimation(things[i], cells[n]));
+                            invent[n] = things[i];
+                            things[i].transform.SetParent(transform.GetChild(0));
+                            break;
+                        }
+                    }
                     things[i] = null;
                 }
             }
