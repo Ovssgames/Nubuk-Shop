@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Manufacture : MonoBehaviour
 {
@@ -15,20 +16,25 @@ public class Manufacture : MonoBehaviour
     [Header("Finish")]
     [SerializeField] ScObjFood finishType;
     public List<GameObject> finishCells;
+    public UnityEvent onFinishCollision;
 
 
     private int _countStart;
     private int _maxCountStart;
-    private bool _isWorking = false;
+
+    private int _countFinish;
+    private int _maxCountFinish;
     
     private List<GameObject> _startThings;
     private List<GameObject> _finishThings;
 
+    private bool _isWorking = false;
+    private bool _isTrigger = false;
     private Inventory _inventory;
 
     private void Start()
     {
-        StartSystemValues();
+        StartValues();
     }
 
     private void Update()
@@ -39,17 +45,24 @@ public class Manufacture : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StartThingsForMashine(other);
+        _isTrigger = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _isTrigger = false;
     }
 
     private void MakingThings()
     {
-        if (_countStart >= countForMashineStart && !_isWorking)
+        if (_countStart >= countForMashineStart && !_isWorking && !_isTrigger && _countFinish < _maxCountFinish)
         {
+            Debug.Log("StartmakingCoroutine");
             StartCoroutine(Making());
         }
     }
 
-    private void StartSystemValues()
+    private void StartValues()
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         _maxCountStart = startCells.Count;
@@ -57,6 +70,13 @@ public class Manufacture : MonoBehaviour
         for (int i = 0; i < startCells.Count; i++)
         {
             _startThings.Add(null);
+        }
+
+        _maxCountFinish = finishCells.Count;
+        _finishThings = new List<GameObject>(finishCells.Count);
+        for (int i = 0; i < finishCells.Count; i++)
+        {
+            _finishThings.Add(null);
         }
     }
     private void StartThingsForMashine(Collider other)
@@ -85,6 +105,22 @@ public class Manufacture : MonoBehaviour
         }
     }
 
+    public void MovePrefabInInventory(Inventory inventory)
+    {
+        for (int i = 0; i < inventory.thing.Count; i++)
+        {
+            if (inventory.thing[i] == null && _countFinish > 0)
+            {
+                _countFinish--;
+                var prefab = _finishThings[i];
+                prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                inventory.thing[i] = prefab;
+
+            }
+        }
+    }
+
     private IEnumerator Making()
     {
         _isWorking = true;
@@ -96,8 +132,8 @@ public class Manufacture : MonoBehaviour
             if (_startThings[i] != null)
             {
                 _countStart--;
+                yield return StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
                 counter++;
-                StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
                 destroyedObj.Add(_startThings[i]); 
                 Debug.Log("make");
                 _startThings[i] = null;
@@ -111,8 +147,23 @@ public class Manufacture : MonoBehaviour
             Destroy(item);
         }
 
-        Instantiate(finishType.model, animationPoint.transform.position, animationPoint.transform.rotation);
         _isWorking = false;
         counter = 0;
+        _countFinish++;
+
+        var finishObj = Instantiate(finishType.model, animationPoint.transform.position, animationPoint.transform.rotation);
+        finishObj.transform.SetParent(transform.GetChild(1));
+        GameObject finishCell = null;
+
+        for (int i = 0; i < _finishThings.Count; i++)
+        {
+            if (_finishThings[i] == null)
+            {
+                _finishThings[i] = finishObj;
+                finishCell = finishCells[i];
+                break;
+            }
+        }
+        yield return StartCoroutine(_inventory.PrefabAnimation(finishObj, finishCell));
     }
 }

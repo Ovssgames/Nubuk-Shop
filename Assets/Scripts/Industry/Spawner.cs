@@ -25,13 +25,12 @@ public class Spawner : MonoBehaviour
     {
         var inventory = other.GetComponent<Inventory>();
 
-        if (other.GetComponent<PlayerController>() != null)
+        if (inventory != null)
         {
             for (int i = 0; i < inventory.thing.Count; i++)
             {
                 if (inventory.thing[i] == null && _count > 0)
                 {
-                    Debug.Log("normul");
                     _count--;
                     var prefab = GetComponentInChildren<PrefabProperty>();
                     prefab.transform.SetParent(other.transform.GetChild(0).GetChild(0).GetChild(0));
