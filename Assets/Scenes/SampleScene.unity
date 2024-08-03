@@ -456,8 +456,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 0.2, z: 2.5}
-  m_Center: {x: 0, y: -0.4179331, z: 0}
+  m_Size: {x: 2.5, y: 0.99126065, z: 2.5}
+  m_Center: {x: 0, y: -0.022302806, z: 0}
 --- !u!4 &240812127
 Transform:
   m_ObjectHideFlags: 0
@@ -1678,7 +1678,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9063079, z: -0.42261827, w: 0}
-  m_LocalPosition: {x: 0, y: 8.660447, z: 9.727882}
+  m_LocalPosition: {x: 0, y: 7.79, z: 8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5901,18 +5901,6 @@ PrefabInstance:
     - target: {fileID: 1875021234503853812, guid: d85f23fbb4db2dc4185ae26eef442548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509498142449219723, guid: d85f23fbb4db2dc4185ae26eef442548, type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 120785465}
-    - target: {fileID: 7215953214998888680, guid: d85f23fbb4db2dc4185ae26eef442548, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.660447
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215953214998888680, guid: d85f23fbb4db2dc4185ae26eef442548, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.427882
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
