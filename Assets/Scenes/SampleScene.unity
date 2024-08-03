@@ -496,14 +496,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6033107a8c256a440865951e886074b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countForMashineStart: 0
+  timeToMaking: 6
+  countForMashineStart: 2
+  animationPoint: {fileID: 730208244}
   startType: {fileID: 11400000, guid: 7209d6164a06e894f83e116fbc0fc3d6, type: 2}
-  finishType: {fileID: 0}
   startCells:
   - {fileID: 1547598837}
   - {fileID: 1555596107}
   - {fileID: 62202542}
   - {fileID: 1143506380}
+  finishType: {fileID: 11400000, guid: 004de8a9780999d41b393de1fba6c300, type: 2}
   finishCells: []
 --- !u!4 &340353906
 Transform:

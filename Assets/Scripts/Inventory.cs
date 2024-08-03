@@ -15,5 +15,6 @@ public class Inventory : MonoBehaviour
             prefab.transform.position = Vector3.MoveTowards(prefab.transform.position, finish.transform.position, Time.deltaTime * speedMove);
             yield return null;
         }
+            Debug.Log("End Position");
     }
 }
