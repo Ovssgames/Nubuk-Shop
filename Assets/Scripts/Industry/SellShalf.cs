@@ -31,7 +31,6 @@ public class SellShalf : MonoBehaviour
                     {
                         if (invent[n] == null)
                         {
-                            Debug.Log(n);
                             StartCoroutine(inventory.PrefabAnimation(things[i], cells[n]));
                             invent[n] = things[i];
                             things[i].transform.SetParent(transform.GetChild(0));
