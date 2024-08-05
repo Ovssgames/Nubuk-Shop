@@ -57,7 +57,7 @@ public class Manufacture : MonoBehaviour
     {
         if (_countStart >= countForMashineStart && !_isWorking && !_isTrigger && _countFinish < _maxCountFinish)
         {
-            Debug.Log("StartmakingCoroutine");
+            Debug.Log("StartMakingCoroutine");
             StartCoroutine(Making());
         }
     }
@@ -111,12 +111,18 @@ public class Manufacture : MonoBehaviour
         {
             if (inventory.thing[i] == null && _countFinish > 0)
             {
-                _countFinish--;
-                var prefab = _finishThings[i];
-                prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
-                inventory.thing[i] = prefab;
-
+                for (int n = 0; n < _finishThings.Count; n++)
+                {
+                    if (_finishThings[n] != null)
+                    {
+                        _countFinish--;
+                        var prefab = _finishThings[n];
+                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                        inventory.thing[i] = prefab;
+                        _finishThings[n] = null;
+                    }
+                }
             }
         }
     }
@@ -125,7 +131,7 @@ public class Manufacture : MonoBehaviour
     {
         _isWorking = true;
         int counter = 0;
-        List<GameObject> destroyedObj = new List<GameObject>(counter);
+        List<GameObject> destroyedObj = new List<GameObject>();
 
         for (int i = 0; i < _startThings.Count && counter < countForMashineStart; i++)
         {
@@ -147,11 +153,8 @@ public class Manufacture : MonoBehaviour
             Destroy(item);
         }
 
-        _isWorking = false;
-        counter = 0;
-        _countFinish++;
-
         var finishObj = Instantiate(finishType.model, animationPoint.transform.position, animationPoint.transform.rotation);
+        
         finishObj.transform.SetParent(transform.GetChild(1));
         GameObject finishCell = null;
 
@@ -164,6 +167,13 @@ public class Manufacture : MonoBehaviour
                 break;
             }
         }
+
         yield return StartCoroutine(_inventory.PrefabAnimation(finishObj, finishCell));
+
+        _isWorking = false;
+        counter = 0;
+        _countFinish++;
+
+        yield break;
     }
 }

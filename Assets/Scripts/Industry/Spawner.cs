@@ -8,8 +8,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] float spawnTime;
     [SerializeField] List<GameObject> spawners;
 
+    private List<GameObject> _things;
+
     private float _timer;
     private int _count;
+
+    private void Start()
+    {
+        StartValues();
+    }
 
     private void Update()
     {
@@ -21,22 +28,33 @@ public class Spawner : MonoBehaviour
         MovePrefabInInventory(other);
     }
 
+    private void StartValues()
+    {
+        _things = new List<GameObject>(spawners.Count);
+        for (int i = 0; i < spawners.Count; i++)
+            _things.Add(null);
+    }
+
     private void MovePrefabInInventory(Collider other)
     {
-        var inventory = other.GetComponent<Inventory>();
+        Inventory inventory = other.GetComponent<Inventory>();
 
-        if (inventory != null)
+        for (int i = 0; i < inventory.thing.Count; i++)
         {
-            for (int i = 0; i < inventory.thing.Count; i++)
+            if (inventory.thing[i] == null && _count > 0)
             {
-                if (inventory.thing[i] == null && _count > 0)
+                for (int n = 0; n < _things.Count; n++)
                 {
-                    _count--;
-                    var prefab = GetComponentInChildren<PrefabProperty>();
-                    prefab.transform.SetParent(other.transform.GetChild(0).GetChild(0).GetChild(0));
-                    StartCoroutine(inventory.PrefabAnimation(prefab.gameObject, inventory.spawners[i]));
-                    inventory.thing[i] = prefab.gameObject;
-
+                    if (_things[n] != null)
+                    {
+                        _count--;
+                        var prefab = _things[n];
+                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                        inventory.thing[i] = prefab;
+                        _things[n] = null;
+                        break;
+                    }
                 }
             }
         }
@@ -52,8 +70,18 @@ public class Spawner : MonoBehaviour
         if (_timer >= spawnTime)
         {
             var obj = Instantiate(propertisObject.model);
-            obj.transform.position = spawners[_count].transform.position;
             obj.transform.SetParent(transform.GetChild(0));
+
+            for (int i = 0; i < _things.Count; i++)
+            {
+                if (_things[i] == null)
+                {
+                    obj.transform.position = spawners[i].transform.position;
+                    _things[i] = obj;
+                    break;
+                }
+            }
+
             _timer = 0;
             _count++;
         }

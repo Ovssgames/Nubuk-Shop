@@ -8,24 +8,27 @@ public class TrashCan : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var inventory = other.GetComponent<Inventory>();
+        
         if (inventory != null)
         {
-            StartCoroutine(DestroyObjects(inventory));
+            for (int i = 0; i < inventory.thing.Count; i++)
+            {
+                if (inventory.thing[i] != null)
+                {
+                    StartCoroutine(DestroyObjects(inventory, i));
+                }
+            }
         }
     }
     
-    private IEnumerator DestroyObjects(Inventory inv)
+    private IEnumerator DestroyObjects(Inventory inv, int index)
     {
-        for (int i = 0; i < inv.thing.Count; i++)
-        {
-            if (inv.thing[i] != null)
-            {
-                inv.thing[i].transform.SetParent(null);
-                yield return StartCoroutine(inv.PrefabAnimation(inv.thing[i], animPosition[0]));
-                yield return StartCoroutine(inv.PrefabAnimation(inv.thing[i], animPosition[1]));
-                Destroy(inv.thing[i]);
-                yield return null;
-            }
-        }
+        inv.thing[index].transform.SetParent(null);
+        yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[0]));
+        yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[1]));
+        Destroy(inv.thing[index]);
+        yield return null;
+        inv.thing[index] = null;
+        yield return null;
     }
 }
