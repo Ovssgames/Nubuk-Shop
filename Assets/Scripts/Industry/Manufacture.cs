@@ -121,6 +121,7 @@ public class Manufacture : MonoBehaviour
                         StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
                         inventory.thing[i] = prefab;
                         _finishThings[n] = null;
+                        break;
                     }
                 }
             }

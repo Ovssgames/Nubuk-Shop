@@ -24,6 +24,7 @@ public class SellShalf : MonoBehaviour
             var things = inventory.thing;
             for (int i = 0; i < things.Count && _count < _maxCells; i++)
             {
+                Debug.Log("sell");
                 if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == type)
                 {
                     _count++;
