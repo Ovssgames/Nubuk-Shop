@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   id: 0
-  name: Apple
-  model: {fileID: 1252573259500179807, guid: 6a183d8804ff5d74590a95bee99ab356, type: 3}
+  model: {fileID: 7574387149273218255, guid: 6a183d8804ff5d74590a95bee99ab356, type: 3}

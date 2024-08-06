@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New SpawnThing", menuName ="ScriptableObjeckt/Spawn/SpawnThing")]
+[CreateAssetMenu(fileName ="New SpawnThing", menuName ="ScriptableObjeckt/SpawnThing")]
 public class ScObjFood : ScriptableObject
 {
     public int id;

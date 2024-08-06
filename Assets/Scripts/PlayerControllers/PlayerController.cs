@@ -5,11 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed;
     
-    [Header("Desctop Parametrs")]
     [SerializeField] CharacterController characterController;
-
-
-    [Header("Mobile Parametrs")]
 
     [Header("Model Parametrs")]
     [SerializeField] Transform model;

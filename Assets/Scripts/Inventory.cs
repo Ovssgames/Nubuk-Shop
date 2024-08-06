@@ -10,11 +10,13 @@ public class Inventory : MonoBehaviour
 
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {
-        while (prefab.transform.position != finish.transform.position)
+        while (prefab.transform.position != finish.transform.position && prefab.transform.rotation.y != finish.transform.rotation.y)
         {
             prefab.transform.position = Vector3.MoveTowards(prefab.transform.position, finish.transform.position, Time.deltaTime * speedMove);
+            prefab.transform.rotation = Quaternion.Lerp(prefab.transform.rotation, finish.transform.rotation, Time.deltaTime * speedMove);
             yield return null;
         }
-            Debug.Log("End Position");
+        prefab.transform.rotation = finish.transform.rotation;
+        Debug.Log("End Position");
     }
 }
