@@ -8,8 +8,10 @@ public class SellShalf : MonoBehaviour
     public List<GameObject> invent;
     public List<GameObject> cells;
 
-    private int _count;
-    private int _maxCells;
+    [HideInInspector]
+    public int count;
+    [HideInInspector]
+    public int _maxCells;
 
     private void Start()
     {
@@ -18,20 +20,26 @@ public class SellShalf : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        MoveToShalfSell(other);
+    }
+
+    private void MoveToShalfSell(Collider other)
+    {
         var inventory = other.GetComponent<Inventory>();
         if (inventory != null)
         {
             var things = inventory.thing;
-            for (int i = 0; i < things.Count && _count < _maxCells; i++)
+            for (int i = 0; i < things.Count && count < _maxCells; i++)
             {
                 Debug.Log("sell");
                 if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == type)
                 {
-                    _count++;
                     for (int n = 0; n < cells.Count; n++)
                     {
                         if (invent[n] == null)
                         {
+                            count++;
+                            inventory.count--;
                             StartCoroutine(inventory.PrefabAnimation(things[i], cells[n]));
                             invent[n] = things[i];
                             things[i].transform.SetParent(transform.GetChild(0));
@@ -43,5 +51,4 @@ public class SellShalf : MonoBehaviour
             }
         }
     }
-
 }

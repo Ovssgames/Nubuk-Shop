@@ -7,11 +7,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] ScObjFood propertisObject;
     [SerializeField] float spawnTime;
     [SerializeField] List<GameObject> spawners;
+    [HideInInspector]
+    public int count;
 
     private List<GameObject> _things;
+    private Inventory _inventory;
 
     private float _timer;
-    private int _count;
+    private float _randomTime;
 
     private void Start()
     {
@@ -25,7 +28,18 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        MovePrefabInInventory(other);
+        if (other.GetComponent<Inventory>() != null)
+        {
+            _inventory = other.GetComponent<Inventory>();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (_inventory != null)
+        {
+            MovePrefabInInventory(other);
+        }
     }
 
     private void StartValues()
@@ -33,25 +47,26 @@ public class Spawner : MonoBehaviour
         _things = new List<GameObject>(spawners.Count);
         for (int i = 0; i < spawners.Count; i++)
             _things.Add(null);
+
+        _randomTime = spawnTime * Random.Range(0f, 0.15f);
     }
 
     private void MovePrefabInInventory(Collider other)
     {
-        Inventory inventory = other.GetComponent<Inventory>();
-
-        for (int i = 0; i < inventory.thing.Count; i++)
+        for (int i = 0; i < _inventory.thing.Count; i++)
         {
-            if (inventory.thing[i] == null && _count > 0)
+            if (_inventory.thing[i] == null && count > 0)
             {
                 for (int n = 0; n < _things.Count; n++)
                 {
                     if (_things[n] != null)
                     {
-                        _count--;
+                        count--;
+                        _inventory.count++;
                         var prefab = _things[n];
-                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
-                        inventory.thing[i] = prefab;
+                        prefab.transform.SetParent(_inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                        StartCoroutine(_inventory.PrefabAnimation(prefab, _inventory.spawners[i]));
+                        _inventory.thing[i] = prefab;
                         _things[n] = null;
                         break;
                     }
@@ -62,12 +77,12 @@ public class Spawner : MonoBehaviour
 
     private void SpawnObject()
     {
-        if (_count < spawners.Count)
+        if (count < spawners.Count)
         {
             _timer += Time.deltaTime;
         }
 
-        if (_timer >= spawnTime)
+        if (_timer >= spawnTime + _randomTime)
         {
             var obj = Instantiate(propertisObject.model);
             obj.transform.SetParent(transform.GetChild(0));
@@ -82,8 +97,9 @@ public class Spawner : MonoBehaviour
                 }
             }
 
+            _randomTime = spawnTime * Random.Range(0f, 0.15f);
             _timer = 0;
-            _count++;
+            count++;
         }
     }
 }

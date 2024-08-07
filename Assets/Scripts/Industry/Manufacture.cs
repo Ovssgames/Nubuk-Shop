@@ -18,12 +18,14 @@ public class Manufacture : MonoBehaviour
     public List<GameObject> finishCells;
     public UnityEvent onFinishCollision;
 
+    [HideInInspector]
+    public int countFinish;
 
     private int _countStart;
     private int _maxCountStart;
 
-    private int _countFinish;
-    private int _maxCountFinish;
+    [HideInInspector]
+    public int _maxCountFinish;
     
     private List<GameObject> _startThings;
     private List<GameObject> _finishThings;
@@ -44,6 +46,7 @@ public class Manufacture : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        _inventory = other.GetComponent<Inventory>();
         StartThingsForMashine(other);
         _isTrigger = true;
     }
@@ -55,7 +58,7 @@ public class Manufacture : MonoBehaviour
 
     private void MakingThings()
     {
-        if (_countStart >= countForMashineStart && !_isWorking && !_isTrigger && _countFinish < _maxCountFinish)
+        if (_countStart >= countForMashineStart && !_isWorking && !_isTrigger && countFinish < _maxCountFinish)
         {
             Debug.Log("StartMakingCoroutine");
             StartCoroutine(Making());
@@ -64,7 +67,6 @@ public class Manufacture : MonoBehaviour
 
     private void StartValues()
     {
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         _maxCountStart = startCells.Count;
         _startThings = new List<GameObject>(startCells.Count);
         for (int i = 0; i < startCells.Count; i++)
@@ -88,11 +90,12 @@ public class Manufacture : MonoBehaviour
             {
                 if (things[i] != null && _inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
                 {
-                    _countStart++;
                     for (int n = 0; n < _startThings.Count; n++)
                     {
                         if (_startThings[n] == null)
                         {
+                            _countStart++;
+                            _inventory.count--;
                             StartCoroutine(_inventory.PrefabAnimation(things[i], startCells[n]));
                             _startThings[n] = things[i];
                             things[i].transform.SetParent(transform.GetChild(0));
@@ -109,13 +112,14 @@ public class Manufacture : MonoBehaviour
     {
         for (int i = 0; i < inventory.thing.Count; i++)
         {
-            if (inventory.thing[i] == null && _countFinish > 0)
+            if (inventory.thing[i] == null && countFinish > 0)
             {
                 for (int n = 0; n < _finishThings.Count; n++)
                 {
                     if (_finishThings[n] != null)
                     {
-                        _countFinish--;
+                        countFinish--;
+                        _inventory.count++;
                         var prefab = _finishThings[n];
                         prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
                         StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
@@ -138,8 +142,8 @@ public class Manufacture : MonoBehaviour
         {
             if (_startThings[i] != null)
             {
+                StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
                 _countStart--;
-                yield return StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
                 counter++;
                 destroyedObj.Add(_startThings[i]); 
                 Debug.Log("make");
@@ -173,7 +177,7 @@ public class Manufacture : MonoBehaviour
 
         _isWorking = false;
         counter = 0;
-        _countFinish++;
+        countFinish++;
 
         yield break;
     }
