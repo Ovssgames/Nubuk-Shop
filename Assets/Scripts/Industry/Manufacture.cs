@@ -20,12 +20,13 @@ public class Manufacture : MonoBehaviour
 
     [HideInInspector]
     public int countFinish;
-
-    private int _countStart;
-    private int _maxCountStart;
-
     [HideInInspector]
-    public int _maxCountFinish;
+    public int countStart;
+    [HideInInspector]
+    public int maxCountStart;
+    [HideInInspector]
+    public int maxCountFinish;
+
     
     private List<GameObject> _startThings;
     private List<GameObject> _finishThings;
@@ -58,7 +59,7 @@ public class Manufacture : MonoBehaviour
 
     private void MakingThings()
     {
-        if (_countStart >= countForMashineStart && !_isWorking && !_isTrigger && countFinish < _maxCountFinish)
+        if (countStart >= countForMashineStart && !_isWorking && !_isTrigger && countFinish < maxCountFinish)
         {
             Debug.Log("StartMakingCoroutine");
             StartCoroutine(Making());
@@ -67,14 +68,14 @@ public class Manufacture : MonoBehaviour
 
     private void StartValues()
     {
-        _maxCountStart = startCells.Count;
+        maxCountStart = startCells.Count;
         _startThings = new List<GameObject>(startCells.Count);
         for (int i = 0; i < startCells.Count; i++)
         {
             _startThings.Add(null);
         }
 
-        _maxCountFinish = finishCells.Count;
+        maxCountFinish = finishCells.Count;
         _finishThings = new List<GameObject>(finishCells.Count);
         for (int i = 0; i < finishCells.Count; i++)
         {
@@ -86,7 +87,7 @@ public class Manufacture : MonoBehaviour
         if (_inventory != null)
         {
             var things = _inventory.thing;
-            for (int i = 0; i < things.Count && _countStart < _maxCountStart; i++)
+            for (int i = 0; i < things.Count && countStart < maxCountStart; i++)
             {
                 if (things[i] != null && _inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
                 {
@@ -94,7 +95,7 @@ public class Manufacture : MonoBehaviour
                     {
                         if (_startThings[n] == null)
                         {
-                            _countStart++;
+                            countStart++;
                             _inventory.count--;
                             StartCoroutine(_inventory.PrefabAnimation(things[i], startCells[n]));
                             _startThings[n] = things[i];
@@ -143,7 +144,7 @@ public class Manufacture : MonoBehaviour
             if (_startThings[i] != null)
             {
                 StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
-                _countStart--;
+                countStart--;
                 counter++;
                 destroyedObj.Add(_startThings[i]); 
                 Debug.Log("make");

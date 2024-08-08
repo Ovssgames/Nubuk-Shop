@@ -1504,6 +1504,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1004711574}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &426883407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4501153431961533971, guid: b7384f9edb076e94591ef98a1b064f12, type: 3}
+  m_PrefabInstance: {fileID: 411096753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &469195179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1924,6 +1929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partQuantity: 0.5
   timeToWait: 20
+  distanseForFinish: 0.4
   _targetPosition: {fileID: 874559905}
   route:
   - startPosition:
@@ -1931,6 +1937,11 @@ MonoBehaviour:
     - {fileID: 1987052023}
     - {fileID: 469195180}
     finishPosition: {fileID: 106702309}
+    isSpawner: 1
+  - startPosition:
+    - {fileID: 6919323339629318399}
+    - {fileID: 189436789}
+    finishPosition: {fileID: 426883407}
     isSpawner: 1
   - startPosition: []
     finishPosition: {fileID: 0}
@@ -1962,9 +1973,7 @@ MonoBehaviour:
   - startPosition: []
     finishPosition: {fileID: 0}
     isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
+  trashCan: {fileID: 0}
   navMeshAgent: {fileID: 683227368}
 --- !u!135 &683227371
 SphereCollider:

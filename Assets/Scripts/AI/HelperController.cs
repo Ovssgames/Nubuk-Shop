@@ -9,12 +9,15 @@ public class HelperController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float partQuantity;
     [SerializeField] float timeToWait;
+    [SerializeField] float distanseForFinish;
 
     [SerializeField] Transform _targetPosition;
 
     [SerializeField] List<RouteSell> route;
+    [SerializeField] Transform trashCan;
 
     [SerializeField] NavMeshAgent navMeshAgent;
+
 
     private bool _isWorking = false;
     private bool _isFind = false;
@@ -71,49 +74,101 @@ public class HelperController : MonoBehaviour
 
         Invoke("TimePassed", timeToWait);
 
-        Vector3 finpos = new Vector3(_targetPosition.position.x, transform.position.y, _targetPosition.position.z);
         while (_inventory.count != _inventory.thing.Count && !_isTimePassed)
         {
             yield return null;
         }
 
         _targetPosition.position = route[_index].finishPosition.position;
+        
+        _isTimePassed = false;
+        Invoke("TimePassed", timeToWait);
+
+        float finPos = Vector3.Distance(_targetPosition.position, transform.position);
+        while (finPos > distanseForFinish && _inventory.count == _inventory.thing.Count &&!_isTimePassed)
+        {
+            yield return null;
+        }
+
+        if (_inventory.count != 0)
+        {
+            _targetPosition.position = trashCan.position;
+
+            while (_inventory.count != 0)
+            {
+                yield return null;
+            }
+        }
+
+        _isWorking = false;
+        _isFind = false;
+        _isTimePassed = false;
     }
 
     private void FirstSelection()
     {
         for (int i = 0; i < route.Count; i++)
         {
-            var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
-            
-            _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
-            if (route[i].isSpawner)
+            if (route[i].finishPosition.GetComponentInParent<SellShalf>() != null)
             {
-                if (shalf.count <= shalf._maxCells * partQuantity)
+                var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
+
+                _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
+                if (route[i].isSpawner)
                 {
-                    _targetPosition.position = _startPosition.position;
-                    _isFind = true;
-                    _index = i;
-                    break;
+                    if (shalf.count <= shalf._maxCells * partQuantity)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _isFind = true;
+                        _index = i;
+                        break;
+                    }
+                }
+                else
+                {
+                    var manufacture = _startPosition.GetComponentInParent<Manufacture>();
+                    if (shalf.count <= shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _isFind = true;
+                        _index = i;
+                        break;
+                    }
                 }
             }
-            else
-            {
-                var manufacture = _startPosition.GetComponentInParent<Manufacture>();
-                if (shalf.count <= shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture._maxCountFinish / 2)
-                {
-                    _targetPosition.position = _startPosition.position;
-                    _isFind = true;
-                    _index = i;
-                    break;
-                }
-            }
-        }
-    }
+        }    }
 
     private void SecondSelection()
     {
-
+        for (int i = 0; i < route.Count; i++)
+        {
+            if (route[i].isSpawner)
+            {
+                _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
+                if (route[i].finishPosition.GetComponentInParent<Manufacture>() != null)
+                {
+                    var manufacture = route[i].finishPosition.GetComponentInParent<Manufacture>();
+                    if (manufacture.countStart == 0)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _isFind = true;
+                        _index = i;
+                        break;
+                    }
+                }
+                else
+                {
+                    var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
+                    if (shalf.count <= shalf._maxCells)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _isFind = true;
+                        _index = i;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     private void TimePassed()
