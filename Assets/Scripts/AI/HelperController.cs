@@ -12,16 +12,14 @@ public class HelperController : MonoBehaviour
     [SerializeField] float distanseForFinish;
 
     [SerializeField] Transform _targetPosition;
-
-    [SerializeField] List<RouteSell> route;
+    [Header("Objects")]
     [SerializeField] Transform trashCan;
-
+    [SerializeField] List<RouteSell> route;
+    [Header("nav Mesh Agent")]
     [SerializeField] NavMeshAgent navMeshAgent;
-
 
     private bool _isWorking = false;
     private bool _isFind = false;
-    private bool _isTimePassed = false;
 
     private Transform _startPosition;
     private Inventory _inventory;
@@ -38,18 +36,17 @@ public class HelperController : MonoBehaviour
             StartCoroutine(AIRoute());
         else
             navMeshAgent.destination = _targetPosition.position;
-
-
-        Debug.Log(_targetPosition.position);
     }
 
     private void StartValue()
     {
         _inventory = GetComponent<Inventory>();
+        Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(), GetComponent<Collider>());
     }
 
     private IEnumerator AIRoute()
     {
+        Debug.Log("StartCoroutineBot");
         _isWorking = true;
         FirstSelection();
 
@@ -67,29 +64,26 @@ public class HelperController : MonoBehaviour
 
         if (!_isFind)
         {
-            StopCoroutine(AIRoute());
             _isWorking = false;
         }
         yield return null;
 
-        Invoke("TimePassed", timeToWait);
 
-        while (_inventory.count != _inventory.thing.Count && !_isTimePassed)
+        while (_inventory.count != _inventory.thing.Count)
         {
             yield return null;
         }
-
         _targetPosition.position = route[_index].finishPosition.position;
-        
-        _isTimePassed = false;
-        Invoke("TimePassed", timeToWait);
+
+        yield return null;
 
         float finPos = Vector3.Distance(_targetPosition.position, transform.position);
-        while (finPos > distanseForFinish && _inventory.count == _inventory.thing.Count &&!_isTimePassed)
+        while (finPos > distanseForFinish && _inventory.count == _inventory.thing.Count)
         {
             yield return null;
         }
 
+        Debug.Log("Finished");
         if (_inventory.count != 0)
         {
             _targetPosition.position = trashCan.position;
@@ -102,7 +96,6 @@ public class HelperController : MonoBehaviour
 
         _isWorking = false;
         _isFind = false;
-        _isTimePassed = false;
     }
 
     private void FirstSelection()
@@ -119,6 +112,7 @@ public class HelperController : MonoBehaviour
                     if (shalf.count <= shalf._maxCells * partQuantity)
                     {
                         _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
                         break;
@@ -130,13 +124,15 @@ public class HelperController : MonoBehaviour
                     if (shalf.count <= shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
                     {
                         _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
                         break;
                     }
                 }
             }
-        }    }
+        }
+    }
 
     private void SecondSelection()
     {
@@ -151,6 +147,7 @@ public class HelperController : MonoBehaviour
                     if (manufacture.countStart == 0)
                     {
                         _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
                         break;
@@ -162,6 +159,7 @@ public class HelperController : MonoBehaviour
                     if (shalf.count <= shalf._maxCells)
                     {
                         _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
                         break;
@@ -170,17 +168,12 @@ public class HelperController : MonoBehaviour
             }
         }
     }
-
-    private void TimePassed()
-    {
-        _isTimePassed = true;
-    }
-
 }
 
 [Serializable]
 public class RouteSell
 {
+    public int id;
     public List<Transform> startPosition;
     public Transform finishPosition;
     public bool isSpawner;

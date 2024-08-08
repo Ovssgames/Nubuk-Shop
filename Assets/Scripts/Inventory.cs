@@ -5,11 +5,16 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public float speedMove;
+
     [HideInInspector]
     public int count;
+    [HideInInspector]
+    public int idProduct;
 
     public List<GameObject> thing;
     public List<GameObject> spawners;
+
+    public bool isHelper;
 
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {

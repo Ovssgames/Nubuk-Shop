@@ -702,6 +702,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120785465}
   m_CullTransparentMesh: 1
+--- !u!4 &153316234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3774651513404304984, guid: ff4f7ccec26abc04f9f3ecc9a27e3949, type: 3}
+  m_PrefabInstance: {fileID: 2906368825462161987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &189436788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1846,7 +1851,7 @@ GameObject:
   - component: {fileID: 683227368}
   - component: {fileID: 683227370}
   - component: {fileID: 683227369}
-  - component: {fileID: 683227371}
+  - component: {fileID: 683227373}
   - component: {fileID: 683227372}
   m_Layer: 0
   m_Name: Helper
@@ -1907,6 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMove: 10
   count: 0
+  idProduct: 0
   thing:
   - {fileID: 0}
   - {fileID: 0}
@@ -1915,6 +1921,7 @@ MonoBehaviour:
   - {fileID: 1699547108}
   - {fileID: 715418042}
   - {fileID: 423527942}
+  isHelper: 1
 --- !u!114 &683227370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,71 +1938,22 @@ MonoBehaviour:
   timeToWait: 20
   distanseForFinish: 0.4
   _targetPosition: {fileID: 874559905}
+  trashCan: {fileID: 153316234}
   route:
-  - startPosition:
+  - id: 0
+    startPosition:
     - {fileID: 1768781933}
     - {fileID: 1987052023}
     - {fileID: 469195180}
     finishPosition: {fileID: 106702309}
     isSpawner: 1
-  - startPosition:
+  - id: 5
+    startPosition:
     - {fileID: 6919323339629318399}
     - {fileID: 189436789}
     finishPosition: {fileID: 426883407}
     isSpawner: 1
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  - startPosition: []
-    finishPosition: {fileID: 0}
-    isSpawner: 0
-  trashCan: {fileID: 0}
   navMeshAgent: {fileID: 683227368}
---- !u!135 &683227371
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683227365}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.49, z: 0}
 --- !u!54 &683227372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2023,6 +1981,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!136 &683227373
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683227365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.42335033
+  m_Height: 2.036828
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0234139, z: -0.076649666}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

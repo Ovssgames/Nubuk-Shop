@@ -53,22 +53,51 @@ public class Spawner : MonoBehaviour
 
     private void MovePrefabInInventory(Collider other)
     {
-        for (int i = 0; i < _inventory.thing.Count; i++)
+        if (_inventory.isHelper)
         {
-            if (_inventory.thing[i] == null && count > 0)
+            if (_inventory.idProduct == propertisObject.id)
             {
-                for (int n = 0; n < _things.Count; n++)
+                for (int i = 0; i < _inventory.thing.Count; i++)
                 {
-                    if (_things[n] != null)
+                    if (_inventory.thing[i] == null && count > 0)
                     {
-                        count--;
-                        _inventory.count++;
-                        var prefab = _things[n];
-                        prefab.transform.SetParent(_inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                        StartCoroutine(_inventory.PrefabAnimation(prefab, _inventory.spawners[i]));
-                        _inventory.thing[i] = prefab;
-                        _things[n] = null;
-                        break;
+                        for (int n = 0; n < _things.Count; n++)
+                        {
+                            if (_things[n] != null)
+                            {
+                                count--;
+                                _inventory.count++;
+                                var prefab = _things[n];
+                                prefab.transform.SetParent(_inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                                StartCoroutine(_inventory.PrefabAnimation(prefab, _inventory.spawners[i]));
+                                _inventory.thing[i] = prefab;
+                                _things[n] = null;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < _inventory.thing.Count; i++)
+            {
+                if (_inventory.thing[i] == null && count > 0)
+                {
+                    for (int n = 0; n < _things.Count; n++)
+                    {
+                        if (_things[n] != null)
+                        {
+                            count--;
+                            _inventory.count++;
+                            var prefab = _things[n];
+                            prefab.transform.SetParent(_inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                            StartCoroutine(_inventory.PrefabAnimation(prefab, _inventory.spawners[i]));
+                            _inventory.thing[i] = prefab;
+                            _things[n] = null;
+                            break;
+                        }
                     }
                 }
             }

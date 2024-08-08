@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Manufacture : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class Manufacture : MonoBehaviour
     [Header("Finish")]
     [SerializeField] ScObjFood finishType;
     public List<GameObject> finishCells;
-    public UnityEvent onFinishCollision;
 
     [HideInInspector]
     public int countFinish;
@@ -27,9 +25,10 @@ public class Manufacture : MonoBehaviour
     [HideInInspector]
     public int maxCountFinish;
 
-    
-    private List<GameObject> _startThings;
-    private List<GameObject> _finishThings;
+    [HideInInspector]
+    public List<GameObject> _startThings;
+    [HideInInspector]
+    public List<GameObject> _finishThings;
 
     private bool _isWorking = false;
     private bool _isTrigger = false;
@@ -104,30 +103,6 @@ public class Manufacture : MonoBehaviour
                         }
                     }
                     things[i] = null;
-                }
-            }
-        }
-    }
-
-    public void MovePrefabInInventory(Inventory inventory)
-    {
-        for (int i = 0; i < inventory.thing.Count; i++)
-        {
-            if (inventory.thing[i] == null && countFinish > 0)
-            {
-                for (int n = 0; n < _finishThings.Count; n++)
-                {
-                    if (_finishThings[n] != null)
-                    {
-                        countFinish--;
-                        _inventory.count++;
-                        var prefab = _finishThings[n];
-                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
-                        inventory.thing[i] = prefab;
-                        _finishThings[n] = null;
-                        break;
-                    }
                 }
             }
         }
