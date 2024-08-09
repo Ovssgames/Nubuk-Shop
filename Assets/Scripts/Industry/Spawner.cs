@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] ScObjFood propertisObject;
+    public ScObjFood propertisObject;
     [SerializeField] float spawnTime;
     [SerializeField] List<GameObject> spawners;
     [HideInInspector]

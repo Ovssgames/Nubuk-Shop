@@ -9,11 +9,11 @@ public class Manufacture : MonoBehaviour
     [SerializeField] GameObject animationPoint;
 
     [Header("Start")]
-    [SerializeField] ScObjFood startType;
+    public ScObjFood startType;
     public List<GameObject> startCells;
     
     [Header("Finish")]
-    [SerializeField] ScObjFood finishType;
+    public ScObjFood finishType;
     public List<GameObject> finishCells;
 
     [HideInInspector]

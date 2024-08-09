@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5546593275031584070}
   m_Layer: 0
-  m_Name: StartHelperPosition
+  m_Name: FinishHelperPosition
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -419,6 +419,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2278245396035204460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7599295944498499253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160796535463163806}
+  m_Layer: 0
+  m_Name: StartHelperPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160796535463163806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599295944498499253}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.441, y: -0.474, z: 2.082}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2278245396035204460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7931849156706993107
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +586,7 @@ Transform:
   - {fileID: 2966027366286230736}
   - {fileID: 1982759020854306120}
   - {fileID: 5992420583464974494}
+  - {fileID: 160796535463163806}
   - {fileID: 5546593275031584070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -606,21 +638,12 @@ MonoBehaviour:
   - {fileID: 7959824449107777474}
   - {fileID: 2609431483334263519}
   - {fileID: 2077953268531717471}
-  onFinishCollision:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8070033009312497477}
-        m_TargetAssemblyTypeName: Manufacture, Assembly-CSharp
-        m_MethodName: MovePrefabInInventory
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Inventory, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  countFinish: 0
+  countStart: 0
+  maxCountStart: 0
+  maxCountFinish: 0
+  _startThings: []
+  _finishThings: []
 --- !u!1 &8794179809424563381
 GameObject:
   m_ObjectHideFlags: 0

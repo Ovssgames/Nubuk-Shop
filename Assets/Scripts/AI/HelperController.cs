@@ -9,8 +9,8 @@ public class HelperController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float partQuantity;
     [SerializeField] float distanseForFinish;
+    [SerializeField] GameObject targetPositionPrefab;
 
-    [SerializeField] Transform _targetPosition;
     [Header("Objects")]
     [SerializeField] Transform trashCan;
     [SerializeField] List<RouteSell> route;
@@ -20,7 +20,12 @@ public class HelperController : MonoBehaviour
     private bool _isWorking = false;
     private bool _isFind = false;
 
-    private Transform _startPosition;
+    private Transform _targetPosition;
+    [HideInInspector]
+    public Transform _startPosition;
+    [HideInInspector]
+    public Transform _finishPosition;
+
     private float _finishDistanse = 1000f;
     private Inventory _inventory;
     private int _index;
@@ -40,8 +45,23 @@ public class HelperController : MonoBehaviour
 
     private void StartValue()
     {
+        var tarPos = Instantiate(targetPositionPrefab);
+        _targetPosition = tarPos.transform;
+
         _inventory = GetComponent<Inventory>();
         Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(), GetComponent<Collider>());
+
+        foreach (RouteSell item in route)
+        {
+            if (item.startPosition[0].GetComponent<Spawner>() != null)
+            {
+                item.id = item.startPosition[0].GetComponent<Spawner>().propertisObject.id;
+            }
+            else
+            {
+                item.id = item.startPosition[0].GetComponentInParent<Manufacture>().finishType.id;
+            }
+        }
     }
 
     private IEnumerator AIRoute()
@@ -64,6 +84,7 @@ public class HelperController : MonoBehaviour
 
         if (!_isFind)
         {
+            StopCoroutine(AIRoute());
             _isWorking = false;
         }
         yield return null;
@@ -74,7 +95,7 @@ public class HelperController : MonoBehaviour
             {
                 yield return null;
             }
-            _targetPosition.position = route[_index].finishPosition.position;
+            _targetPosition.position = _finishPosition.position;
         }
         else
         {
@@ -83,7 +104,7 @@ public class HelperController : MonoBehaviour
             {
                 yield return null;
             }
-            _targetPosition.position = route[_index].finishPosition.position;
+            _targetPosition.position = _finishPosition.position;
         }
         yield return null;
 
@@ -113,11 +134,12 @@ public class HelperController : MonoBehaviour
     {
         for (int i = 0; i < route.Count; i++)
         {
-            if (route[i].finishPosition.GetComponentInParent<SellShalf>() != null)
+            if (route[i].finishPosition[0].GetComponentInParent<SellShalf>() != null)
             {
-                var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
+                var shalf = route[i].finishPosition[0].GetComponentInParent<SellShalf>();
 
                 _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
+                _finishPosition = route[i].finishPosition[(int)UnityEngine.Random.Range(0, route[i].finishPosition.Count)];
                 if (route[i].isSpawner)
                 {
                     if (shalf.count <= shalf._maxCells * partQuantity)
@@ -152,9 +174,10 @@ public class HelperController : MonoBehaviour
             if (route[i].isSpawner)
             {
                 _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
-                if (route[i].finishPosition.GetComponentInParent<Manufacture>() != null)
+                _finishPosition = route[i].finishPosition[(int)UnityEngine.Random.Range(0, route[i].finishPosition.Count)];
+                if (route[i].finishPosition[0].GetComponentInParent<Manufacture>() != null)
                 {
-                    var manufacture = route[i].finishPosition.GetComponentInParent<Manufacture>();
+                    var manufacture = _finishPosition.GetComponentInParent<Manufacture>();
                     if (manufacture.countStart == 0 && manufacture.countStart < manufacture.maxCountStart)
                     {
                         _targetPosition.position = _startPosition.position;
@@ -166,7 +189,7 @@ public class HelperController : MonoBehaviour
                 }
                 else
                 {
-                    var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
+                    var shalf = route[i].finishPosition[0].GetComponentInParent<SellShalf>();
                     if (shalf.count <= shalf._maxCells && shalf.count < shalf._maxCells)
                     {
                         _targetPosition.position = _startPosition.position;
@@ -184,8 +207,9 @@ public class HelperController : MonoBehaviour
 [Serializable]
 public class RouteSell
 {
+    [HideInInspector]
     public int id;
     public List<Transform> startPosition;
-    public Transform finishPosition;
+    public List<Transform> finishPosition;
     public bool isSpawner;
 }
