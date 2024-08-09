@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
     {
         if (other.GetComponent<Inventory>() != null)
         {
-            ExitTriggerInventory();
+            ExitTriggerInventory(other);
         }
     }
 
@@ -65,19 +65,23 @@ public class Spawner : MonoBehaviour
     {
         if (_inventories.Count == 0)
         {
-            _inventories.Add(other.GetComponent<Inventory>());
             _inventory = other.GetComponent<Inventory>();
         }
-        else
-        {
-            _inventories.Add(other.GetComponent<Inventory>());
-        }
+        _inventories.Add(other.GetComponent<Inventory>());
     }
 
-    private void ExitTriggerInventory()
+    private void ExitTriggerInventory(Collider other)
     {
-        _inventories.RemoveAt(0);
-        if (_inventories.Count > 1)
+        foreach (Inventory item in _inventories)
+        {
+            if (other.GetComponent<Inventory>() == item)
+            {
+                _inventories.Remove(item);
+                break;
+            }
+        }
+
+        if (_inventories.Count > 0)
         {
             _inventory = _inventories[0];
         }

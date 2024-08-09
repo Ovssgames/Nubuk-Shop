@@ -21,6 +21,7 @@ public class HelperController : MonoBehaviour
     private bool _isFind = false;
 
     private Transform _startPosition;
+    private float _finishDistanse = 1000f;
     private Inventory _inventory;
     private int _index;
 
@@ -86,9 +87,10 @@ public class HelperController : MonoBehaviour
         }
         yield return null;
 
-        float finPos = Vector3.Distance(_targetPosition.position, transform.position);
-        while (finPos > distanseForFinish && _inventory.count == _inventory.thing.Count)
+        
+        while (_finishDistanse > distanseForFinish && _inventory.count == _inventory.thing.Count)
         {
+            _finishDistanse = Vector3.Distance(_targetPosition.position, transform.position);
             yield return null;
         }
 
@@ -153,7 +155,7 @@ public class HelperController : MonoBehaviour
                 if (route[i].finishPosition.GetComponentInParent<Manufacture>() != null)
                 {
                     var manufacture = route[i].finishPosition.GetComponentInParent<Manufacture>();
-                    if (manufacture.countStart == 0)
+                    if (manufacture.countStart == 0 && manufacture.countStart < manufacture.maxCountStart)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
@@ -165,7 +167,7 @@ public class HelperController : MonoBehaviour
                 else
                 {
                     var shalf = route[i].finishPosition.GetComponentInParent<SellShalf>();
-                    if (shalf.count <= shalf._maxCells)
+                    if (shalf.count <= shalf._maxCells && shalf.count < shalf._maxCells)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;

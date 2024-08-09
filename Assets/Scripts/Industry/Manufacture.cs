@@ -83,26 +83,53 @@ public class Manufacture : MonoBehaviour
     }
     private void StartThingsForMashine(Collider other)
     {
-        if (_inventory != null)
+        Inventory inventory = other.GetComponent<Inventory>();
+        if (inventory != null)
         {
-            var things = _inventory.thing;
+            var things = inventory.thing;
             for (int i = 0; i < things.Count && countStart < maxCountStart; i++)
             {
-                if (things[i] != null && _inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
+                if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
                 {
                     for (int n = 0; n < _startThings.Count; n++)
                     {
                         if (_startThings[n] == null)
                         {
                             countStart++;
-                            _inventory.count--;
-                            StartCoroutine(_inventory.PrefabAnimation(things[i], startCells[n]));
+                            inventory.count--;
+                            StartCoroutine(inventory.PrefabAnimation(things[i], startCells[n]));
                             _startThings[n] = things[i];
                             things[i].transform.SetParent(transform.GetChild(0));
                             break;
                         }
                     }
                     things[i] = null;
+                }
+            }
+        }
+    }
+
+    public void MovePrefabToInventory(Collider other)
+    {
+        Inventory inventory = other.GetComponent<Inventory>();
+        for (int i = 0; i < inventory.thing.Count; i++)
+        {
+            Debug.Log(inventory.thing[i] + " " + countFinish);
+            if (inventory.thing[i] == null && countFinish > 0)
+            {
+                for (int n = 0; n < _finishThings.Count; n++)
+                {
+                    if (_finishThings[n] != null)
+                    {
+                        countFinish--;
+                        inventory.count++;
+                        var prefab = _finishThings[n];
+                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                        inventory.thing[i] = prefab;
+                        _finishThings[n] = null;
+                        break;
+                    }
                 }
             }
         }
@@ -154,7 +181,5 @@ public class Manufacture : MonoBehaviour
         _isWorking = false;
         counter = 0;
         countFinish++;
-
-        yield break;
     }
 }
