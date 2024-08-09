@@ -16,6 +16,7 @@ public class TrashCan : MonoBehaviour
                 if (inventory.thing[i] != null)
                 {
                     StartCoroutine(DestroyObjects(inventory, i));
+                    inventory.count--;
                 }
             }
         }

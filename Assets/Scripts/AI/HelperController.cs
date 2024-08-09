@@ -8,14 +8,13 @@ public class HelperController : MonoBehaviour
 {
     [Range(0, 1)]
     [SerializeField] float partQuantity;
-    [SerializeField] float timeToWait;
     [SerializeField] float distanseForFinish;
 
     [SerializeField] Transform _targetPosition;
     [Header("Objects")]
     [SerializeField] Transform trashCan;
     [SerializeField] List<RouteSell> route;
-    [Header("nav Mesh Agent")]
+    [Header("Nav Mesh Agent")]
     [SerializeField] NavMeshAgent navMeshAgent;
 
     private bool _isWorking = false;
@@ -68,13 +67,23 @@ public class HelperController : MonoBehaviour
         }
         yield return null;
 
-
-        while (_inventory.count != _inventory.thing.Count)
+        if (_startPosition.gameObject.GetComponent<Spawner>() != null)
         {
-            yield return null;
+            while (_inventory.count != _inventory.thing.Count)
+            {
+                yield return null;
+            }
+            _targetPosition.position = route[_index].finishPosition.position;
         }
-        _targetPosition.position = route[_index].finishPosition.position;
+        else
+        {
 
+            while (_inventory.count == 0)
+            {
+                yield return null;
+            }
+            _targetPosition.position = route[_index].finishPosition.position;
+        }
         yield return null;
 
         float finPos = Vector3.Distance(_targetPosition.position, transform.position);

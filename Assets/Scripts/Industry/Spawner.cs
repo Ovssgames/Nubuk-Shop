@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Spawner : MonoBehaviour
 
     private List<GameObject> _things;
     private Inventory _inventory;
+    private List<Inventory> _inventories = new List<Inventory>();
 
     private float _timer;
     private float _randomTime;
@@ -30,7 +32,7 @@ public class Spawner : MonoBehaviour
     {
         if (other.GetComponent<Inventory>() != null)
         {
-            _inventory = other.GetComponent<Inventory>();
+            EnterTriggerInventory(other);
         }
     }
 
@@ -42,6 +44,14 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Inventory>() != null)
+        {
+            ExitTriggerInventory();
+        }
+    }
+
     private void StartValues()
     {
         _things = new List<GameObject>(spawners.Count);
@@ -49,6 +59,32 @@ public class Spawner : MonoBehaviour
             _things.Add(null);
 
         _randomTime = spawnTime * Random.Range(0f, 0.15f);
+    }
+
+    private void EnterTriggerInventory(Collider other)
+    {
+        if (_inventories.Count == 0)
+        {
+            _inventories.Add(other.GetComponent<Inventory>());
+            _inventory = other.GetComponent<Inventory>();
+        }
+        else
+        {
+            _inventories.Add(other.GetComponent<Inventory>());
+        }
+    }
+
+    private void ExitTriggerInventory()
+    {
+        _inventories.RemoveAt(0);
+        if (_inventories.Count > 1)
+        {
+            _inventory = _inventories[0];
+        }
+        else
+        {
+            _inventory = null;
+        }
     }
 
     private void MovePrefabInInventory(Collider other)
