@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49ff59d2da650d4f9806d35e0efa222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6.8
+  speed: 5.5
   characterController: {fileID: 3939113933497943775}
   model: {fileID: 5861452441673573159}
   speedRotation: 10

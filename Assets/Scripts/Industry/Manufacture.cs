@@ -60,7 +60,6 @@ public class Manufacture : MonoBehaviour
     {
         if (countStart >= countForMashineStart && !_isWorking && !_isTrigger && countFinish < maxCountFinish)
         {
-            Debug.Log("StartMakingCoroutine");
             StartCoroutine(Making());
         }
     }
@@ -84,27 +83,58 @@ public class Manufacture : MonoBehaviour
     private void StartThingsForMashine(Collider other)
     {
         Inventory inventory = other.GetComponent<Inventory>();
-        if (inventory != null)
+        if (inventory.isHelper)
         {
-            var things = inventory.thing;
-            for (int i = 0; i < things.Count && countStart < maxCountStart; i++)
+            if (inventory != null && inventory.idProduct == startType.id)
             {
-                if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
+                var things = inventory.thing;
+                for (int i = 0; i < things.Count && countStart < maxCountStart; i++)
                 {
-                    for (int n = 0; n < _startThings.Count; n++)
+                    if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
                     {
-                        if (_startThings[n] == null)
+                        for (int n = 0; n < _startThings.Count; n++)
                         {
-                            countStart++;
-                            inventory.count--;
-                            StartCoroutine(inventory.PrefabAnimation(things[i], startCells[n]));
-                            _startThings[n] = things[i];
-                            things[i].transform.SetParent(transform.GetChild(0));
-                            break;
+                            if (_startThings[n] == null)
+                            {
+                                countStart++;
+                                inventory.count--;
+                                StartCoroutine(inventory.PrefabAnimation(things[i], startCells[n]));
+                                _startThings[n] = things[i];
+                                things[i].transform.SetParent(transform.GetChild(0));
+                                break;
+                            }
                         }
+                        things[i] = null;
                     }
-                    things[i] = null;
                 }
+
+            }
+        }
+        else
+        {
+            if (inventory != null)
+            {
+                var things = inventory.thing;
+                for (int i = 0; i < things.Count && countStart < maxCountStart; i++)
+                {
+                    if (things[i] != null && inventory.thing[i].GetComponent<PrefabProperty>().propertisObject == startType)
+                    {
+                        for (int n = 0; n < _startThings.Count; n++)
+                        {
+                            if (_startThings[n] == null)
+                            {
+                                countStart++;
+                                inventory.count--;
+                                StartCoroutine(inventory.PrefabAnimation(things[i], startCells[n]));
+                                _startThings[n] = things[i];
+                                things[i].transform.SetParent(transform.GetChild(0));
+                                break;
+                            }
+                        }
+                        things[i] = null;
+                    }
+                }
+
             }
         }
     }
@@ -112,23 +142,52 @@ public class Manufacture : MonoBehaviour
     public void MovePrefabToInventory(Collider other)
     {
         Inventory inventory = other.GetComponent<Inventory>();
-        for (int i = 0; i < inventory.thing.Count; i++)
+        if (inventory.isHelper)
         {
-            Debug.Log(inventory.thing[i] + " " + countFinish);
-            if (inventory.thing[i] == null && countFinish > 0)
+            if (inventory.idProduct == finishType.id)
             {
-                for (int n = 0; n < _finishThings.Count; n++)
+                for (int i = 0; i < inventory.thing.Count; i++)
                 {
-                    if (_finishThings[n] != null)
+                    if (inventory.thing[i] == null && countFinish > 0)
                     {
-                        countFinish--;
-                        inventory.count++;
-                        var prefab = _finishThings[n];
-                        prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                        StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
-                        inventory.thing[i] = prefab;
-                        _finishThings[n] = null;
-                        break;
+                        for (int n = 0; n < _finishThings.Count; n++)
+                        {
+                            if (_finishThings[n] != null)
+                            {
+                                countFinish--;
+                                inventory.count++;
+                                var prefab = _finishThings[n];
+                                prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                                StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                                inventory.thing[i] = prefab;
+                                _finishThings[n] = null;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < inventory.thing.Count; i++)
+            {
+                Debug.Log(inventory.thing[i] + " " + countFinish);
+                if (inventory.thing[i] == null && countFinish > 0)
+                {
+                    for (int n = 0; n < _finishThings.Count; n++)
+                    {
+                        if (_finishThings[n] != null)
+                        {
+                            countFinish--;
+                            inventory.count++;
+                            var prefab = _finishThings[n];
+                            prefab.transform.SetParent(inventory.transform.GetChild(0).GetChild(0).GetChild(0));
+                            StartCoroutine(inventory.PrefabAnimation(prefab, inventory.spawners[i]));
+                            inventory.thing[i] = prefab;
+                            _finishThings[n] = null;
+                            break;
+                        }
                     }
                 }
             }
@@ -148,8 +207,7 @@ public class Manufacture : MonoBehaviour
                 StartCoroutine(_inventory.PrefabAnimation(_startThings[i], animationPoint));
                 countStart--;
                 counter++;
-                destroyedObj.Add(_startThings[i]); 
-                Debug.Log("make");
+                destroyedObj.Add(_startThings[i]);
                 _startThings[i] = null;
                 yield return null;
             }

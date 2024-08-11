@@ -24,6 +24,5 @@ public class Inventory : MonoBehaviour
             yield return null;
         }
         prefab.transform.rotation = finish.transform.rotation;
-        Debug.Log("End Position");
     }
 }

@@ -26,7 +26,10 @@ public class HelperController : MonoBehaviour
     [HideInInspector]
     public Transform _finishPosition;
 
-    private float _finishDistanse = 1000f;
+    private List<HelperController> _anothersHelpers= new List<HelperController>();
+
+    private float _finishDistanse = 10000f;
+    private float _startDistanse = 10000f;
     private Inventory _inventory;
     private int _index;
 
@@ -62,6 +65,17 @@ public class HelperController : MonoBehaviour
                 item.id = item.startPosition[0].GetComponentInParent<Manufacture>().finishType.id;
             }
         }
+
+        GameObject[] helpers = GameObject.FindGameObjectsWithTag("Helper");
+        for (int i = 0; i < helpers.Length; i++)
+        {
+            _anothersHelpers.Add(helpers[i].GetComponent<HelperController>());
+        }
+    }
+
+    private void IntervalCoroutine()
+    {
+
     }
 
     private IEnumerator AIRoute()
@@ -84,8 +98,8 @@ public class HelperController : MonoBehaviour
 
         if (!_isFind)
         {
-            StopCoroutine(AIRoute());
             _isWorking = false;
+            yield break;
         }
         yield return null;
 
@@ -99,26 +113,28 @@ public class HelperController : MonoBehaviour
         }
         else
         {
-
-            while (_inventory.count == 0)
+            _startDistanse = Vector3.Distance(_targetPosition.position, transform.position);
+            while (_startDistanse > distanseForFinish)
             {
+                _startDistanse = Vector3.Distance(_targetPosition.position, transform.position);
                 yield return null;
             }
             _targetPosition.position = _finishPosition.position;
         }
         yield return null;
 
-        
-        while (_finishDistanse > distanseForFinish && _inventory.count == _inventory.thing.Count)
+        _finishDistanse = Vector3.Distance(_targetPosition.position, transform.position);
+        while (_finishDistanse > distanseForFinish)
         {
             _finishDistanse = Vector3.Distance(_targetPosition.position, transform.position);
+            Debug.Log(_finishDistanse);
             yield return null;
         }
 
-        Debug.Log("Finished");
         if (_inventory.count != 0)
         {
             _targetPosition.position = trashCan.position;
+            Debug.Log("помойка");
 
             while (_inventory.count != 0)
             {
@@ -134,32 +150,34 @@ public class HelperController : MonoBehaviour
     {
         for (int i = 0; i < route.Count; i++)
         {
-            if (route[i].finishPosition[0].GetComponentInParent<SellShalf>() != null)
-            {
-                var shalf = route[i].finishPosition[0].GetComponentInParent<SellShalf>();
+            StartAndFinishFind(i);
 
-                _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
-                _finishPosition = route[i].finishPosition[(int)UnityEngine.Random.Range(0, route[i].finishPosition.Count)];
+            if (_finishPosition.GetComponentInParent<SellShalf>() != null)
+            {
+                var shalf = _finishPosition.GetComponentInParent<SellShalf>();
+
                 if (route[i].isSpawner)
                 {
-                    if (shalf.count <= shalf._maxCells * partQuantity)
+                    if (shalf.count < shalf._maxCells * partQuantity)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
+                        Debug.Log("Спавнер - полка/2" + _startPosition + _finishPosition);
                         break;
                     }
                 }
                 else
                 {
                     var manufacture = _startPosition.GetComponentInParent<Manufacture>();
-                    if (shalf.count <= shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
+                    if (shalf.count < shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
+                        Debug.Log("станок - полка/2" + _startPosition + _finishPosition);
                         break;
                     }
                 }
@@ -171,36 +189,75 @@ public class HelperController : MonoBehaviour
     {
         for (int i = 0; i < route.Count; i++)
         {
+            StartAndFinishFind(i);
+
             if (route[i].isSpawner)
             {
-                _startPosition = route[i].startPosition[(int)UnityEngine.Random.Range(0, route[i].startPosition.Count)];
-                _finishPosition = route[i].finishPosition[(int)UnityEngine.Random.Range(0, route[i].finishPosition.Count)];
                 if (route[i].finishPosition[0].GetComponentInParent<Manufacture>() != null)
                 {
                     var manufacture = _finishPosition.GetComponentInParent<Manufacture>();
-                    if (manufacture.countStart == 0 && manufacture.countStart < manufacture.maxCountStart)
+                    if (manufacture.countStart < manufacture.maxCountStart)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
+                        Debug.Log("спавнер - станок" + _startPosition + _finishPosition);
                         break;
                     }
                 }
                 else
                 {
-                    var shalf = route[i].finishPosition[0].GetComponentInParent<SellShalf>();
-                    if (shalf.count <= shalf._maxCells && shalf.count < shalf._maxCells)
+                    var shalf =_finishPosition.GetComponentInParent<SellShalf>();
+                    if (shalf.count < shalf._maxCells && shalf.count < shalf._maxCells)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
+                        Debug.Log("спавнер - полка" + _startPosition + _finishPosition);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (_finishPosition.GetComponentInParent<SellShalf>() != null)
+                {
+                    var shalf = _finishPosition.GetComponentInParent<SellShalf>();
+                    var manufacture = _startPosition.GetComponentInParent<Manufacture>();
+                    if (shalf.count < shalf._maxCells && manufacture.countFinish > 0)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
+                        _isFind = true;
+                        _index = i;
+                        Debug.Log("станок - полка" + _startPosition + _finishPosition);
+                        break;
+                    }
+                }
+                else
+                {
+                    var manufactureStart = _startPosition.GetComponentInParent<Manufacture>();
+                    var manufactureFinish = _finishPosition.GetComponentInParent<Manufacture>();
+                    if (manufactureFinish.countStart < manufactureFinish.startCells.Count && manufactureStart.countFinish > 0)
+                    {
+                        _targetPosition.position = _startPosition.position;
+                        _inventory.idProduct = route[i].id;
+                        _isFind = true;
+                        _index = i;
+                        Debug.Log("станок - полка" + _startPosition + _finishPosition);
                         break;
                     }
                 }
             }
         }
+    }
+
+    private void StartAndFinishFind(int index)
+    {
+        _startPosition = route[index].startPosition[(int)UnityEngine.Random.Range(0, route[index].startPosition.Count)];
+        _finishPosition = route[index].finishPosition[(int)UnityEngine.Random.Range(0, route[index].finishPosition.Count)];
     }
 }
 
