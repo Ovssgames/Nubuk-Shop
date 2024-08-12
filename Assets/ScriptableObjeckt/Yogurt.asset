@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Yogurt
   m_EditorClassIdentifier: 
   id: 12
+  rarely: 1
   model: {fileID: 7574387149273218255, guid: 45a9fab0e2fd8434dbd500cd3d2bf1a7, type: 3}
+  sellShalf: {fileID: 0}
