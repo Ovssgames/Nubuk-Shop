@@ -9,6 +9,7 @@ public class HelperController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float partQuantity;
     [SerializeField] float distanseForFinish;
+    [SerializeField] float timeToRestart;
     [SerializeField] GameObject targetPositionPrefab;
 
     [Header("Objects")]
@@ -21,6 +22,7 @@ public class HelperController : MonoBehaviour
     private bool _isFind = false;
 
     private Transform _targetPosition;
+
     [HideInInspector]
     public Transform _startPosition;
     [HideInInspector]
@@ -30,6 +32,7 @@ public class HelperController : MonoBehaviour
 
     private float _finishDistanse = 10000f;
     private float _startDistanse = 10000f;
+    private float _timer;
     private Inventory _inventory;
     private int _index;
 
@@ -41,9 +44,15 @@ public class HelperController : MonoBehaviour
     private void Update()
     {
         if (!_isWorking)
+        {
             StartCoroutine(AIRoute());
+            IntervalCoroutine();
+        }
         else
+        {
             navMeshAgent.destination = _targetPosition.position;
+            _timer = 0;
+        }
     }
 
     private void StartValue()
@@ -75,7 +84,11 @@ public class HelperController : MonoBehaviour
 
     private void IntervalCoroutine()
     {
-
+        _timer += Time.deltaTime;
+        if (_timer >= timeToRestart)
+        {
+            StopCoroutine(AIRoute());
+        }
     }
 
     private IEnumerator AIRoute()
@@ -127,14 +140,12 @@ public class HelperController : MonoBehaviour
         while (_finishDistanse > distanseForFinish)
         {
             _finishDistanse = Vector3.Distance(_targetPosition.position, transform.position);
-            Debug.Log(_finishDistanse);
             yield return null;
         }
 
         if (_inventory.count != 0)
         {
             _targetPosition.position = trashCan.position;
-            Debug.Log("помойка");
 
             while (_inventory.count != 0)
             {
