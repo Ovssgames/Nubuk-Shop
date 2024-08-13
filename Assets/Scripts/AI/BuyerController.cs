@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
 public class BuyerController : MonoBehaviour
 {
     public Range range;
-    public UnityEvent<bool> OnMoveInventory;
 
     public List<SellShalf> sellShalfs;
 
     [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] GameObject targetPositionPrefab;
     [SerializeField] BuyerInventory buyerInventory;
+    
+    [HideInInspector]
+    public int countProduct;
+    [HideInInspector]
+    public int countProductMax;
 
+    private CashRegister _cashRegister;
     private List<int> idProductsDefault = new List<int>();
     private List<int> idProductsRare = new List<int>();
     private Dictionary<int, int> route = new Dictionary<int, int>();
+    private Dictionary<int, Transform> shalfs = new Dictionary<int, Transform>();
 
-    private int productDefault;
-    private int productRare;
-    private int _countProduct;
+    private int _productDefault;
+    private int _productRare;
 
     private Transform _targetPosition;
 
@@ -33,24 +37,23 @@ public class BuyerController : MonoBehaviour
     private void Start()
     {
         FindRoute();
+        StartCoroutine(AiBuyer());
     }
 
     private void Update()
     {
-
-
         navMeshAgent.destination = _targetPosition.position;
     }
 
     private void FindRoute()
     {
-        for (int i = 0; i < productDefault; i++)
+        for (int i = 0; i < _productDefault; i++)
         {
             int product = idProductsDefault[(int)Random.Range(0, idProductsDefault.Count)];
             route.Add(i, product);
             idProductsDefault.Remove(product);
         }
-        for (int i = productDefault; i < productRare + productDefault; i++)
+        for (int i = _productDefault; i < _productRare + _productDefault; i++)
         {
             int product = idProductsRare[(int)Random.Range(0, idProductsRare.Count)];
             route.Add(i, product);
@@ -60,8 +63,8 @@ public class BuyerController : MonoBehaviour
 
     private void AwakeValues()
     {
-        productDefault = (int)Random.Range(range.minProductDefault, range.maxProductDefault + 1);
-        productRare = (int)Random.Range(range.minProductRare, range.maxProductRare + 1);
+        _productDefault = (int)Random.Range(range.minProductDefault, range.maxProductDefault + 1);
+        _productRare = (int)Random.Range(range.minProductRare, range.maxProductRare + 1);
 
         foreach (SellShalf item in sellShalfs)
         {
@@ -73,6 +76,9 @@ public class BuyerController : MonoBehaviour
             {
                 idProductsRare.Add(item.type.id);
             }
+
+            shalfs.Add(item.type.id, item.GetComponentInChildren<FinishShalfPosition>().transform);
+            _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
         }
 
         var targetPos = Instantiate(targetPositionPrefab);
@@ -87,21 +93,31 @@ public class BuyerController : MonoBehaviour
             {
                 if (item.type.id == route[i])
                 {
-                    _targetPosition.position = item.type.sellShalf.position;
+                    _targetPosition.position = shalfs[route[i]].position;
                     buyerInventory.idProduct = route[i];
-                    _countProduct = Random.Range(0, item.type.rarely == ScObjFood.Rarely.Default ? (int)Random
-                        .Range(range.minCountDefault, range.maxCountDefault + 1) : (int)Random.Range(range.minCountRare, range.maxCountRare + 1 ));
+                    countProductMax =item.type.rarely == ScObjFood.Rarely.Default ? (int)Random
+                        .Range(range.minCountDefault, range.maxCountDefault + 1) : (int)Random.Range(range.minCountRare, range.maxCountRare + 1 );
                     break;
                 }
             }
 
-            while (transform.position == transform.position)
+            while (countProduct < countProductMax)
             {
                 yield return null;
             }
+
+            countProduct = 0;
+        }
+        yield return null;
+
+        foreach (Transform item in _cashRegister.queueBuyers)
+        {
+            if (item == null)
+            {
+                _targetPosition.position = item.position;
+            }
         }
     }
-
 }
 [System.Serializable]
 public class Range

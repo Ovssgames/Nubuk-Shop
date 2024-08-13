@@ -175,7 +175,6 @@ public class HelperController : MonoBehaviour
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
-                        Debug.Log("Спавнер - полка/2" + _startPosition + _finishPosition);
                         break;
                     }
                 }
@@ -188,7 +187,6 @@ public class HelperController : MonoBehaviour
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
-                        Debug.Log("станок - полка/2" + _startPosition + _finishPosition);
                         break;
                     }
                 }
@@ -213,7 +211,6 @@ public class HelperController : MonoBehaviour
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
-                        Debug.Log("спавнер - станок" + _startPosition + _finishPosition);
                         break;
                     }
                 }
@@ -226,7 +223,6 @@ public class HelperController : MonoBehaviour
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
                         _index = i;
-                        Debug.Log("спавнер - полка" + _startPosition + _finishPosition);
                         break;
                     }
                 }

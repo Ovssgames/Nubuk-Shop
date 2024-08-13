@@ -6,7 +6,6 @@ public class ScObjFood : ScriptableObject
     public int id;
     public Rarely rarely;
     public GameObject model;
-    public Transform sellShalf;
 
     public enum Rarely { Default, Rare }
 }
