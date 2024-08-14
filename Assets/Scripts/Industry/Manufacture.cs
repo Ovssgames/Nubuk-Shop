@@ -46,9 +46,12 @@ public class Manufacture : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _inventory = other.GetComponent<Inventory>();
-        StartThingsForMashine(other);
-        _isTrigger = true;
+        if (other.GetComponent<Inventory>() != null)
+        {
+            _inventory = other.GetComponent<Inventory>();
+            StartThingsForMashine(other);
+            _isTrigger = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)

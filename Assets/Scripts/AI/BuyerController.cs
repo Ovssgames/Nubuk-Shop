@@ -66,6 +66,8 @@ public class BuyerController : MonoBehaviour
         _productDefault = (int)Random.Range(range.minProductDefault, range.maxProductDefault + 1);
         _productRare = (int)Random.Range(range.minProductRare, range.maxProductRare + 1);
 
+        Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(), GetComponent<Collider>());
+
         foreach (SellShalf item in sellShalfs)
         {
             if (item.type.rarely == ScObjFood.Rarely.Default)
@@ -87,6 +89,7 @@ public class BuyerController : MonoBehaviour
 
     private IEnumerator AiBuyer()
     {
+        Debug.Log("StartBuyer");
         for (int i = 0; i < route.Count; i++)
         {
             foreach (var item in sellShalfs)
@@ -109,13 +112,21 @@ public class BuyerController : MonoBehaviour
             countProduct = 0;
         }
         yield return null;
+        Debug.Log("CashRegisterGoBuyer");
 
-        foreach (Transform item in _cashRegister.queueBuyers)
+        for (int i = 0; i < _cashRegister.queueBuyers.Count; i++)
         {
-            if (item == null)
+            if (_cashRegister.buyers[i] == null)
             {
-                _targetPosition.position = item.position;
+                _cashRegister.buyers[i] = gameObject;
+                _targetPosition.position = _cashRegister.queueBuyers[i].position;
+                break;
             }
+        }
+
+        while (buyerInventory.count != 0)
+        {
+            yield return null;
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MobileController
   - Helper
+  - CashRegister
   layers:
   - Default
   - TransparentFX
