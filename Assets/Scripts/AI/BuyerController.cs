@@ -8,6 +8,7 @@ public class BuyerController : MonoBehaviour
     public Range range;
 
     public List<SellShalf> sellShalfs;
+    public List<Transform> exit;
 
     [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] GameObject targetPositionPrefab;
@@ -27,7 +28,8 @@ public class BuyerController : MonoBehaviour
     private int _productDefault;
     private int _productRare;
 
-    private Transform _targetPosition;
+    [HideInInspector]
+    public Transform targetPosition;
 
     private void Awake()
     {
@@ -42,7 +44,7 @@ public class BuyerController : MonoBehaviour
 
     private void Update()
     {
-        navMeshAgent.destination = _targetPosition.position;
+        navMeshAgent.destination = targetPosition.position;
     }
 
     private void FindRoute()
@@ -83,8 +85,15 @@ public class BuyerController : MonoBehaviour
             _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
         }
 
+        GameObject[] helpers = GameObject.FindGameObjectsWithTag("Helper");
+        for (int i = 0; i < helpers.Length; i++)
+        {
+            Physics.IgnoreCollision(helpers[i].GetComponent<Collider>(), GetComponent<Collider>());
+            Debug.Log(helpers.Length);
+        }
+
         var targetPos = Instantiate(targetPositionPrefab);
-        _targetPosition = targetPos.transform;
+        targetPosition = targetPos.transform;
     }
 
     private IEnumerator AiBuyer()
@@ -96,7 +105,7 @@ public class BuyerController : MonoBehaviour
             {
                 if (item.type.id == route[i])
                 {
-                    _targetPosition.position = shalfs[route[i]].position;
+                    targetPosition.position = shalfs[route[i]].position;
                     buyerInventory.idProduct = route[i];
                     countProductMax =item.type.rarely == ScObjFood.Rarely.Default ? (int)Random
                         .Range(range.minCountDefault, range.maxCountDefault + 1) : (int)Random.Range(range.minCountRare, range.maxCountRare + 1 );
@@ -119,15 +128,18 @@ public class BuyerController : MonoBehaviour
             if (_cashRegister.buyers[i] == null)
             {
                 _cashRegister.buyers[i] = gameObject;
-                _targetPosition.position = _cashRegister.queueBuyers[i].position;
+                targetPosition.position = _cashRegister.queueBuyers[i].position;
                 break;
             }
         }
+        yield return null;
 
-        while (buyerInventory.count != 0)
+        while (transform.position != exit[0].position && transform.position != exit[1].position)
         {
             yield return null;
         }
+
+        Destroy(gameObject);
     }
 }
 [System.Serializable]

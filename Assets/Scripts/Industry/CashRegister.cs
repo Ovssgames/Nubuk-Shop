@@ -6,6 +6,7 @@ public class CashRegister : MonoBehaviour
 {
     public List<Prise> products;
     public List<Transform> queueBuyers;
+    [SerializeField] float serviseTime;
 
     [HideInInspector]
     public List<GameObject> buyers = new List<GameObject>();
@@ -22,8 +23,33 @@ public class CashRegister : MonoBehaviour
     {
         if (!_isWorking && CashRegisterBuyer.isTrigger && _isTrigger)
         {
-            Debug.Log("Cash");
+            StartCoroutine(BuyProducts());
         }
+    }
+    private void StartValues()
+    {
+        for (int i = 0; i < queueBuyers.Count; i++)
+            buyers.Add(null);
+    }
+
+    private IEnumerator BuyProducts()
+    {
+        _isWorking = true;
+        yield return new WaitForSeconds(serviseTime);
+
+        if (_isTrigger)
+        {
+            BuyerController buyer = buyers[0].GetComponent<BuyerController>();
+            buyer.targetPosition.position = buyer.exit[(int)Random.Range(0, buyer.exit.Count)].position;
+            buyers.RemoveAt(0);
+
+            for (int i = 0; i < buyers.Count; i++)
+            {
+                buyers[i].GetComponent<BuyerController>().targetPosition.position = queueBuyers[i].position;
+            }
+        }
+        _isWorking = false;
+        yield break;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,11 +67,6 @@ public class CashRegister : MonoBehaviour
         }
     }
 
-    private void StartValues()
-    {
-        for (int i = 0; i < queueBuyers.Count; i++)
-            buyers.Add(null);
-    }
 }
 
 [System.Serializable]
