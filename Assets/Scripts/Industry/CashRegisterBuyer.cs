@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CashRegisterBuyer : MonoBehaviour
 {
-    public static bool isTrigger;
+    public bool isTrigger;
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -93,7 +93,7 @@ public class SellShalf : MonoBehaviour
                             _inventory.count++;
                             var prefab = invent[n];
                             prefab.transform.SetParent(_inventory.transform.GetChild(0).GetChild(0).GetChild(0));
-                            StartCoroutine(_inventory.PrefabAnimation(prefab, _inventory.spawners[i]));
+                            StartCoroutine(_inventory.PrefabAnimationHelper(prefab, _inventory.spawners[i]));
                             _inventory.thing[i] = prefab;
                             invent[n] = null;
                             break;

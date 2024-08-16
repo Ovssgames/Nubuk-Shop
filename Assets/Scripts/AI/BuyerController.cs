@@ -85,13 +85,6 @@ public class BuyerController : MonoBehaviour
             _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
         }
 
-        GameObject[] helpers = GameObject.FindGameObjectsWithTag("Helper");
-        for (int i = 0; i < helpers.Length; i++)
-        {
-            Physics.IgnoreCollision(helpers[i].GetComponent<Collider>(), GetComponent<Collider>());
-            Debug.Log(helpers.Length);
-        }
-
         var targetPos = Instantiate(targetPositionPrefab);
         targetPosition = targetPos.transform;
     }
@@ -134,12 +127,13 @@ public class BuyerController : MonoBehaviour
         }
         yield return null;
 
-        while (transform.position != exit[0].position && transform.position != exit[1].position)
+        while (transform.position.x != exit[0].position.x && transform.position.x != exit[1].position.x)
         {
             yield return null;
         }
 
         Destroy(gameObject);
+        Destroy(targetPosition);
     }
 }
 [System.Serializable]

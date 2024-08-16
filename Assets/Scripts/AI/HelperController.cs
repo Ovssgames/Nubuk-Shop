@@ -9,7 +9,6 @@ public class HelperController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float partQuantity;
     [SerializeField] float distanseForFinish;
-    [SerializeField] float timeToRestart;
     [SerializeField] GameObject targetPositionPrefab;
 
     [Header("Objects")]
@@ -32,7 +31,6 @@ public class HelperController : MonoBehaviour
 
     private float _finishDistanse = 10000f;
     private float _startDistanse = 10000f;
-    private float _timer;
     private Inventory _inventory;
     private int _index;
 
@@ -46,12 +44,10 @@ public class HelperController : MonoBehaviour
         if (!_isWorking)
         {
             StartCoroutine(AIRoute());
-            IntervalCoroutine();
         }
         else
         {
             navMeshAgent.destination = _targetPosition.position;
-            _timer = 0;
         }
     }
 
@@ -79,17 +75,6 @@ public class HelperController : MonoBehaviour
         for (int i = 0; i < helpers.Length; i++)
         {
             _anothersHelpers.Add(helpers[i].GetComponent<HelperController>());
-        }
-
-        navMeshAgent.avoidancePriority = 99;
-    }
-
-    private void IntervalCoroutine()
-    {
-        _timer += Time.deltaTime;
-        if (_timer >= timeToRestart)
-        {
-            StopCoroutine(AIRoute());
         }
     }
 
