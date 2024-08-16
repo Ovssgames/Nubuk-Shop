@@ -5,14 +5,14 @@ using UnityEngine;
 public class CashRegisterBuyer : MonoBehaviour
 {
     public bool isTrigger;
-    public BuyerController buyerController;
+    public BuyerInventory buyerInventory;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<BuyerInventory>() != null)
         {
             isTrigger = true;
-            buyerController = other.GetComponent<BuyerController>();
+            buyerInventory = other.GetComponent<BuyerInventory>();
         }
     }
     private void OnTriggerExit(Collider other)

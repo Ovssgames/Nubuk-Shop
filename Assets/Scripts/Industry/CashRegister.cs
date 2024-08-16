@@ -38,14 +38,17 @@ public class CashRegister : MonoBehaviour
         _isWorking = true;
         yield return new WaitForSeconds(serviseTime);
 
-        var bueyrProducts = cashRegisterBuyer.buyerController.idProducts;
+        var bueyrProducts = cashRegisterBuyer.buyerInventory.thing;
         for (int i = 0; i < bueyrProducts.Count; i++)
         {
-            for (int n = 0; n < products.Count; n++)
+            if (bueyrProducts[i] != null)
             {
-                if (bueyrProducts[i] == products[n].id)
+                foreach (var item in products)
                 {
-                    Money.money += products[n].prise;
+                    if (item.id == bueyrProducts[i].GetComponent<PrefabProperty>().propertisObject.id)
+                    {
+                        Money.money += item.prise;
+                    }
                 }
             }
         }
