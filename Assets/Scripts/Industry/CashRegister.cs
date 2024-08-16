@@ -38,14 +38,18 @@ public class CashRegister : MonoBehaviour
         _isWorking = true;
         yield return new WaitForSeconds(serviseTime);
 
-        var bueyrProducts = cashRegisterBuyer.buyerController.route;
+        var bueyrProducts = cashRegisterBuyer.buyerController.idProducts;
         for (int i = 0; i < bueyrProducts.Count; i++)
         {
             for (int n = 0; n < products.Count; n++)
             {
-
+                if (bueyrProducts[i] == products[n].id)
+                {
+                    Money.money += products[n].prise;
+                }
             }
         }
+        yield return null;
 
         if (_isTrigger)
         {

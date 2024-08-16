@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   id: 5
+  rarely: 0
+  prise: 5
   model: {fileID: 7574387149273218255, guid: ea9ee6710bca1c8459cc9c90adf6e242, type: 3}

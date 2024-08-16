@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10
   rarely: 1
+  prise: 14
   model: {fileID: 7574387149273218255, guid: 88993469108f353489fc14dbdd1fb09b, type: 3}
-  sellShalf: {fileID: 0}

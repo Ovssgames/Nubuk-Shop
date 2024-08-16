@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Agg
   m_EditorClassIdentifier: 
   id: 2
+  rarely: 0
+  prise: 6
   model: {fileID: 7574387149273218255, guid: 2a8a3cb71d72ece4596afa399c3353c9, type: 3}

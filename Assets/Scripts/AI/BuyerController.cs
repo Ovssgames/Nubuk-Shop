@@ -14,13 +14,12 @@ public class BuyerController : MonoBehaviour
     [SerializeField] GameObject targetPositionPrefab;
     [SerializeField] BuyerInventory buyerInventory;
     
-    public Dictionary<int, int> route = new Dictionary<int, int>();
-    
     [HideInInspector]
     public int countProduct;
     [HideInInspector]
     public int countProductMax;
 
+    private Dictionary<int, int> route = new Dictionary<int, int>();
     private CashRegister _cashRegister;
     private List<int> idProductsDefault = new List<int>();
     private List<int> idProductsRare = new List<int>();
@@ -111,7 +110,7 @@ public class BuyerController : MonoBehaviour
             {
                 yield return null;
             }
-
+            yield return null;
             countProduct = 0;
         }
         yield return null;

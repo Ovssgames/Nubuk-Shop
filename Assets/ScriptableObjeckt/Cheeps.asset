@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Cheeps
   m_EditorClassIdentifier: 
   id: 6
+  rarely: 0
+  prise: 8
   model: {fileID: 7574387149273218255, guid: e9a5854043959d14d8599fccb34d20f4, type: 3}

@@ -4094,11 +4094,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range:
     minProductDefault: 1
-    maxProductDefault: 1
+    maxProductDefault: 2
     minCountDefault: 1
     maxCountDefault: 3
     minProductRare: 0
-    maxProductRare: 0
+    maxProductRare: 1
     minCountRare: 1
     maxCountRare: 2
   sellShalfs:
@@ -7864,8 +7864,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   products:
-  - product: {fileID: 0}
-    prise: 0
+  - {fileID: 11400000, guid: c00276034ae4c8d4bbab798b6ad8fdb1, type: 2}
+  - {fileID: 11400000, guid: 7209d6164a06e894f83e116fbc0fc3d6, type: 2}
+  - {fileID: 11400000, guid: e761afa1566088148a297778c9ea41b7, type: 2}
+  - {fileID: 11400000, guid: 1524182bd60765d42870b97a3fe73f4c, type: 2}
+  - {fileID: 11400000, guid: ad90dcb7cbe2a414e8ee52c18d45b5a1, type: 2}
+  - {fileID: 11400000, guid: 7d2fa612e58ab1341ae02938a4822230, type: 2}
+  - {fileID: 11400000, guid: 004de8a9780999d41b393de1fba6c300, type: 2}
+  - {fileID: 11400000, guid: 23dc6913f5c8b5544afb75c8dd296455, type: 2}
+  - {fileID: 11400000, guid: e853d51cd7906eb4b86614fc1d6b4881, type: 2}
+  - {fileID: 11400000, guid: 9935e8da265cd1846a08d50cfc4fc6a9, type: 2}
+  - {fileID: 11400000, guid: b18a4e9f7aebf224e81b1f2d7e227fc2, type: 2}
+  - {fileID: 11400000, guid: 39ea6beb0b5d4bf448ded55aed68d83c, type: 2}
+  - {fileID: 11400000, guid: 6f39bcda249a9774cb842ddab6837452, type: 2}
   queueBuyers:
   - {fileID: 1737492926}
   - {fileID: 1386072770}
@@ -7881,7 +7892,7 @@ MonoBehaviour:
   - {fileID: 123057571}
   - {fileID: 708270778}
   - {fileID: 669361117}
-  serviseTime: 5
+  serviseTime: 4
   cashRegisterBuyer: {fileID: 1938727909}
   buyers: []
 --- !u!65 &1890855165
@@ -8015,6 +8026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
+  buyerController: {fileID: 0}
 --- !u!65 &1938727910
 BoxCollider:
   m_ObjectHideFlags: 0

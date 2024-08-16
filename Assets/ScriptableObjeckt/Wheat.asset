@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Wheat
   m_EditorClassIdentifier: 
   id: 11
+  rarely: 0
+  prise: 4
   model: {fileID: 7574387149273218255, guid: ef291ca25c663104493b9f82516b7802, type: 3}
