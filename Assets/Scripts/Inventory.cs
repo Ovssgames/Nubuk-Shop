@@ -18,11 +18,17 @@ public class Inventory : MonoBehaviour
 
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {
-        while (prefab.transform.position != finish.transform.position)
+        var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
+        while (distanse > 0.01f)
         {
+            Debug.Log("Koncha");
+            distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
             prefab.transform.position = Vector3.MoveTowards(prefab.transform.position, finish.transform.position, Time.deltaTime * speedMove);
             yield return null;
         }
+
         prefab.transform.rotation = finish.transform.rotation;
+        prefab.transform.position = finish.transform.position;
+        yield break;
     }
 }

@@ -14,6 +14,7 @@ public class SellShalf : MonoBehaviour
     public int _maxCells;
 
     private BuyerInventory _inventory;
+    private bool _isTrigger;
     private List<BuyerInventory> _inventories = new List<BuyerInventory>();
 
     private void Start()
@@ -23,7 +24,11 @@ public class SellShalf : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        MoveToShalfSell(other);
+        if (other.GetComponent<Inventory>() != null)
+        {
+            MoveToShalfSell(other);
+            _isTrigger = true;
+        }
 
         if (other.GetComponent<BuyerInventory>() != null)
         {
@@ -35,7 +40,7 @@ public class SellShalf : MonoBehaviour
     {
         if (_inventory != null)
         {
-            MoveToBuyerInventory(other);
+            MoveToBuyerInventory();
         }
     }
 
@@ -44,6 +49,10 @@ public class SellShalf : MonoBehaviour
         if (other.GetComponent<BuyerInventory>() != null)
         {
             ExitTriggerInventory(other);
+        }
+        if (other.GetComponent<Inventory>() != null)
+        {
+            Invoke("TriggerFalse", 1.5f);
         }
     }
 
@@ -63,7 +72,8 @@ public class SellShalf : MonoBehaviour
                         {
                             count++;
                             inventory.count--;
-                            StartCoroutine(inventory.PrefabAnimation(things[i], cells[n]));
+                            GameObject prefab = things[i];
+                            StartCoroutine(inventory.PrefabAnimation(prefab, cells[n]));
                             invent[n] = things[i];
                             things[i].transform.SetParent(transform.GetChild(0));
                             break;
@@ -75,14 +85,14 @@ public class SellShalf : MonoBehaviour
         }
     }
 
-    private void MoveToBuyerInventory(Collider other)
+    private void MoveToBuyerInventory()
     {
-        if (_inventory.idProduct == type.id)
+        if (_inventory.idProduct == type.id && !_isTrigger)
         {
             for (int i = 0; i < _inventory.thing.Count; i++)
             {
                 var buyerController = _inventory.buyerController;
-                if (_inventory.thing[i] == null && count > 0 && buyerController.countProduct<buyerController.countProductMax)
+                if (_inventory.thing[i] == null && count > 0 && buyerController.countProduct < buyerController.countProductMax)
                 {
                     for (int n = 0; n < invent.Count; n++)
                     {
@@ -132,5 +142,10 @@ public class SellShalf : MonoBehaviour
         {
             _inventory = null;
         }
+    }
+
+    private void TriggerFalse()
+    {
+        _isTrigger = false;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CashRegister : MonoBehaviour
 {
-    public List<Prise> products;
+    public List<ScObjFood> products;
     public List<Transform> queueBuyers;
     [SerializeField] float serviseTime;
     [SerializeField] CashRegisterBuyer cashRegisterBuyer;
@@ -37,6 +37,15 @@ public class CashRegister : MonoBehaviour
         Debug.Log("StartCashRegisterCoroutine");
         _isWorking = true;
         yield return new WaitForSeconds(serviseTime);
+
+        var bueyrProducts = cashRegisterBuyer.buyerController.route;
+        for (int i = 0; i < bueyrProducts.Count; i++)
+        {
+            for (int n = 0; n < products.Count; n++)
+            {
+
+            }
+        }
 
         if (_isTrigger)
         {
@@ -74,12 +83,4 @@ public class CashRegister : MonoBehaviour
             _isTrigger = false;
         }
     }
-
-}
-
-[System.Serializable]
-public class Prise
-{
-    public ScObjFood product;
-    public int prise;
 }

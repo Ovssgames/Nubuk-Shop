@@ -5,6 +5,7 @@ public class ScObjFood : ScriptableObject
 {
     public int id;
     public Rarely rarely;
+    public int prise;
     public GameObject model;
 
     public enum Rarely { Default, Rare }

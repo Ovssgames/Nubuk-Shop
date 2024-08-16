@@ -20,15 +20,16 @@ public class BuyerInventory : MonoBehaviour
     public IEnumerator PrefabAnimationHelper(GameObject prefab, GameObject finish)
     {
         float timer = 0;
-
-        while (prefab.transform.position != finish.transform.position && timer < timeToFinish)
+        var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
+        while (distanse > 0.01f && timer < timeToFinish)
         {
+            distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
             timer += Time.deltaTime;
             prefab.transform.position = Vector3.MoveTowards(prefab.transform.position, finish.transform.position, Time.deltaTime * speedMove);
             yield return null;
         }
-        yield return null;
         prefab.transform.rotation = finish.transform.rotation;
-        prefab.transform.localPosition = Vector3.zero;
+        prefab.transform.position = finish.transform.position;
+        yield break;
     }
 }

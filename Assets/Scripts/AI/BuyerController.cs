@@ -14,6 +14,8 @@ public class BuyerController : MonoBehaviour
     [SerializeField] GameObject targetPositionPrefab;
     [SerializeField] BuyerInventory buyerInventory;
     
+    public Dictionary<int, int> route = new Dictionary<int, int>();
+    
     [HideInInspector]
     public int countProduct;
     [HideInInspector]
@@ -22,7 +24,6 @@ public class BuyerController : MonoBehaviour
     private CashRegister _cashRegister;
     private List<int> idProductsDefault = new List<int>();
     private List<int> idProductsRare = new List<int>();
-    private Dictionary<int, int> route = new Dictionary<int, int>();
     private Dictionary<int, Transform> shalfs = new Dictionary<int, Transform>();
 
     private int _productDefault;
@@ -133,7 +134,7 @@ public class BuyerController : MonoBehaviour
         }
 
         Destroy(gameObject);
-        Destroy(targetPosition);
+        Destroy(targetPosition.gameObject);
     }
 }
 [System.Serializable]
