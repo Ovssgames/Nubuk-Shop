@@ -11,6 +11,8 @@ public class CashRegister : MonoBehaviour
 
     public List<GameObject> buyers = new List<GameObject>();
 
+    [SerializeField] MoneyAnimation moneyAnimation;
+
     private bool _isWorking;
     private bool _isTrigger;
 
@@ -38,40 +40,44 @@ public class CashRegister : MonoBehaviour
         _isWorking = true;
         yield return new WaitForSeconds(serviseTime);
 
-        var bueyrProducts = cashRegisterBuyer.buyerInventory.thing;
-        for (int i = 0; i < bueyrProducts.Count; i++)
+        if (_isTrigger)
         {
-            if (bueyrProducts[i] != null)
+            var bueyrProducts = cashRegisterBuyer.buyerInventory.thing;
+            int sumMoney = 0;
+
+            for (int i = 0; i < bueyrProducts.Count; i++)
             {
-                foreach (var item in products)
+                if (bueyrProducts[i] != null)
                 {
-                    if (item.id == bueyrProducts[i].GetComponent<PrefabProperty>().propertisObject.id)
+                    foreach (var item in products)
                     {
-                        Money.money += item.prise;
+                        if (item.id == bueyrProducts[i].GetComponent<PrefabProperty>().propertisObject.id)
+                        {
+                            sumMoney += item.prise;
+                        }
                     }
                 }
             }
+            StartCoroutine(moneyAnimation.MoneyPlus(sumMoney));
         }
         yield return null;
 
-        if (_isTrigger)
+        BuyerController buyer = buyers[0].GetComponent<BuyerController>();
+        buyer.targetPosition.position = buyer.exit[(int)Random.Range(0, buyer.exit.Count)].position;
+        buyers.RemoveAt(0);
+        buyers.Add(null);
+
+        yield return new WaitForSeconds(0.8f);
+
+        for (int i = 0; i < buyers.Count; i++)
         {
-            BuyerController buyer = buyers[0].GetComponent<BuyerController>();
-            buyer.targetPosition.position = buyer.exit[(int)Random.Range(0, buyer.exit.Count)].position;
-            buyers.RemoveAt(0);
-            buyers.Add(null);
+            if (buyers[i] == null)
+                break;
+            else
+                buyers[i].GetComponent<BuyerController>().targetPosition.position = queueBuyers[i].position;
 
-            yield return new WaitForSeconds(0.8f);
-
-            for (int i = 0; i < buyers.Count; i++)
-            {
-                if (buyers[i] == null)
-                    break;
-                else
-                    buyers[i].GetComponent<BuyerController>().targetPosition.position = queueBuyers[i].position;
-
-            }
         }
+
         _isWorking = false;
         yield break;
     }
