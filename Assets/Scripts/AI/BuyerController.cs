@@ -8,7 +8,6 @@ public class BuyerController : MonoBehaviour
     public Range range;
 
     public List<SellShalf> sellShalfs;
-    public List<Transform> exit;
 
     [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] GameObject targetPositionPrefab;
@@ -18,6 +17,8 @@ public class BuyerController : MonoBehaviour
     public int countProduct;
     [HideInInspector]
     public int countProductMax;
+    [HideInInspector]
+    public List<Transform> _exit = new List<Transform>();
 
     private Dictionary<int, int> route = new Dictionary<int, int>();
     private CashRegister _cashRegister;
@@ -87,6 +88,15 @@ public class BuyerController : MonoBehaviour
 
         var targetPos = Instantiate(targetPositionPrefab);
         targetPosition = targetPos.transform;
+
+        navMeshAgent.avoidancePriority = 99;
+
+        GameObject[] exit = GameObject.FindGameObjectsWithTag("Exit");
+
+        for (int i = 0; i < exit.Length; i++)
+        {
+            _exit.Add(exit[i].transform);
+        }
     }
 
     private IEnumerator AiBuyer()
@@ -127,11 +137,12 @@ public class BuyerController : MonoBehaviour
         }
         yield return null;
 
-        while (transform.position.x != exit[0].position.x && transform.position.x != exit[1].position.x)
+        while (transform.position.x != _exit[0].position.x && transform.position.x != _exit[1].position.x)
         {
             yield return null;
         }
 
+        SpawnerBuyers.countBuyers--;
         Destroy(gameObject);
         Destroy(targetPosition.gameObject);
     }

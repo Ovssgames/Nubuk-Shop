@@ -38,9 +38,12 @@ public class MoneyAnimation : MonoBehaviour
         }
         yield return null;
 
-        while (prefab.transform.position.y < finishPosition.position.y)
+        Color colorText = textPrefab.color;
+        while (prefab.transform.position.y < finishPosition.position.y - 5f)
         {
-            prefab.transform.position += new Vector3(0, Time.deltaTime * speed, 0);
+            prefab.transform.position = Vector3.Lerp(prefab.transform.position, finishPosition.position, speed * Time.deltaTime);
+            colorText.a = Mathf.Lerp(colorText.a, 0.5f, speed * Time.deltaTime);
+            textPrefab.color = colorText;
             yield return null;
         }
         yield return new WaitForSeconds(timeWait);

@@ -59,23 +59,23 @@ public class CashRegister : MonoBehaviour
                 }
             }
             StartCoroutine(moneyAnimation.MoneyPlus(sumMoney));
-        }
-        yield return null;
+            yield return null;
 
-        BuyerController buyer = buyers[0].GetComponent<BuyerController>();
-        buyer.targetPosition.position = buyer.exit[(int)Random.Range(0, buyer.exit.Count)].position;
-        buyers.RemoveAt(0);
-        buyers.Add(null);
+            BuyerController buyer = buyers[0].GetComponent<BuyerController>();
+            buyer.targetPosition.position = buyer._exit[(int)Random.Range(0, buyer._exit.Count)].position;
+            buyers.RemoveAt(0);
+            buyers.Add(null);
 
-        yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.8f);
 
-        for (int i = 0; i < buyers.Count; i++)
-        {
-            if (buyers[i] == null)
-                break;
-            else
-                buyers[i].GetComponent<BuyerController>().targetPosition.position = queueBuyers[i].position;
+            for (int i = 0; i < buyers.Count; i++)
+            {
+                if (buyers[i] == null)
+                    break;
+                else
+                    buyers[i].GetComponent<BuyerController>().targetPosition.position = queueBuyers[i].position;
 
+            }
         }
 
         _isWorking = false;

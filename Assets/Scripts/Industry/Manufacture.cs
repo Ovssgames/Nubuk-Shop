@@ -175,7 +175,6 @@ public class Manufacture : MonoBehaviour
         {
             for (int i = 0; i < inventory.thing.Count; i++)
             {
-                Debug.Log(inventory.thing[i] + " " + countFinish);
                 if (inventory.thing[i] == null && countFinish > 0)
                 {
                     for (int n = 0; n < _finishThings.Count; n++)

@@ -8,6 +8,8 @@ TagManager:
   - Helper
   - CashRegister
   - Buyer
+  - Exit
+  - MoneyAnimation
   layers:
   - Default
   - TransparentFX

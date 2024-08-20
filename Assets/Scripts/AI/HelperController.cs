@@ -76,6 +76,8 @@ public class HelperController : MonoBehaviour
         {
             _anothersHelpers.Add(helpers[i].GetComponent<HelperController>());
         }
+
+        navMeshAgent.avoidancePriority = 0;
     }
 
     private IEnumerator AIRoute()
