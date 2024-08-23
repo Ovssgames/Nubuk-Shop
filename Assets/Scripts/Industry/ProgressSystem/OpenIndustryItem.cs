@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class OpenIndustryItem : MonoBehaviour
@@ -9,9 +10,9 @@ public class OpenIndustryItem : MonoBehaviour
     [SerializeField] int prise;
     [SerializeField] float timeToBuy;
     [SerializeField] TextMeshPro textPrise;
-    [SerializeField] GameObject industry;
-    [SerializeField] List<GameObject> nextOpenIndustry;
+    public GameObject industry;
 
+    [SerializeField] UnityEvent OnBuyProgress;
 
     private MoneyAnimation _moneyAnimation;
     private string _playerPrefsKey;
@@ -20,9 +21,9 @@ public class OpenIndustryItem : MonoBehaviour
 
     private enum type { Spawner, Manufacture, SellShalf }
 
-    private void Awake()
+    private void Start()
     {
-        AwakeValues();
+        StartValues();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,29 +43,21 @@ public class OpenIndustryItem : MonoBehaviour
         }
     }
 
-    private void AwakeValues()
+    private void StartValues()
     {
         industry.SetActive(false);
 
-        if (typeIndustry == type.Manufacture)
-            _playerPrefsKey = "Manufacture" + industry.GetComponent<Manufacture>().finishType.id;
-        else if (typeIndustry == type.Spawner)
-            _playerPrefsKey = "Spawner" + industry.GetComponent<Spawner>().propertisObject.id;
-        else
-            _playerPrefsKey = "SellSfalf" + industry.GetComponent<SellShalf>().type.id;
+        textPrise.text = prise.ToString();
+
 
         _moneyAnimation = GameObject.FindGameObjectWithTag("MoneyAnimation").GetComponent<MoneyAnimation>();
-
-        if (PlayerPrefs.HasKey(_playerPrefsKey))
-        {
-            EnableIndustry();
-        }
     }
 
     private void EnableIndustry()
     {
         industry.SetActive(true);
-        Destroy(gameObject);
+        PlayerPrefs.SetInt("NumberProgress", PlayerPrefs.GetInt("NumberProgress") + 1);
+        OnBuyProgress.Invoke();
     }
 
     private IEnumerator BuyIndustry()
@@ -75,8 +68,16 @@ public class OpenIndustryItem : MonoBehaviour
 
         if (_isTrigger)
         {
+            StartCoroutine(_moneyAnimation.MoneyPlus(-prise));
+
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
+            GetComponent<Collider>().enabled = false;
+
             EnableIndustry();
-            _moneyAnimation.MoneyPlus(-prise);
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
         }
+        _isWorking = false;
     }
 }

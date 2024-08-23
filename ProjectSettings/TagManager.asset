@@ -10,6 +10,7 @@ TagManager:
   - Buyer
   - Exit
   - MoneyAnimation
+  - GameManager
   layers:
   - Default
   - TransparentFX

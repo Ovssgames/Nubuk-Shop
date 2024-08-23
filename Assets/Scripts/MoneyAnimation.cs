@@ -34,7 +34,7 @@ public class MoneyAnimation : MonoBehaviour
         else
         {
             textPrefab.color = colorNegative;
-            textPrefab.text = "-" + count.ToString();
+            textPrefab.text = count.ToString();
         }
         yield return null;
 

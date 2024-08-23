@@ -11,5 +11,10 @@ public class TestPlusDeltaTime : MonoBehaviour
             Time.timeScale += 0.2f;
             Debug.Log("TimeScaled");
         }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            Money.money++;
+        }
     }
 }

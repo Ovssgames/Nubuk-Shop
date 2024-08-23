@@ -32,11 +32,10 @@ public class HelperController : MonoBehaviour
     private float _finishDistanse = 10000f;
     private float _startDistanse = 10000f;
     private Inventory _inventory;
-    private int _index;
 
-    private void Start()
+    private void Awake()
     {
-        StartValue();
+        AwakeValue();
     }
 
     private void Update()
@@ -51,7 +50,7 @@ public class HelperController : MonoBehaviour
         }
     }
 
-    private void StartValue()
+    private void AwakeValue()
     {
         var tarPos = Instantiate(targetPositionPrefab);
         _targetPosition = tarPos.transform;
@@ -152,7 +151,8 @@ public class HelperController : MonoBehaviour
         {
             StartAndFinishFind(i);
 
-            if (_finishPosition.GetComponentInParent<SellShalf>() != null)
+            if (_finishPosition.GetComponentInParent<SellShalf>() != null && _startPosition.gameObject.activeSelf == true &&
+                _finishPosition.gameObject.activeSelf == true)
             {
                 var shalf = _finishPosition.GetComponentInParent<SellShalf>();
 
@@ -163,7 +163,6 @@ public class HelperController : MonoBehaviour
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
-                        _index = i;
                         break;
                     }
                 }
@@ -175,7 +174,6 @@ public class HelperController : MonoBehaviour
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
-                        _index = i;
                         break;
                     }
                 }
@@ -188,62 +186,59 @@ public class HelperController : MonoBehaviour
         for (int i = 0; i < route.Count; i++)
         {
             StartAndFinishFind(i);
-
-            if (route[i].isSpawner)
+            if (_startPosition.gameObject.activeSelf == true &&
+                _finishPosition.gameObject.activeSelf == true)
             {
-                if (route[i].finishPosition[0].GetComponentInParent<Manufacture>() != null)
+                if (route[i].isSpawner)
                 {
-                    var manufacture = _finishPosition.GetComponentInParent<Manufacture>();
-                    if (manufacture.countStart < manufacture.maxCountStart)
+                    if (route[i].finishPosition[0].GetComponentInParent<Manufacture>() != null)
                     {
-                        _targetPosition.position = _startPosition.position;
-                        _inventory.idProduct = route[i].id;
-                        _isFind = true;
-                        _index = i;
-                        break;
+                        var manufacture = _finishPosition.GetComponentInParent<Manufacture>();
+                        if (manufacture.countStart < manufacture.maxCountStart)
+                        {
+                            _targetPosition.position = _startPosition.position;
+                            _inventory.idProduct = route[i].id;
+                            _isFind = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        var shalf = _finishPosition.GetComponentInParent<SellShalf>();
+                        if (shalf.count < shalf._maxCells && shalf.count < shalf._maxCells)
+                        {
+                            _targetPosition.position = _startPosition.position;
+                            _inventory.idProduct = route[i].id;
+                            _isFind = true;
+                            break;
+                        }
                     }
                 }
                 else
                 {
-                    var shalf =_finishPosition.GetComponentInParent<SellShalf>();
-                    if (shalf.count < shalf._maxCells && shalf.count < shalf._maxCells)
+                    if (_finishPosition.GetComponentInParent<SellShalf>() != null)
                     {
-                        _targetPosition.position = _startPosition.position;
-                        _inventory.idProduct = route[i].id;
-                        _isFind = true;
-                        _index = i;
-                        break;
+                        var shalf = _finishPosition.GetComponentInParent<SellShalf>();
+                        var manufacture = _startPosition.GetComponentInParent<Manufacture>();
+                        if (shalf.count < shalf._maxCells && manufacture.countFinish > 0)
+                        {
+                            _targetPosition.position = _startPosition.position;
+                            _inventory.idProduct = route[i].id;
+                            _isFind = true;
+                            break;
+                        }
                     }
-                }
-            }
-            else
-            {
-                if (_finishPosition.GetComponentInParent<SellShalf>() != null)
-                {
-                    var shalf = _finishPosition.GetComponentInParent<SellShalf>();
-                    var manufacture = _startPosition.GetComponentInParent<Manufacture>();
-                    if (shalf.count < shalf._maxCells && manufacture.countFinish > 0)
+                    else
                     {
-                        _targetPosition.position = _startPosition.position;
-                        _inventory.idProduct = route[i].id;
-                        _isFind = true;
-                        _index = i;
-                        Debug.Log("станок - полка" + _startPosition + _finishPosition);
-                        break;
-                    }
-                }
-                else
-                {
-                    var manufactureStart = _startPosition.GetComponentInParent<Manufacture>();
-                    var manufactureFinish = _finishPosition.GetComponentInParent<Manufacture>();
-                    if (manufactureFinish.countStart < manufactureFinish.startCells.Count && manufactureStart.countFinish > 0)
-                    {
-                        _targetPosition.position = _startPosition.position;
-                        _inventory.idProduct = route[i].id;
-                        _isFind = true;
-                        _index = i;
-                        Debug.Log("станок - полка" + _startPosition + _finishPosition);
-                        break;
+                        var manufactureStart = _startPosition.GetComponentInParent<Manufacture>();
+                        var manufactureFinish = _finishPosition.GetComponentInParent<Manufacture>();
+                        if (manufactureFinish.countStart < manufactureFinish.startCells.Count && manufactureStart.countFinish > 0)
+                        {
+                            _targetPosition.position = _startPosition.position;
+                            _inventory.idProduct = route[i].id;
+                            _isFind = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -254,6 +249,11 @@ public class HelperController : MonoBehaviour
     {
         _startPosition = route[index].startPosition[(int)UnityEngine.Random.Range(0, route[index].startPosition.Count)];
         _finishPosition = route[index].finishPosition[(int)UnityEngine.Random.Range(0, route[index].finishPosition.Count)];
+
+        if (_startPosition == null)
+        {
+
+        }
     }
 }
 

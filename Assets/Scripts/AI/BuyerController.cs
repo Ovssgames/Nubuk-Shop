@@ -73,18 +73,22 @@ public class BuyerController : MonoBehaviour
 
         foreach (SellShalf item in sellShalfs)
         {
-            if (item.type.rarely == ScObjFood.Rarely.Default)
+            if (item.gameObject.activeSelf == true)
             {
-                idProductsDefault.Add(item.type.id);
-            }
-            else
-            {
-                idProductsRare.Add(item.type.id);
+                if (item.type.rarely == ScObjFood.Rarely.Default)
+                {
+                    idProductsDefault.Add(item.type.id);
+                }
+                else
+                {
+                    idProductsRare.Add(item.type.id);
+                }
+
+                shalfs.Add(item.type.id, item.GetComponentInChildren<FinishShalfPosition>().transform);
             }
 
-            shalfs.Add(item.type.id, item.GetComponentInChildren<FinishShalfPosition>().transform);
-            _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
         }
+        _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
 
         var targetPos = Instantiate(targetPositionPrefab);
         targetPosition = targetPos.transform;

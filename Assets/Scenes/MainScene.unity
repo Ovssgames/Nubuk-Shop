@@ -5957,9 +5957,10 @@ GameObject:
   - component: {fileID: 1007682630}
   - component: {fileID: 1007682629}
   - component: {fileID: 1007682631}
+  - component: {fileID: 1007682632}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6004,6 +6005,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 889640111}
+--- !u!114 &1007682632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007682628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09abbe59a523f154382c43227aa50eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenItems: []
 --- !u!1 &1026066698
 GameObject:
   m_ObjectHideFlags: 0
@@ -12192,7 +12206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: prise
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: industry

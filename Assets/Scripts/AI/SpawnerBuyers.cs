@@ -54,4 +54,9 @@ public class SpawnerBuyers : MonoBehaviour
         buyer.GetComponent<BuyerController>().enabled = true;
         buyer.GetComponent<NavMeshAgent>().enabled = true;
     }
+
+    public void PlusMaxBuyers(int count)
+    {
+        maxCountBuyers += count;
+    }
 }
