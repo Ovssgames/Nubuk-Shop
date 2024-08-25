@@ -22,8 +22,10 @@ public class SpawnerBuyers : MonoBehaviour
 
     private void Start()
     {
-        _randomProsent = Random.Range(-prosentTime, prosentTime);
+        StartValues();
+
     }
+
 
     private void Update()
     {
@@ -33,6 +35,14 @@ public class SpawnerBuyers : MonoBehaviour
         {
             OnTimeToWait.Invoke();
             _timer = 0;
+        }
+    }
+    private void StartValues()
+    {
+        _randomProsent = Random.Range(-prosentTime, prosentTime);
+        if (PlayerPrefs.HasKey("CountBuyer"))
+        {
+            maxCountBuyers = PlayerPrefs.GetInt("CountBuyer");
         }
     }
 
@@ -58,5 +68,6 @@ public class SpawnerBuyers : MonoBehaviour
     public void PlusMaxBuyers(int count)
     {
         maxCountBuyers += count;
+        PlayerPrefs.SetInt("CountBuyer", maxCountBuyers);
     }
 }
