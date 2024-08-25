@@ -22,7 +22,7 @@ public class BuyerController : MonoBehaviour
 
     private Dictionary<int, int> route = new Dictionary<int, int>();
     private CashRegister _cashRegister;
-    private List<int> idProductsDefault = new List<int>();
+    private List<int> idProductsDefault = new List<int>(); 
     private List<int> idProductsRare = new List<int>();
     private Dictionary<int, Transform> shalfs = new Dictionary<int, Transform>();
 
@@ -52,12 +52,16 @@ public class BuyerController : MonoBehaviour
     {
         for (int i = 0; i < _productDefault; i++)
         {
+            if (idProductsDefault.Count == 0)
+                break;
             int product = idProductsDefault[(int)Random.Range(0, idProductsDefault.Count)];
             route.Add(i, product);
             idProductsDefault.Remove(product);
         }
         for (int i = _productDefault; i < _productRare + _productDefault; i++)
         {
+            if (idProductsRare.Count == 0)
+                break;
             int product = idProductsRare[(int)Random.Range(0, idProductsRare.Count)];
             route.Add(i, product);
             idProductsRare.Remove(product);

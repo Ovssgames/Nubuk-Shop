@@ -6,7 +6,6 @@ using TMPro;
 
 public class OpenIndustryItem : MonoBehaviour
 {
-    [SerializeField] type typeIndustry;
     [SerializeField] int prise;
     [SerializeField] float timeToBuy;
     [SerializeField] TextMeshPro textPrise;
@@ -15,11 +14,10 @@ public class OpenIndustryItem : MonoBehaviour
     [SerializeField] UnityEvent OnBuyProgress;
 
     private MoneyAnimation _moneyAnimation;
-    private string _playerPrefsKey;
+    private ListProgressObject _listProgress;
     private bool _isWorking = false;
     private bool _isTrigger = false;
 
-    private enum type { Spawner, Manufacture, SellShalf }
 
     private void Start()
     {
@@ -49,14 +47,21 @@ public class OpenIndustryItem : MonoBehaviour
 
         textPrise.text = prise.ToString();
 
-
+        _listProgress = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ListProgressObject>();
         _moneyAnimation = GameObject.FindGameObjectWithTag("MoneyAnimation").GetComponent<MoneyAnimation>();
     }
 
     private void EnableIndustry()
     {
         industry.SetActive(true);
-        PlayerPrefs.SetInt("NumberProgress", PlayerPrefs.GetInt("NumberProgress") + 1);
+        if (PlayerPrefs.HasKey("NumberProgress") == true)
+        {
+            PlayerPrefs.SetInt("NumberProgress", PlayerPrefs.GetInt("NumberProgress") + 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("NumberProgress", 1);
+        }
         OnBuyProgress.Invoke();
     }
 
@@ -71,11 +76,15 @@ public class OpenIndustryItem : MonoBehaviour
             StartCoroutine(_moneyAnimation.MoneyPlus(-prise));
 
             transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(false);
             GetComponent<Collider>().enabled = false;
 
             EnableIndustry();
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(6);
+
+            var number = PlayerPrefs.GetInt("NumberProgress");
+
+            if(_listProgress.OpenItems.Count > number)
+                _listProgress.NextProgress(number);
             Destroy(gameObject);
         }
         _isWorking = false;

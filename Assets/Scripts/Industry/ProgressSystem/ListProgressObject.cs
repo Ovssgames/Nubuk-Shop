@@ -6,8 +6,6 @@ public class ListProgressObject : MonoBehaviour
 {
     public List<OpenIndustryItem> OpenItems;
 
-
-
     private void Awake()
     {
         AwakeValues();   
@@ -15,10 +13,27 @@ public class ListProgressObject : MonoBehaviour
 
     private void AwakeValues()
     {
-        var numser = PlayerPrefs.GetInt("NumberProgress");
-        for (int i = 0; i < numser; i++)
+        var number = PlayerPrefs.GetInt("NumberProgress");
+
+        if (number != 0)
         {
-            OpenItems[i].industry.SetActive(true);
+            for (int i = 0; i < number; i++)
+            {
+                OpenItems[i].industry.SetActive(true);
+                Destroy(OpenItems[i].gameObject);
+            }
+            if(OpenItems.Count > number)
+                OpenItems[number].gameObject.SetActive(true);
+
         }
+        else
+        {
+            OpenItems[number].gameObject.SetActive(true);
+        }
+    }
+
+    public void NextProgress(int number)
+    {
+        OpenItems[number].gameObject.SetActive(true);
     }
 }

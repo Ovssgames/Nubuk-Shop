@@ -51,7 +51,7 @@ public class MoneyAnimation : MonoBehaviour
         Destroy(prefab);
 
         int moneyFinish = Money.money + count;
-        while (Money.money < moneyFinish)
+        while (Money.money != moneyFinish)
         {
             Money.money = (int)Mathf.MoveTowards(Money.money, moneyFinish, Time.deltaTime + speedMoney);
             yield return null;

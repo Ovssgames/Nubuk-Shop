@@ -27,8 +27,6 @@ public class HelperController : MonoBehaviour
     [HideInInspector]
     public Transform _finishPosition;
 
-    private List<HelperController> _anothersHelpers= new List<HelperController>();
-
     private float _finishDistanse = 10000f;
     private float _startDistanse = 10000f;
     private Inventory _inventory;
@@ -57,24 +55,6 @@ public class HelperController : MonoBehaviour
 
         _inventory = GetComponent<Inventory>();
         Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(), GetComponent<Collider>());
-
-        foreach (RouteSell item in route)
-        {
-            if (item.startPosition[0].GetComponent<Spawner>() != null)
-            {
-                item.id = item.startPosition[0].GetComponent<Spawner>().propertisObject.id;
-            }
-            else
-            {
-                item.id = item.startPosition[0].GetComponentInParent<Manufacture>().finishType.id;
-            }
-        }
-
-        GameObject[] helpers = GameObject.FindGameObjectsWithTag("Helper");
-        for (int i = 0; i < helpers.Length; i++)
-        {
-            _anothersHelpers.Add(helpers[i].GetComponent<HelperController>());
-        }
 
         navMeshAgent.avoidancePriority = 0;
     }
@@ -151,8 +131,7 @@ public class HelperController : MonoBehaviour
         {
             StartAndFinishFind(i);
 
-            if (_finishPosition.GetComponentInParent<SellShalf>() != null && _startPosition.gameObject.activeSelf == true &&
-                _finishPosition.gameObject.activeSelf == true)
+            if (_finishPosition.GetComponentInParent<SellShalf>() != null && _startPosition != null && _finishPosition != null)
             {
                 var shalf = _finishPosition.GetComponentInParent<SellShalf>();
 
@@ -186,8 +165,7 @@ public class HelperController : MonoBehaviour
         for (int i = 0; i < route.Count; i++)
         {
             StartAndFinishFind(i);
-            if (_startPosition.gameObject.activeSelf == true &&
-                _finishPosition.gameObject.activeSelf == true)
+            if (_startPosition != null && _finishPosition != null)
             {
                 if (route[i].isSpawner)
                 {
@@ -249,18 +227,12 @@ public class HelperController : MonoBehaviour
     {
         _startPosition = route[index].startPosition[(int)UnityEngine.Random.Range(0, route[index].startPosition.Count)];
         _finishPosition = route[index].finishPosition[(int)UnityEngine.Random.Range(0, route[index].finishPosition.Count)];
-
-        if (_startPosition == null)
-        {
-
-        }
     }
 }
 
 [Serializable]
 public class RouteSell
 {
-    [HideInInspector]
     public int id;
     public List<Transform> startPosition;
     public List<Transform> finishPosition;
