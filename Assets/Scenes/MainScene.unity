@@ -2696,7 +2696,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: prise
-      value: 100
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: industry
