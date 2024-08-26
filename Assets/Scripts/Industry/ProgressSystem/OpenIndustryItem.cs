@@ -15,6 +15,7 @@ public class OpenIndustryItem : MonoBehaviour
 
     private MoneyAnimation _moneyAnimation;
     private ListProgressObject _listProgress;
+    private ProgressAnimation _progressAnimation;
     private bool _isWorking = false;
     private bool _isTrigger = false;
 
@@ -49,11 +50,13 @@ public class OpenIndustryItem : MonoBehaviour
 
         _listProgress = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ListProgressObject>();
         _moneyAnimation = GameObject.FindGameObjectWithTag("MoneyAnimation").GetComponent<MoneyAnimation>();
+        _progressAnimation = _listProgress.GetComponent<ProgressAnimation>();
     }
 
     private void EnableIndustry()
     {
         industry.SetActive(true);
+        StartCoroutine(_progressAnimation.IndustryEnableAnimation(industry.transform));
         if (PlayerPrefs.HasKey("NumberProgress") == true)
         {
             PlayerPrefs.SetInt("NumberProgress", PlayerPrefs.GetInt("NumberProgress") + 1);
@@ -79,7 +82,7 @@ public class OpenIndustryItem : MonoBehaviour
             GetComponent<Collider>().enabled = false;
 
             EnableIndustry();
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(4);
 
             var number = PlayerPrefs.GetInt("NumberProgress");
 
