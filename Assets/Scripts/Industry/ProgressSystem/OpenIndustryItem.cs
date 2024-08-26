@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 using TMPro;
 
 public class OpenIndustryItem : MonoBehaviour
@@ -16,6 +17,7 @@ public class OpenIndustryItem : MonoBehaviour
     private MoneyAnimation _moneyAnimation;
     private ListProgressObject _listProgress;
     private ProgressAnimation _progressAnimation;
+    private NextCameraProgress _nextCameraProgress;
     private bool _isWorking = false;
     private bool _isTrigger = false;
 
@@ -51,6 +53,7 @@ public class OpenIndustryItem : MonoBehaviour
         _listProgress = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ListProgressObject>();
         _moneyAnimation = GameObject.FindGameObjectWithTag("MoneyAnimation").GetComponent<MoneyAnimation>();
         _progressAnimation = _listProgress.GetComponent<ProgressAnimation>();
+        _nextCameraProgress = _listProgress.GetComponent<NextCameraProgress>();
     }
 
     private void EnableIndustry()
@@ -82,12 +85,18 @@ public class OpenIndustryItem : MonoBehaviour
             GetComponent<Collider>().enabled = false;
 
             EnableIndustry();
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(3.5f);
 
             var number = PlayerPrefs.GetInt("NumberProgress");
 
-            if(_listProgress.OpenItems.Count > number)
+            if (_listProgress.OpenItems.Count > number)
+            {
                 _listProgress.NextProgress(number);
+                yield return null;
+                _nextCameraProgress.NextCamera(_listProgress.OpenItems[number].gameObject);
+            }
+            yield return null;
+
             Destroy(gameObject);
         }
         _isWorking = false;

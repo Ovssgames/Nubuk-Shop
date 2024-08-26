@@ -11,8 +11,17 @@ public class ProgressAnimation : MonoBehaviour
 
     [SerializeField] float errorRateLerp = 0.1f;
 
+
+    private PlayerController _playerController;
+
+    private void Start()
+    {
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+
     public IEnumerator IndustryEnableAnimation(Transform mashine)
     {
+        _playerController.enabled = false;
         Vector3 startScale = mashine.localScale;
         mashine.localScale = Vector3.zero;
         yield return null;

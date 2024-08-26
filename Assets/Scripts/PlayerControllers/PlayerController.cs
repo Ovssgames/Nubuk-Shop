@@ -13,12 +13,11 @@ public class PlayerController : MonoBehaviour
 
     public static string platform;
     
-    private Vector3 _startCursorePosition;
     private Vector3 _direction;
     private Quaternion _rotation;
     private Joystick _joystick;
 
-    private void Awake()
+    private void Start()
     {
         _joystick = GameObject.FindGameObjectWithTag("MobileController").GetComponent<Joystick>();
 

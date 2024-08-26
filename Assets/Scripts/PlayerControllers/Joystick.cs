@@ -16,7 +16,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         background.gameObject.SetActive(false);
 
         if (PlayerController.platform != "Mobile")
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
