@@ -30,12 +30,15 @@ public class NextCameraProgress : MonoBehaviour
     {
         camera.Priority = 15;
 
-        while (Camera.main.transform.position != camera.transform.position)
+        float distanse = Vector3.Distance(Camera.main.transform.position, camera.transform.position);
+        while (distanse > 0.01f)
         {
+            distanse = Vector3.Distance(Camera.main.transform.position, camera.transform.position);
             yield return null;
         }
         yield return new WaitForSeconds(timeWait);
 
+        camera.Priority = 0;
         _playerController.enabled = true;
     }
 }

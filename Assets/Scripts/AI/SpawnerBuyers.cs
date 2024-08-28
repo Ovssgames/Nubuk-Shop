@@ -44,6 +44,10 @@ public class SpawnerBuyers : MonoBehaviour
         {
             maxCountBuyers = PlayerPrefs.GetInt("CountBuyer");
         }
+        if (PlayerPrefs.HasKey("FirstStart"))
+        {
+            enabled = true;
+        }
     }
 
     private void Timer()
@@ -63,6 +67,12 @@ public class SpawnerBuyers : MonoBehaviour
         buyer.transform.position = spawners[index].position;
         buyer.GetComponent<BuyerController>().enabled = true;
         buyer.GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    public void EnableBuyer()
+    {
+        PlayerPrefs.SetString("FirstStart", "Oleg");
+        enabled = true;
     }
 
     public void PlusMaxBuyers(int count)

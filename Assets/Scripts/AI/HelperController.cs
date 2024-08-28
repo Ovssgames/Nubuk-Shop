@@ -131,13 +131,14 @@ public class HelperController : MonoBehaviour
         {
             StartAndFinishFind(i);
 
-            if (_finishPosition.GetComponentInParent<SellShalf>() != null && _startPosition != null && _finishPosition != null)
+            if (_finishPosition.GetComponentInParent<SellShalf>() != null)
             {
                 var shalf = _finishPosition.GetComponentInParent<SellShalf>();
 
                 if (route[i].isSpawner)
                 {
-                    if (shalf.count < shalf._maxCells * partQuantity)
+                    if (shalf.count < shalf._maxCells * partQuantity && _startPosition.gameObject.activeSelf == true &&
+                        _finishPosition.transform.parent.gameObject.activeSelf == true)
                     {
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
@@ -147,13 +148,18 @@ public class HelperController : MonoBehaviour
                 }
                 else
                 {
-                    var manufacture = _startPosition.GetComponentInParent<Manufacture>();
-                    if (shalf.count < shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
+                    if (_startPosition.transform.parent.gameObject.activeSelf == true && _finishPosition.transform.parent.gameObject.activeSelf == true)
                     {
-                        _targetPosition.position = _startPosition.position;
-                        _inventory.idProduct = route[i].id;
-                        _isFind = true;
-                        break;
+                        var manufacture = _startPosition.GetComponentInParent<Manufacture>();
+
+                        Debug.Log("FirstSelection Shalf = " + shalf + " Manufacture = " + manufacture);
+                        if (shalf.count < shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
+                        {
+                            _targetPosition.position = _startPosition.position;
+                            _inventory.idProduct = route[i].id;
+                            _isFind = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -165,9 +171,10 @@ public class HelperController : MonoBehaviour
         for (int i = 0; i < route.Count; i++)
         {
             StartAndFinishFind(i);
-            if (_startPosition != null && _finishPosition != null)
+        
+            if (route[i].isSpawner)
             {
-                if (route[i].isSpawner)
+                if (_startPosition.gameObject.activeSelf == true && _finishPosition.transform.parent.gameObject.activeSelf == true)
                 {
                     if (route[i].finishPosition[0].GetComponentInParent<Manufacture>() != null)
                     {
@@ -192,7 +199,10 @@ public class HelperController : MonoBehaviour
                         }
                     }
                 }
-                else
+            }
+            else
+            {
+                if (_startPosition.transform.parent.gameObject.activeSelf == true && _finishPosition.transform.parent.gameObject.activeSelf == true)
                 {
                     if (_finishPosition.GetComponentInParent<SellShalf>() != null)
                     {

@@ -15,6 +15,7 @@ public class CashRegister : MonoBehaviour
 
     private bool _isWorking;
     private bool _isTrigger;
+    private bool _isSeller = false;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class CashRegister : MonoBehaviour
 
     private void Update()
     {
-        if (!_isWorking && cashRegisterBuyer.isTrigger && _isTrigger)
+        if (!_isWorking && cashRegisterBuyer.isTrigger && (_isTrigger || _isSeller))
         {
             StartCoroutine(BuyProducts());
         }
@@ -32,6 +33,9 @@ public class CashRegister : MonoBehaviour
     {
         for (int i = 0; i < queueBuyers.Count; i++)
             buyers.Add(null);
+
+        if (PlayerPrefs.HasKey("Seller"))
+            _isSeller = true;
     }
 
     private IEnumerator BuyProducts()
@@ -40,7 +44,7 @@ public class CashRegister : MonoBehaviour
         _isWorking = true;
         yield return new WaitForSeconds(serviseTime);
 
-        if (_isTrigger)
+        if (_isTrigger || _isSeller)
         {
             var bueyrProducts = cashRegisterBuyer.buyerInventory.thing;
             int sumMoney = 0;
@@ -80,6 +84,12 @@ public class CashRegister : MonoBehaviour
 
         _isWorking = false;
         yield break;
+    }
+
+    public void BuySeller()
+    {
+        _isSeller = true;
+        PlayerPrefs.SetString("Seller", "true");
     }
 
     private void OnTriggerEnter(Collider other)

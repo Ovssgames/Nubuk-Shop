@@ -73,7 +73,6 @@ public class OpenIndustryItem : MonoBehaviour
 
     private IEnumerator BuyIndustry()
     {
-        Debug.Log("StartProgress");
         _isWorking = true;
         yield return new WaitForSeconds(timeToBuy);
 
@@ -85,7 +84,7 @@ public class OpenIndustryItem : MonoBehaviour
             GetComponent<Collider>().enabled = false;
 
             EnableIndustry();
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(2f);
 
             var number = PlayerPrefs.GetInt("NumberProgress");
 
