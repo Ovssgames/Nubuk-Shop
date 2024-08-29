@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TestPlusDeltaTime : MonoBehaviour
 {
+    public UnityEvent Goyda;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -15,6 +18,11 @@ public class TestPlusDeltaTime : MonoBehaviour
         if (Input.GetKey(KeyCode.M))
         {
             Money.money++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Goyda.Invoke();
         }
     }
 }
