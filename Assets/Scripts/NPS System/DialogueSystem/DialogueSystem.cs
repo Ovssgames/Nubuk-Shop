@@ -23,6 +23,8 @@ public class DialogueSystem : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("PlotIndex"))
             PlayerPrefs.SetInt("PlotIndex", 0);
+        if (PlayerPrefs.HasKey("QuestComplite"))
+            isDoneQuest = true;
 
         StartDialogue();
     }
@@ -79,6 +81,7 @@ public class DialogueSystem : MonoBehaviour
             {
                 isDoneQuest = true;
                 PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
+                PlayerPrefs.SetString("QuestComplite", "true");
                 dialogueAnimation.FinishDialogue();
                 textScene.text = string.Empty;
                 _index = 0;

@@ -10,6 +10,7 @@ public class QuestSystem : MonoBehaviour
 
     public void QuestComplite()
     {
-
+        PlayerPrefs.DeleteKey("QuestComplite");
+        dialogueSystem.isDoneQuest = false;
     }
 }

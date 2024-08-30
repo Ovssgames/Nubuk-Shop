@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogueAnimation : MonoBehaviour
 {
     [Header("Animation Objects")]
     [SerializeField] List<DialogueAnimationPoints> points;
     [SerializeField] Image background;
+    [SerializeField] List<GameObject> canvasElements;
 
     [Header("Animations Values")]
     [SerializeField] float speed;
@@ -17,20 +19,30 @@ public class DialogueAnimation : MonoBehaviour
     [SerializeField] DialogueSystem dialogueSystem;
     [SerializeField] GameObject buttonSkip;
 
+    public UnityEvent OnDialogueHappen;
+
+    [HideInInspector]
+    public bool isOpen = false;
+    private PlayerController _playerController;
+
 
     private void Start()
     {
-        startValues();
+        StartValues();
     }
 
-    private void startValues()
+    private void StartValues()
     {
-        dialogueSystem.enabled = false;
 
         foreach (var item in points)
         {
             item.animationObject.position = item.startPosition.position;
         }
+
+        dialogueSystem.enabled = false;
+        dialogueSystem.gameObject.SetActive(false);
+
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     public void StartDialogue()
@@ -45,6 +57,9 @@ public class DialogueAnimation : MonoBehaviour
 
     private IEnumerator AnimationOpen()
     {
+        EnableElements(false);
+        yield return new WaitForSeconds(0.4f);
+
         Color colorBackground = background.color;
 
         while (colorBackground.a < backgroundAlpha - 0.01f)
@@ -102,6 +117,22 @@ public class DialogueAnimation : MonoBehaviour
             background.color = colorBackground;
             yield return null;
         }
+
+        EnableElements(true);
+    }
+
+    private void EnableElements(bool meaning)
+    {
+        _playerController.enabled = meaning;
+
+        foreach (GameObject item in canvasElements)
+        {
+            item.SetActive(meaning);
+            if (item.GetComponent<Joystick>() != null)
+                item.GetComponent<Joystick>().enabled = meaning;
+        }
+        dialogueSystem.gameObject.SetActive(meaning == false);
+        isOpen = meaning == false;
     }
 }
 

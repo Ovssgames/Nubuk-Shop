@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         _joystick = GameObject.FindGameObjectWithTag("MobileController").GetComponent<Joystick>();
 
         //CheckDevice(platform);
-        platform = "Desctop";
+        platform = "Mobile";
     }
 
     private void CheckDevice(string platform)
