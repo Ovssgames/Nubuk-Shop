@@ -6,6 +6,7 @@ using TMPro;
 public class DialogueSystem : MonoBehaviour
 {
     [SerializeField] List<DialogueText> dialogue;
+    [SerializeField] List<DialogueText> WaitDialogue;
     [SerializeField] TextMeshProUGUI textScene;
     [SerializeField] float speedtext;
 
@@ -13,8 +14,10 @@ public class DialogueSystem : MonoBehaviour
 
     private int _index = 0;
     private Coroutine _typingCoroutine;
+    [HideInInspector]
+    public bool isDoneQuest = false;
 
-    private void Start()
+    private void OnEnable()
     {
         textScene.text = string.Empty;
 
@@ -33,30 +36,68 @@ public class DialogueSystem : MonoBehaviour
     public void SkipTextClick()
     {
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
-        if (textScene.text == dialogue[plotIndex].textDialogue[_index])
+
+        if (!isDoneQuest)
         {
-            NextText();
+            if (textScene.text == dialogue[plotIndex].textDialogue[_index])
+            {
+                NextText();
+            }
+            else
+            {
+                StopTyping();
+                textScene.text = dialogue[plotIndex].textDialogue[_index];
+            }
         }
         else
         {
-            StopTyping();
-            textScene.text = dialogue[plotIndex].textDialogue[_index];
+            if (textScene.text == WaitDialogue[plotIndex - 1].textDialogue[_index])
+            {
+                NextText();
+            }
+            else
+            {
+                StopTyping();
+                textScene.text = WaitDialogue[plotIndex - 1].textDialogue[_index];
+            }
         }
     }
 
     private void NextText()
     {
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
-        if (_index < dialogue[plotIndex].textDialogue.Count - 1)
+
+        if (!isDoneQuest)
         {
-            _index++;
-            textScene.text = string.Empty;
-            StartTyping();
+            if (_index < dialogue[plotIndex].textDialogue.Count - 1)
+            {
+                _index++;
+                textScene.text = string.Empty;
+                StartTyping();
+            }
+            else
+            {
+                isDoneQuest = true;
+                PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
+                dialogueAnimation.FinishDialogue();
+                textScene.text = string.Empty;
+                _index = 0;
+            }
         }
         else
         {
-            PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
-            dialogueAnimation.FinishDialogue();
+            if (_index < WaitDialogue[plotIndex - 1].textDialogue.Count - 1)
+            {
+                _index++;
+                textScene.text = string.Empty;
+                StartTyping();
+            }
+            else
+            {
+                dialogueAnimation.FinishDialogue();
+                textScene.text = string.Empty;
+                _index = 0;
+            }
         }
     }
 
@@ -76,12 +117,24 @@ public class DialogueSystem : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
+        Debug.Log("StartTypeLineCoroutine");
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
-
-        foreach (char c in dialogue[plotIndex].textDialogue[_index].ToCharArray())
+        if (isDoneQuest)
         {
-            textScene.text += c;
-            yield return new WaitForSeconds(speedtext);
+            foreach (char c in WaitDialogue[plotIndex - 1].textDialogue[_index].ToCharArray())
+            {
+                textScene.text += c;
+                yield return new WaitForSeconds(speedtext);
+            }
         }
+        else
+        {
+            foreach (char c in dialogue[plotIndex].textDialogue[_index].ToCharArray())
+            {
+                textScene.text += c;
+                yield return new WaitForSeconds(speedtext);
+            }
+        }
+
     }
 }
