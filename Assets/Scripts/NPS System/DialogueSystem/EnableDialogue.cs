@@ -14,7 +14,8 @@ public class EnableDialogue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartDialogue();
+        if(other.CompareTag("Player"))
+            StartDialogue();
     }
 
     private void StartValues()

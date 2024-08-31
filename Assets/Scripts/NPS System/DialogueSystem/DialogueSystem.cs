@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class DialogueSystem : MonoBehaviour
@@ -11,6 +12,8 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] float speedtext;
 
     [SerializeField] DialogueAnimation dialogueAnimation;
+
+    public List<UnityEvent> OnFinishDialogue; 
 
     private int _index = 0;
     private Coroutine _typingCoroutine;
@@ -82,6 +85,7 @@ public class DialogueSystem : MonoBehaviour
                 isDoneQuest = true;
                 PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
                 PlayerPrefs.SetString("QuestComplite", "true");
+                OnFinishDialogue[plotIndex].Invoke();
                 dialogueAnimation.FinishDialogue();
                 textScene.text = string.Empty;
                 _index = 0;

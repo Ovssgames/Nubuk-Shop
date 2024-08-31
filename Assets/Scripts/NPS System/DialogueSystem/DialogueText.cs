@@ -8,5 +8,6 @@ public class DialogueText : ScriptableObject
 {
     [TextArea(2, 5)]
     public List<string> textDialogue;
+    public bool ifFinishDialogue;
     private Sprite face;
 }

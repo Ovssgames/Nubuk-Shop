@@ -995,6 +995,34 @@ PrefabInstance:
       propertyPath: industry
       value: 
       objectReference: {fileID: 616947046}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 569265529}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuestBranchCompliete
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GuideQuest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5925558256582813305, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_Name
       value: ClosedProgress
@@ -1042,6 +1070,10 @@ PrefabInstance:
     - target: {fileID: 6298171017450545681, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450775351799235814, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3443,6 +3475,34 @@ PrefabInstance:
       propertyPath: industry
       value: 
       objectReference: {fileID: 1641247735}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 569265529}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuestBranchCompliete
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GuideQuest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5925558256582813305, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_Name
       value: ClosedProgress (2)
@@ -3490,6 +3550,10 @@ PrefabInstance:
     - target: {fileID: 6298171017450545681, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450775351799235814, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4168,6 +4232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569265528}
   - component: {fileID: 569265527}
+  - component: {fileID: 569265529}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -4218,6 +4283,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &569265529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569265526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd8dbd244bc3e64ba324c5ce07a443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProgressLevels:
+  - {fileID: 553540070}
+  - {fileID: 1707554652}
+  - {fileID: 486792228}
+  - {fileID: 1561315373}
+  questSystem: {fileID: 569265527}
 --- !u!1 &577873712
 GameObject:
   m_ObjectHideFlags: 0
@@ -9094,18 +9177,18 @@ PrefabInstance:
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1073735620}
+      objectReference: {fileID: 569265529}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableBuyer
+      value: QuestBranchCompliete
       objectReference: {fileID: 0}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SpawnerBuyers, Assembly-CSharp
+      value: GuideQuest, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -9158,6 +9241,10 @@ PrefabInstance:
     - target: {fileID: 6298171017450545681, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450775351799235814, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9946,7 +10033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1472161000
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9996,6 +10083,77 @@ MonoBehaviour:
   textScene: {fileID: 1719217087}
   speedtext: 0.06
   dialogueAnimation: {fileID: 1007682635}
+  OnFinishDialogue:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569265529}
+        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+        m_MethodName: NextQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569265529}
+        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+        m_MethodName: NextQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569265529}
+        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+        m_MethodName: NextQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569265529}
+        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+        m_MethodName: NextQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 569265529}
+        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+        m_MethodName: NextQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isDoneQuest: 0
 --- !u!4 &1480891881 stripped
 Transform:
@@ -11069,6 +11227,34 @@ PrefabInstance:
       propertyPath: industry
       value: 
       objectReference: {fileID: 2095818204}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 569265529}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuestBranchCompliete
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GuideQuest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5925558256582813305, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_Name
       value: ClosedProgress (3)
@@ -11116,6 +11302,10 @@ PrefabInstance:
     - target: {fileID: 6298171017450545681, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450775351799235814, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15604,10 +15794,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2295026644875393015, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
-      propertyPath: m_Radius
-      value: 0.27
-      objectReference: {fileID: 0}
     - target: {fileID: 4990526090702507289, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
       propertyPath: m_Name
       value: NPS
