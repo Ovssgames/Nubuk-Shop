@@ -82,10 +82,10 @@ public class DialogueSystem : MonoBehaviour
             }
             else
             {
+                OnFinishDialogue[plotIndex].Invoke();
                 isDoneQuest = true;
                 PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
                 PlayerPrefs.SetString("QuestComplite", "true");
-                OnFinishDialogue[plotIndex].Invoke();
                 dialogueAnimation.FinishDialogue();
                 textScene.text = string.Empty;
                 _index = 0;
@@ -124,7 +124,6 @@ public class DialogueSystem : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
-        Debug.Log("StartTypeLineCoroutine");
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
         if (isDoneQuest)
         {

@@ -23,7 +23,6 @@ public class SpawnerBuyers : MonoBehaviour
     private void Start()
     {
         StartValues();
-
     }
 
 
@@ -47,6 +46,10 @@ public class SpawnerBuyers : MonoBehaviour
         if (PlayerPrefs.HasKey("FirstStart"))
         {
             enabled = true;
+        }
+        else
+        {
+            enabled = false;
         }
     }
 

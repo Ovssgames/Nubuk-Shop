@@ -29,6 +29,7 @@ public class OpenIndustryItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+            Debug.Log("Ponos");
         if (other.GetComponent<PlayerController>() != null && !_isWorking && Money.money >= prise)
         {
             StartCoroutine(BuyIndustry());
@@ -78,20 +79,25 @@ public class OpenIndustryItem : MonoBehaviour
 
         if (_isTrigger)
         {
-            StartCoroutine(_moneyAnimation.MoneyPlus(-prise));
+            _moneyAnimation.MoneyChange(-prise);
 
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Collider>().enabled = false;
 
             EnableIndustry();
-            yield return new WaitForSeconds(2f);
 
+            yield return null;
             var number = PlayerPrefs.GetInt("NumberProgress");
 
             if (_listProgress.OpenItems.Count > number)
             {
                 _listProgress.NextProgress(number);
-                yield return null;
+            }
+            yield return new WaitForSeconds(1f);
+
+
+            if (_listProgress.OpenItems.Count > number)
+            {
                 _nextCameraProgress.NextCamera(_listProgress.OpenItems[number].gameObject);
             }
             yield return null;

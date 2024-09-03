@@ -103,7 +103,6 @@ public class DialogueAnimation : MonoBehaviour
                 yield return null;
             }
 
-            Debug.Log("WindowClose");
             points[i].animationObject.position = points[i].startPosition.position;
             yield return null;
         }

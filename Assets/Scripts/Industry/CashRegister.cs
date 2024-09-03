@@ -62,7 +62,7 @@ public class CashRegister : MonoBehaviour
                     }
                 }
             }
-            StartCoroutine(moneyAnimation.MoneyPlus(sumMoney));
+            moneyAnimation.MoneyChange(sumMoney);
             yield return null;
 
             BuyerController buyer = buyers[0].GetComponent<BuyerController>();

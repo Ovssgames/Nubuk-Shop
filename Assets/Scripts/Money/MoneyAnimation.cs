@@ -19,6 +19,11 @@ public class MoneyAnimation : MonoBehaviour
     [Header("Money Settings")]
     [SerializeField] float speedMoney = 10;
 
+    public void MoneyChange(int count)
+    {
+        StartCoroutine(MoneyPlus(count));
+    }
+
     public IEnumerator MoneyPlus(int count)
     {
         var prefab = Instantiate(textParticle);

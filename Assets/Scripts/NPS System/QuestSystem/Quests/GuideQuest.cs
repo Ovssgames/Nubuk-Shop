@@ -17,7 +17,7 @@ public class GuideQuest : MonoBehaviour
     private void StartValues()
     {
         EnableProgressObject();
-        if (PlayerPrefs.GetInt("PlotIndex") < ProgressLevels.Count)
+        if (PlayerPrefs.GetInt("PlotIndex") > ProgressLevels.Count)
             Destroy(this);
     }
 
@@ -27,9 +27,7 @@ public class GuideQuest : MonoBehaviour
         if (plotIndex < ProgressLevels.Count)
             ProgressLevels[plotIndex].GetComponent<BoxCollider>().enabled = false;
         else
-        {
             Destroy(this);
-        }
     }
 
     public void QuestBranchCompliete()
@@ -43,6 +41,6 @@ public class GuideQuest : MonoBehaviour
     {
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
 
-        ProgressLevels[plotIndex - 1].GetComponent<BoxCollider>().enabled = true;
+        ProgressLevels[plotIndex].GetComponent<BoxCollider>().enabled = true;
     }
 }

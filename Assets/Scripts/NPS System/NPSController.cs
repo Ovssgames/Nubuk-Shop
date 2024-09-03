@@ -5,8 +5,24 @@ using UnityEngine.AI;
 
 public class NPSController : MonoBehaviour
 {
+    [Header("NPS Setings")]
+    [SerializeField] int idNps;
+    [SerializeField] points firstPosition;
+    [SerializeField] float distanseToFinish = 0.05f;
+
+    [SerializeField] NavMeshAgent navMeshAgent;
+    [SerializeField] GameObject ImportantSign;
+
+    [Header("Points")]
+    [SerializeField] Transform shopPoint;
+    [SerializeField] Transform abroadPoint;
+
     private Transform _player;
-    private CapsuleCollider _capsuleCollider;
+    private SphereCollider _capsuleCollider;
+    private bool _isPlace = false;
+    private string _keySave;
+
+    private enum points { Shop, Abroad }
 
     private void Start()
     {
@@ -16,7 +32,27 @@ public class NPSController : MonoBehaviour
     private void StartValues()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _capsuleCollider = GetComponent<SphereCollider>();
+        navMeshAgent.enabled = false;
+
+        _keySave = "Nps" + idNps.ToString();
+
+        if (PlayerPrefs.HasKey(_keySave))
+        {
+            var stateNps = PlayerPrefs.GetInt(_keySave);
+
+            if (stateNps == 1)
+                StartAbroad();
+            else
+                StartShop();
+        }
+        else
+        {
+            if (firstPosition == points.Abroad)
+                StartAbroad();
+            else
+                StartShop();
+        }
     }
 
     private void Update()
@@ -24,20 +60,82 @@ public class NPSController : MonoBehaviour
         LookPlayer();
     }
 
+    private void StartAbroad()
+    {
+        transform.position = abroadPoint.position;
+        _capsuleCollider.enabled = false;
+        navMeshAgent.enabled = false;
+        ImportantSign.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    private void StartShop()
+    {
+        _isPlace = true;
+        transform.position = shopPoint.position;
+        _capsuleCollider.enabled = true;
+        navMeshAgent.enabled = false;
+        ImportantSign.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
 
 
     public void MoveAbroad()
     {
+        PlayerPrefs.SetInt(_keySave, 1);
+        _isPlace = false;
         _capsuleCollider.enabled = false;
+        navMeshAgent.enabled = true;
+        navMeshAgent.destination = abroadPoint.position;
+        ImportantSign.SetActive(false);
+        StartCoroutine(Abroad());
+    }
+
+    private IEnumerator Abroad()
+    {
+        float distanse = Vector3.Distance(transform.position, abroadPoint.position);
+        while (distanse > distanseToFinish)
+        {
+            distanse = Vector3.Distance(transform.position, abroadPoint.position);
+            yield return null;
+        }
+
+        transform.GetChild(0).gameObject.SetActive(false);
+        navMeshAgent.enabled = false;
+        Debug.Log("FinishAbroad");
     }
 
     public void MoveShop()
     {
+        PlayerPrefs.SetInt(_keySave, 0);
+        navMeshAgent.enabled = true;
+        navMeshAgent.destination = shopPoint.position;
+        ImportantSign.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
+        StartCoroutine(Shop());
+    }
 
+    private IEnumerator Shop()
+    {
+        float distanse = Vector3.Distance(transform.position, shopPoint.position);
+        while (distanse > distanseToFinish)
+        {
+            distanse = Vector3.Distance(transform.position, shopPoint.position);
+            yield return null;
+        }
+
+        _capsuleCollider.enabled = true;
+        _isPlace = true;
+        Debug.Log("FinishShop");
     }
 
     private void LookPlayer()
     {
-        transform.LookAt(_player);
+        if (_isPlace)
+        {
+            Vector3 direction = new Vector3(_player.position.x, 0, _player.position.z);
+
+            transform.LookAt(direction);
+        }
     }
 }
