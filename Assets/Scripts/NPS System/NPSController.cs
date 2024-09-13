@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NPSController : MonoBehaviour
 {
     [Header("NPS Setings")]
-    [SerializeField] int idNps;
+    public int idNps;
     [SerializeField] points firstPosition;
     [SerializeField] float distanseToFinish = 0.05f;
 

@@ -6,14 +6,11 @@ using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] List<DialogueText> dialogue;
-    [SerializeField] List<DialogueText> WaitDialogue;
+    [SerializeField] List<Dialogues> dialogue;
     [SerializeField] TextMeshProUGUI textScene;
     [SerializeField] float speedtext;
 
     [SerializeField] DialogueAnimation dialogueAnimation;
-
-    public List<UnityEvent> OnFinishDialogue; 
 
     private int _index = 0;
     private Coroutine _typingCoroutine;
@@ -44,26 +41,26 @@ public class DialogueSystem : MonoBehaviour
 
         if (!isDoneQuest)
         {
-            if (textScene.text == dialogue[plotIndex].textDialogue[_index])
+            if (textScene.text == dialogue[plotIndex].mainDialogue.textDialogue[_index])
             {
                 NextText();
             }
             else
             {
                 StopTyping();
-                textScene.text = dialogue[plotIndex].textDialogue[_index];
+                textScene.text = dialogue[plotIndex].mainDialogue.textDialogue[_index];
             }
         }
         else
         {
-            if (textScene.text == WaitDialogue[plotIndex - 1].textDialogue[_index])
+            if (textScene.text == dialogue[plotIndex - 1].waitDialogue.textDialogue[_index])
             {
                 NextText();
             }
             else
             {
                 StopTyping();
-                textScene.text = WaitDialogue[plotIndex - 1].textDialogue[_index];
+                textScene.text = dialogue[plotIndex - 1].waitDialogue.textDialogue[_index];
             }
         }
     }
@@ -74,7 +71,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (!isDoneQuest)
         {
-            if (_index < dialogue[plotIndex].textDialogue.Count - 1)
+            if (_index < dialogue[plotIndex].mainDialogue.textDialogue.Count - 1)
             {
                 _index++;
                 textScene.text = string.Empty;
@@ -82,7 +79,7 @@ public class DialogueSystem : MonoBehaviour
             }
             else
             {
-                OnFinishDialogue[plotIndex].Invoke();
+                dialogue[plotIndex].OnFinishDialogue.Invoke();
                 isDoneQuest = true;
                 PlayerPrefs.SetInt("PlotIndex", plotIndex + 1);
                 PlayerPrefs.SetString("QuestComplite", "true");
@@ -93,7 +90,7 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            if (_index < WaitDialogue[plotIndex - 1].textDialogue.Count - 1)
+            if (_index < dialogue[plotIndex - 1].waitDialogue.textDialogue.Count - 1)
             {
                 _index++;
                 textScene.text = string.Empty;
@@ -125,9 +122,9 @@ public class DialogueSystem : MonoBehaviour
     private IEnumerator TypeLine()
     {
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
-        if (isDoneQuest)
+        if (!isDoneQuest)
         {
-            foreach (char c in WaitDialogue[plotIndex - 1].textDialogue[_index].ToCharArray())
+            foreach (char c in dialogue[plotIndex].mainDialogue.textDialogue[_index].ToCharArray())
             {
                 textScene.text += c;
                 yield return new WaitForSeconds(speedtext);
@@ -135,12 +132,20 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            foreach (char c in dialogue[plotIndex].textDialogue[_index].ToCharArray())
+            foreach (char c in dialogue[plotIndex - 1].waitDialogue.textDialogue[_index].ToCharArray())
             {
                 textScene.text += c;
                 yield return new WaitForSeconds(speedtext);
             }
         }
 
+    }
+
+    [System.Serializable]
+    public class Dialogues
+    {
+        public DialogueText mainDialogue;
+        public DialogueText waitDialogue;
+        public UnityEvent OnFinishDialogue;
     }
 }

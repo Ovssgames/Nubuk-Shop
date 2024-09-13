@@ -2330,6 +2330,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 282268552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &401701486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4990526090702507289, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_Name
+      value: NPS GrandMa
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831755768242202806, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: shopPoint
+      value: 
+      objectReference: {fileID: 38248015}
+    - target: {fileID: 5831755768242202806, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: abroadPoint
+      value: 
+      objectReference: {fileID: 1509205567}
+    - target: {fileID: 5831755768242202806, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: firstPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347966598976658811, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4990526090702507289, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 401701489}
+  m_SourcePrefab: {fileID: 100100000, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+--- !u!114 &401701487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5831755768242202806, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+  m_PrefabInstance: {fileID: 401701486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401701488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42ecd82eb45b7841b9ff0d4dd9f004c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &401701488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4990526090702507289, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
+  m_PrefabInstance: {fileID: 401701486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &401701489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401701488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e26359233e7b72489903ee5966fb229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  things:
+    type: {fileID: 0}
+    count: 0
+  thingPoints: []
+  enableDialogue: {fileID: 0}
 --- !u!1001 &402554091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10118,7 +10223,7 @@ GameObject:
   - component: {fileID: 1472161001}
   m_Layer: 5
   m_Name: DialogueSystem
-  m_TagString: Untagged
+  m_TagString: DialogueSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10159,114 +10264,147 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - {fileID: 11400000, guid: 7db9512b049c7fc46956ab10c230b1c3, type: 2}
-  - {fileID: 11400000, guid: d2077f75fa7777740b361a9e7c101f98, type: 2}
-  - {fileID: 11400000, guid: fdb2a5e8105d5024ea7e1787cbd4dd4c, type: 2}
-  - {fileID: 11400000, guid: 2cb1c2fc5e2f1da479d6a29002200283, type: 2}
-  - {fileID: 11400000, guid: 283f2635bb894724e8fcbd9ae0a90a8f, type: 2}
-  WaitDialogue:
-  - {fileID: 11400000, guid: 93d7d36a672d1b84db6bc3306cecf056, type: 2}
-  - {fileID: 11400000, guid: 1c286cad41bf5cd4d8cd413a48792eee, type: 2}
-  - {fileID: 11400000, guid: 8387744c9ddad844ba50a650f24941b2, type: 2}
-  - {fileID: 11400000, guid: 864a6e6f125f60148bfc3f3f98fb96eb, type: 2}
+  - mainDialogue: {fileID: 11400000, guid: 7db9512b049c7fc46956ab10c230b1c3, type: 2}
+    waitDialogue: {fileID: 11400000, guid: 93d7d36a672d1b84db6bc3306cecf056, type: 2}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 569265529}
+          m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2089239274}
+          m_TargetAssemblyTypeName: MoneyAnimation, Assembly-CSharp
+          m_MethodName: MoneyChange
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - mainDialogue: {fileID: 11400000, guid: d2077f75fa7777740b361a9e7c101f98, type: 2}
+    waitDialogue: {fileID: 11400000, guid: 1c286cad41bf5cd4d8cd413a48792eee, type: 2}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 569265529}
+          m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2089239274}
+          m_TargetAssemblyTypeName: MoneyAnimation, Assembly-CSharp
+          m_MethodName: MoneyChange
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 17
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - mainDialogue: {fileID: 11400000, guid: fdb2a5e8105d5024ea7e1787cbd4dd4c, type: 2}
+    waitDialogue: {fileID: 11400000, guid: 8387744c9ddad844ba50a650f24941b2, type: 2}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 569265529}
+          m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - mainDialogue: {fileID: 11400000, guid: 2cb1c2fc5e2f1da479d6a29002200283, type: 2}
+    waitDialogue: {fileID: 11400000, guid: 864a6e6f125f60148bfc3f3f98fb96eb, type: 2}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 569265529}
+          m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - mainDialogue: {fileID: 11400000, guid: 283f2635bb894724e8fcbd9ae0a90a8f, type: 2}
+    waitDialogue: {fileID: 0}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 569265529}
+          m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
+          m_MethodName: NextQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3666247810581564473}
+          m_TargetAssemblyTypeName: NPSController, Assembly-CSharp
+          m_MethodName: MoveAbroad
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - mainDialogue: {fileID: 11400000, guid: 283f2635bb894724e8fcbd9ae0a90a8f, type: 2}
+    waitDialogue: {fileID: 0}
+    OnFinishDialogue:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 401701489}
+          m_TargetAssemblyTypeName: QuestThings, Assembly-CSharp
+          m_MethodName: ActivateThings
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   textScene: {fileID: 1719217087}
   speedtext: 0.06
   dialogueAnimation: {fileID: 1007682635}
-  OnFinishDialogue:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 569265529}
-        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
-        m_MethodName: NextQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2089239274}
-        m_TargetAssemblyTypeName: MoneyAnimation, Assembly-CSharp
-        m_MethodName: MoneyChange
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 26
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 569265529}
-        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
-        m_MethodName: NextQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 569265529}
-        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
-        m_MethodName: NextQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 569265529}
-        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
-        m_MethodName: NextQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 569265529}
-        m_TargetAssemblyTypeName: GuideQuest, Assembly-CSharp
-        m_MethodName: NextQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3666247810581564473}
-        m_TargetAssemblyTypeName: NPSController, Assembly-CSharp
-        m_MethodName: MoveAbroad
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   isDoneQuest: 0
 --- !u!4 &1480891881 stripped
 Transform:
@@ -11286,6 +11424,34 @@ PrefabInstance:
       propertyPath: industry
       value: 
       objectReference: {fileID: 1845948870}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 401701487}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPSController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006562017974251, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
+      propertyPath: OnBuyProgress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5925558256582813305, guid: 1d63118b6f4970c47ae415365972659c, type: 3}
       propertyPath: m_Name
       value: ClosedProgress (5)
@@ -15943,7 +16109,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4990526090702507289, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
       propertyPath: m_Name
-      value: NPS
+      value: NPS Pro
       objectReference: {fileID: 0}
     - target: {fileID: 5831755768242202806, guid: 3067af3fbe7d5a54ea78558e5f39c018, type: 3}
       propertyPath: shopPoint
@@ -16593,4 +16759,5 @@ SceneRoots:
   - {fileID: 1073735619}
   - {fileID: 1117239483}
   - {fileID: 3666247810581564472}
+  - {fileID: 401701486}
   - {fileID: 742595544}

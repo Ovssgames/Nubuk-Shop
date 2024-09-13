@@ -11,6 +11,7 @@ TagManager:
   - Exit
   - MoneyAnimation
   - GameManager
+  - DialogueSystem
   layers:
   - Default
   - TransparentFX
