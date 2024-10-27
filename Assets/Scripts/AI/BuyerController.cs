@@ -97,7 +97,7 @@ public class BuyerController : MonoBehaviour
         var targetPos = Instantiate(targetPositionPrefab);
         targetPosition = targetPos.transform;
 
-        navMeshAgent.avoidancePriority = 99;
+        navMeshAgent.avoidancePriority = Random.Range(55, 99);
 
         GameObject[] exit = GameObject.FindGameObjectsWithTag("Exit");
 
