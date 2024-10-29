@@ -6,6 +6,7 @@ public class BuyerInventory : MonoBehaviour
 {
     public float speedMove;
     [SerializeField] float timeToFinish;
+    [SerializeField] Animator animator;
 
     [HideInInspector]
     public int count;
@@ -19,6 +20,12 @@ public class BuyerInventory : MonoBehaviour
 
     public IEnumerator PrefabAnimationHelper(GameObject prefab, GameObject finish)
     {
+        if (count != 0)
+        {
+            animator.SetBool("IsHand", true);
+            animator.SetLayerWeight(1, 1);
+        }
+
         float timer = 0;
         var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
         while (distanse > 0.01f && timer < timeToFinish)

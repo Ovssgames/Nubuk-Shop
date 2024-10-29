@@ -12,6 +12,7 @@ public class BuyerController : MonoBehaviour
     [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] GameObject targetPositionPrefab;
     [SerializeField] BuyerInventory buyerInventory;
+    [SerializeField] Animator animator;
     
     [HideInInspector]
     public int countProduct;
@@ -45,7 +46,22 @@ public class BuyerController : MonoBehaviour
 
     private void Update()
     {
+        MoveBuyer();
+    }
+
+    private void MoveBuyer()
+    {
         navMeshAgent.destination = targetPosition.position;
+
+        var tarPos = new Vector3(targetPosition.position.x, navMeshAgent.destination.y, targetPosition.position.z);
+        if (transform.position != tarPos)
+        {
+            animator.SetBool("IsStep", true);
+        }
+        else
+        {
+            animator.SetBool("IsStep", false);
+        }
     }
 
     private void FindRoute()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public float speedMove;
+    public Animator animator;
 
     [HideInInspector]
     public int count;
@@ -19,6 +20,17 @@ public class Inventory : MonoBehaviour
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {
         var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
+        if (count == 0)
+        {
+            animator.SetBool("IsHand", false);
+            animator.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            animator.SetBool("IsHand", true);
+            animator.SetLayerWeight(1, 1);
+        }
+
         while (distanse > 0.01f)
         {
             distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);

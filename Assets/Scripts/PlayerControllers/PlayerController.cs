@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
     
     [SerializeField] CharacterController characterController;
+    [SerializeField] Animator animator;
 
     [Header("Model Parametrs")]
     [SerializeField] Transform model;
@@ -84,6 +85,11 @@ public class PlayerController : MonoBehaviour
         if (_direction != Vector3.zero)
         {
             _rotation = Quaternion.LookRotation(_direction);
+            animator.SetBool("IsStep", true);
+        }
+        else
+        {
+            animator.SetBool("IsStep", false);
         }
         model.rotation = Quaternion.Lerp(model.rotation, _rotation, speedRotation * Time.deltaTime);
     }

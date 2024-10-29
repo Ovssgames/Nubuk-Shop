@@ -16,6 +16,7 @@ public class HelperController : MonoBehaviour
     [SerializeField] List<RouteSell> route;
     [Header("Nav Mesh Agent")]
     [SerializeField] NavMeshAgent navMeshAgent;
+    [SerializeField] Animator animator;
 
     private bool _isWorking = false;
     private bool _isFind = false;
@@ -44,7 +45,22 @@ public class HelperController : MonoBehaviour
         }
         else
         {
-            navMeshAgent.destination = _targetPosition.position;
+            MoveHelper();
+        }
+    }
+
+    private void MoveHelper()
+    {
+        navMeshAgent.destination = _targetPosition.position;
+
+        var tarPos = new Vector3(_targetPosition.position.x, navMeshAgent.destination.y, _targetPosition.position.z);
+        if (transform.position != tarPos)
+        {
+            animator.SetBool("IsStep", true);
+        }
+        else
+        {
+            animator.SetBool("IsStep", false);
         }
     }
 
