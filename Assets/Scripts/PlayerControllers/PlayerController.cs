@@ -18,12 +18,18 @@ public class PlayerController : MonoBehaviour
     private Quaternion _rotation;
     private Joystick _joystick;
 
+    private void Awake()
+    {
+        
+        //CheckDevice(platform);
+        platform = "Mobile";
+    }
+
     private void Start()
     {
         _joystick = GameObject.FindGameObjectWithTag("MobileController").GetComponent<Joystick>();
 
-        //CheckDevice(platform);
-        platform = "Mobile";
+        
     }
 
     private void CheckDevice(string platform)
@@ -50,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(platform);
         if (platform == "Desctop")
             DesctopPlayerController();
         else
