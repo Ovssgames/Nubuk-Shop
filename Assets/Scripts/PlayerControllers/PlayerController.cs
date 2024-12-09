@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         
         //CheckDevice(platform);
-        platform = "Mobile";
+        platform = "Desctop";
     }
 
     private void Start()

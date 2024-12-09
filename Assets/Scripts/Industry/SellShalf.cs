@@ -5,6 +5,7 @@ using UnityEngine;
 public class SellShalf : MonoBehaviour
 {
     public ScObjFood type;
+    [HideInInspector]
     public List<GameObject> invent;
     public List<GameObject> cells;
 
@@ -20,6 +21,12 @@ public class SellShalf : MonoBehaviour
     private void Start()
     {
         _maxCells = cells.Count;
+
+        invent.Clear();
+        for (int i = 0; i < cells.Count; i++)
+        {
+            invent.Add(null);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
