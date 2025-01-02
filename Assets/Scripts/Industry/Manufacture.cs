@@ -206,6 +206,7 @@ public class Manufacture : MonoBehaviour
     private IEnumerator Making()
     {
         _isWorking = true;
+        animator.SetBool("IsWork", true);
         int counter = 0;
         List<GameObject> destroyedObj = new List<GameObject>();
 
@@ -246,6 +247,7 @@ public class Manufacture : MonoBehaviour
         yield return StartCoroutine(_inventory.PrefabAnimation(finishObj, finishCell));
 
         _isWorking = false;
+        animator.SetBool("IsWork", false);
         counter = 0;
         countFinish++;
     }
