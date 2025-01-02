@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(platform);
         if (platform == "Desctop")
             DesctopPlayerController();
         else

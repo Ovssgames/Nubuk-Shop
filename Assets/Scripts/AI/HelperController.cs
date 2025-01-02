@@ -9,6 +9,7 @@ public class HelperController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float partQuantity;
     [SerializeField] float distanseForFinish;
+    public float waitParking = 30f;
     [SerializeField] GameObject targetPositionPrefab;
 
     [Header("Objects")]
@@ -18,8 +19,10 @@ public class HelperController : MonoBehaviour
     [SerializeField] NavMeshAgent navMeshAgent;
     [SerializeField] Animator animator;
 
-    private bool _isWorking = false;
+    [HideInInspector]
+    public bool _isWorking = false;
     private bool _isFind = false;
+    private bool _waitSelection = false;
 
     private Transform _targetPosition;
 
@@ -31,8 +34,9 @@ public class HelperController : MonoBehaviour
     private float _finishDistanse = 10000f;
     private float _startDistanse = 10000f;
     private Inventory _inventory;
+    private float timer;
 
-    private void Awake()
+    private void Start()
     {
         AwakeValue();
     }
@@ -77,12 +81,16 @@ public class HelperController : MonoBehaviour
 
     private IEnumerator AIRoute()
     {
-        Debug.Log("StartCoroutineBot");
         _isWorking = true;
+        Debug.Log("StartCoroutineBot");
         FirstSelection();
 
-        yield return null;
-        
+        while (!_waitSelection)
+        {
+            yield return null;
+        }
+        _waitSelection = false;
+
         if (_isFind)
         {
             yield return null;
@@ -90,15 +98,24 @@ public class HelperController : MonoBehaviour
         else
         {
             SecondSelection();
-            yield return null;
+
+            while (!_waitSelection)
+            {
+                yield return null;
+            }
+            _waitSelection = false;
         }
 
         if (!_isFind)
         {
             _isWorking = false;
+
             yield break;
         }
-        yield return null;
+        else
+        {
+            yield return null;
+        }
 
         if (_startPosition.gameObject.GetComponent<Spawner>() != null)
         {
@@ -139,11 +156,13 @@ public class HelperController : MonoBehaviour
 
         _isWorking = false;
         _isFind = false;
+        _waitSelection = false;
+        yield break;
     }
 
     private void FirstSelection()
     {
-        for (int i = 0; i < route.Count; i++)
+        for (int i = 0; i < route.Count && !_isFind; i++)
         {
             StartAndFinishFind(i);
 
@@ -159,8 +178,10 @@ public class HelperController : MonoBehaviour
                         _targetPosition.position = _startPosition.position;
                         _inventory.idProduct = route[i].id;
                         _isFind = true;
+                        _waitSelection = true;
                         break;
                     }
+
                 }
                 else
                 {
@@ -168,23 +189,24 @@ public class HelperController : MonoBehaviour
                     {
                         var manufacture = _startPosition.GetComponentInParent<Manufacture>();
 
-                        Debug.Log("FirstSelection Shalf = " + shalf + " Manufacture = " + manufacture);
                         if (shalf.count < shalf._maxCells * partQuantity && manufacture.countFinish >= manufacture.maxCountFinish / 2)
                         {
                             _targetPosition.position = _startPosition.position;
                             _inventory.idProduct = route[i].id;
                             _isFind = true;
+                            _waitSelection = true;
                             break;
                         }
                     }
                 }
             }
+            if (i == route.Count - 1) _waitSelection = true;
         }
     }
 
     private void SecondSelection()
     {
-        for (int i = 0; i < route.Count; i++)
+        for (int i = 0; i < route.Count && !_isFind; i++)
         {
             StartAndFinishFind(i);
         
@@ -200,6 +222,7 @@ public class HelperController : MonoBehaviour
                             _targetPosition.position = _startPosition.position;
                             _inventory.idProduct = route[i].id;
                             _isFind = true;
+                            _waitSelection = true;
                             break;
                         }
                     }
@@ -211,6 +234,7 @@ public class HelperController : MonoBehaviour
                             _targetPosition.position = _startPosition.position;
                             _inventory.idProduct = route[i].id;
                             _isFind = true;
+                            _waitSelection = true;
                             break;
                         }
                     }
@@ -229,6 +253,7 @@ public class HelperController : MonoBehaviour
                             _targetPosition.position = _startPosition.position;
                             _inventory.idProduct = route[i].id;
                             _isFind = true;
+                            _waitSelection = true;
                             break;
                         }
                     }
@@ -241,11 +266,13 @@ public class HelperController : MonoBehaviour
                             _targetPosition.position = _startPosition.position;
                             _inventory.idProduct = route[i].id;
                             _isFind = true;
+                            _waitSelection = true;
                             break;
                         }
                     }
                 }
             }
+            if (i == route.Count - 1) _waitSelection = true;
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class Manufacture : MonoBehaviour
@@ -7,6 +8,10 @@ public class Manufacture : MonoBehaviour
     [SerializeField] float timeToMaking;
     [SerializeField] int countForMashineStart;
     [SerializeField] GameObject animationPoint;
+
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+    [SerializeField] int indexAnimator;
 
     [Header("Start")]
     public ScObjFood startType;
@@ -82,6 +87,8 @@ public class Manufacture : MonoBehaviour
         {
             _finishThings.Add(null);
         }
+
+        animator.SetInteger("Index", indexAnimator);
     }
     private void StartThingsForMashine(Collider other)
     {
