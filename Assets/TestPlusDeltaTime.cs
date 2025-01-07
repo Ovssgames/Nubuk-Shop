@@ -11,18 +11,21 @@ public class TestPlusDeltaTime : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Time.timeScale += 0.2f;
-            Debug.Log("TimeScaled");
+            Time.timeScale += 0.5f;
         }
 
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            Money.money++;
+            FindObjectOfType<MoneyAnimation>().MoneyChange(10);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             Goyda.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FindObjectOfType<SaveData>().SaveValues(Money.money);
         }
     }
 }

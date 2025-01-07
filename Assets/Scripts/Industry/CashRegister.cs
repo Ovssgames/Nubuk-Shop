@@ -66,7 +66,7 @@ public class CashRegister : MonoBehaviour
             yield return null;
 
             BuyerController buyer = buyers[0].GetComponent<BuyerController>();
-            buyer.targetPosition.position = buyer._exit[(int)Random.Range(0, buyer._exit.Count)].position;
+            buyer.targetPosition.position = buyer.exits[(int)Random.Range(0, buyer.exits.Count)].position;
             buyers.RemoveAt(0);
             buyers.Add(null);
 

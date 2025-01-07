@@ -4,6 +4,7 @@ using TMPro;
 
 public class MoneyAnimation : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI textMoney;
     [SerializeField] GameObject textParticle;
     [SerializeField] Transform spawnPosirion;
     [SerializeField] Transform finishPosition;
@@ -19,16 +20,28 @@ public class MoneyAnimation : MonoBehaviour
     [Header("Money Settings")]
     [SerializeField] float speedMoney = 10;
 
+    private void Start()
+    {
+        StartValues();
+    }
+
+    private void StartValues()
+    {
+        textMoney.text = Money.money.ToString();
+    }
+
     public void MoneyChange(int count)
     {
         StartCoroutine(MoneyPlus(count));
     }
 
-    public IEnumerator MoneyPlus(int count)
+    private IEnumerator MoneyPlus(int count)
     {
         var prefab = Instantiate(textParticle);
         prefab.transform.SetParent(transform, false);
         prefab.transform.position = spawnPosirion.position;
+        int moneyFinish = Money.money + count;
+        Money.money = moneyFinish;
 
         TextMeshProUGUI textPrefab = prefab.GetComponent<TextMeshProUGUI>();
         if (count >= 0)
@@ -55,10 +68,11 @@ public class MoneyAnimation : MonoBehaviour
 
         Destroy(prefab);
 
-        int moneyFinish = Money.money + count;
-        while (Money.money != moneyFinish)
+        float text = int.Parse(textMoney.text);
+        while (text != moneyFinish)
         {
-            Money.money = (int)Mathf.MoveTowards(Money.money, moneyFinish, Time.deltaTime + speedMoney);
+            text = Mathf.MoveTowards(text, moneyFinish, Time.deltaTime * speedMoney);
+            textMoney.text = ((int)text).ToString();
             yield return null;
         }
         yield break;
