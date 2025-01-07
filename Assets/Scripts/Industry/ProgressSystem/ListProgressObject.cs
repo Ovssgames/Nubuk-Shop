@@ -34,6 +34,8 @@ public class ListProgressObject : MonoBehaviour
 
     public void NextProgress(int number)
     {
-        OpenItems[number].gameObject.SetActive(true);
+        GameObject progress = OpenItems[number].gameObject;
+        if (progress != null)
+            progress.SetActive(true);
     }
 }

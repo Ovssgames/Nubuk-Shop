@@ -13,6 +13,7 @@ public class OpenIndustryItem : MonoBehaviour
     public GameObject industry;
 
     [SerializeField] UnityEvent OnBuyProgress;
+    [SerializeField] SaveData saveData;
 
     private MoneyAnimation _moneyAnimation;
     private ListProgressObject _listProgress;
@@ -80,6 +81,7 @@ public class OpenIndustryItem : MonoBehaviour
         if (_isTrigger)
         {
             _moneyAnimation.MoneyChange(-prise);
+            saveData.SaveValues(Money.money - prise);
 
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Collider>().enabled = false;

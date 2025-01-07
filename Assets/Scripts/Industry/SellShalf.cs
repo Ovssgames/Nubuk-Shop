@@ -5,7 +5,7 @@ using UnityEngine;
 public class SellShalf : MonoBehaviour
 {
     public ScObjFood type;
-    [HideInInspector]
+    //[HideInInspector]
     public List<GameObject> invent;
     public List<GameObject> cells;
 
@@ -26,6 +26,22 @@ public class SellShalf : MonoBehaviour
         for (int i = 0; i < cells.Count; i++)
         {
             invent.Add(null);
+        }
+
+        SaveCountLoad();
+    }
+
+    private void SaveCountLoad()
+    {
+        count = PlayerPrefs.GetInt("ShalfCount" + type.id);
+
+        for (int i = 0; i < count; i++)
+        {
+            var obj = Instantiate(type.model);
+            obj.transform.SetParent(transform.GetChild(0));
+            invent[i] = obj;
+            obj.transform.position = cells[i].transform.position;
+            obj.transform.rotation = cells[i].transform.rotation;
         }
     }
 

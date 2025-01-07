@@ -23,7 +23,10 @@ public class NextCameraProgress : MonoBehaviour
     {
         var VirtualCamera = progressItem.GetComponentInChildren<CinemachineVirtualCamera>();
 
-        StartCoroutine(MoveCamera(VirtualCamera));
+        if (VirtualCamera != null)
+        {
+            StartCoroutine(MoveCamera(VirtualCamera));
+        }
     }
 
     private IEnumerator MoveCamera(CinemachineVirtualCamera camera)
