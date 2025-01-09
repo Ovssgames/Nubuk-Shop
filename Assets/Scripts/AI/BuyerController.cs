@@ -54,14 +54,14 @@ public class BuyerController : MonoBehaviour
 
     private void GenerateRoute()
     {
-        AddProductsToRoute(idProductsDefault, productDefaultCount);
-        AddProductsToRoute(idProductsRare, productRareCount);
+        AddProductsToRoute(idProductsDefault);
+        AddProductsToRoute(idProductsRare);
         Debug.Log($"Route count: {route.Count}");
     }
 
-    private void AddProductsToRoute(List<int> productList, int productCount)
+    private void AddProductsToRoute(List<int> productList)
     {
-        for (int i = 0; i < productCount && productList.Count > 0; i++)
+        for (int i = route.Count; i < route.Count + productList.Count; i++)
         {
             int randomIndex = Random.Range(0, productList.Count);
             route.Add(i, productList[randomIndex]);

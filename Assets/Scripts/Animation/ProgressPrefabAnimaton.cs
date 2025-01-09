@@ -24,7 +24,6 @@ public class ProgressPrefabAnimaton : MonoBehaviour
     {
         while (!IsFinishPosition(finishSize))
         {
-            Debug.Log("ChangeSize");
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(finishSize, startSize, finishSize), Time.deltaTime * speed);
             yield return null;
         }
@@ -32,7 +31,6 @@ public class ProgressPrefabAnimaton : MonoBehaviour
 
         while (!IsFinishPosition(startSize))
         {
-            Debug.Log("ChangeSize");
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(startSize, startSize, startSize), Time.deltaTime * speed);
             yield return null;
         }
