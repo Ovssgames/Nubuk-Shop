@@ -11,7 +11,6 @@ public class NPSController : MonoBehaviour
     [SerializeField] float distanseToFinish = 0.05f;
 
     [SerializeField] NavMeshAgent navMeshAgent;
-    [SerializeField] GameObject ImportantSign;
 
     [Header("Points")]
     [SerializeField] Transform shopPoint;
@@ -65,7 +64,6 @@ public class NPSController : MonoBehaviour
         transform.position = abroadPoint.position;
         _capsuleCollider.enabled = false;
         navMeshAgent.enabled = false;
-        ImportantSign.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(false);
     }
 
@@ -75,7 +73,6 @@ public class NPSController : MonoBehaviour
         transform.position = shopPoint.position;
         _capsuleCollider.enabled = true;
         navMeshAgent.enabled = false;
-        ImportantSign.SetActive(true);
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -87,7 +84,6 @@ public class NPSController : MonoBehaviour
         _capsuleCollider.enabled = false;
         navMeshAgent.enabled = true;
         navMeshAgent.destination = abroadPoint.position;
-        ImportantSign.SetActive(false);
         StartCoroutine(Abroad());
     }
 
@@ -110,7 +106,6 @@ public class NPSController : MonoBehaviour
         PlayerPrefs.SetInt(_keySave, 0);
         navMeshAgent.enabled = true;
         navMeshAgent.destination = shopPoint.position;
-        ImportantSign.SetActive(true);
         transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(Shop());
     }

@@ -130,7 +130,7 @@ public class BuyerController : MonoBehaviour
 
     private void MoveToCashRegister()
     {
-        Debug.Log("Moving to cash register");
+        Debug.Log("MovingToCashRegister");
 
         for (int i = 0; i < cashRegister.queueBuyers.Count; i++)
         {

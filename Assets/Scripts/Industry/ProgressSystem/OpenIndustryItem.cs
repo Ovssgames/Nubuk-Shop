@@ -10,6 +10,7 @@ public class OpenIndustryItem : MonoBehaviour
     [SerializeField] int prise;
     [SerializeField] float timeToBuy;
     [SerializeField] TextMeshPro textPrise;
+    [SerializeField] ParticleSystem particle;
     public GameObject industry;
 
     [SerializeField] UnityEvent OnBuyProgress;
@@ -30,11 +31,11 @@ public class OpenIndustryItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            Debug.Log("Ponos");
         if (other.GetComponent<PlayerController>() != null && !_isWorking && Money.money >= prise)
         {
             StartCoroutine(BuyIndustry());
             _isTrigger = true;
+            particle.Play();
         }
     }
 
@@ -43,6 +44,7 @@ public class OpenIndustryItem : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null)
         {
             _isTrigger = false;
+            particle.Stop();
         }
     }
 
@@ -56,6 +58,8 @@ public class OpenIndustryItem : MonoBehaviour
         _moneyAnimation = GameObject.FindGameObjectWithTag("MoneyAnimation").GetComponent<MoneyAnimation>();
         _progressAnimation = _listProgress.GetComponent<ProgressAnimation>();
         _nextCameraProgress = _listProgress.GetComponent<NextCameraProgress>();
+
+        particle.Stop();
     }
 
     private void EnableIndustry()
