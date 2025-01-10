@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIMenuManager : MonoBehaviour
 {
-    [SerializeField] List<section> section;
+    [SerializeField] List<Section> section;
 
     [Space]
     [Header("Main menu animation")]
@@ -32,7 +32,7 @@ public class UIMenuManager : MonoBehaviour
 
     public void DirectSection(int id)
     {
-        foreach (section item in section)
+        foreach (Section item in section)
         {
             item.menuButton.color = inactiveMenu;
             item.menu.SetActive(false);
@@ -89,11 +89,12 @@ public class UIMenuManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         mainMenu.alpha = 0f;
         closeShop.enabled = false;
+        foreach (Section item in section) item.menu.SetActive(false);
     }
 }
 
 [System.Serializable]
-public class section
+public class Section
 {
     public Image menuButton;
     public GameObject menu;

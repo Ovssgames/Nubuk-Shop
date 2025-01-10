@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         _joystick = GameObject.FindGameObjectWithTag("MobileController").GetComponent<Joystick>();
 
-        
+        if (PlayerPrefs.HasKey("ProgressSpeed"))
+            speed = PlayerPrefs.GetFloat("ProgressSpeed");
     }
 
     private void CheckDevice(string platform)
@@ -75,6 +76,12 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_direction);
     }
 
+    public void ChangeSpeed(float newSpeed, float saveFloat)
+    {
+        speed += newSpeed;
+        saveFloat = speed;
+    }
+
     private void MobilePlayerController()
     {
         _direction.x = -_joystick.GetDirection().x;
@@ -99,4 +106,6 @@ public class PlayerController : MonoBehaviour
         }
         model.rotation = Quaternion.Lerp(model.rotation, _rotation, speedRotation * Time.deltaTime);
     }
+
+    
 }
