@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -587,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -970,7 +978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &49720961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2221,9 +2229,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1044915378}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: ProgressCount
+      - m_Target: {fileID: 1007682637}
+        m_TargetAssemblyTypeName: ProgressGuysManager, Assembly-CSharp
+        m_MethodName: ProgressLevelCountPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3414,10 +3422,10 @@ RectTransform:
   - {fileID: 1100684616}
   m_Father: {fileID: 1235268849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -368}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &161871631
 PrefabInstance:
@@ -4146,6 +4154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 696eb47ccaa83e04b9439ce9ed1cd91b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4218,10 +4230,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1355307573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 78, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228685847
 MonoBehaviour:
@@ -4538,6 +4550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4588,7 +4604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4600,7 +4616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -4617,6 +4633,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
       propertyPath: m_Name
       value: Carpet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2832e0709324de149b67ad4743c2443d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4739,7 +4759,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &259949931
 Transform:
@@ -5034,6 +5054,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: feb326ef7d2fe4f4f883212e8f21c72e, type: 3}
       propertyPath: m_Name
       value: Tree1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: feb326ef7d2fe4f4f883212e8f21c72e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5383,6 +5407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: feb326ef7d2fe4f4f883212e8f21c72e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5599,6 +5627,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6713,6 +6745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6893,6 +6929,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 696eb47ccaa83e04b9439ce9ed1cd91b, type: 3}
       propertyPath: m_Name
       value: Tree2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 696eb47ccaa83e04b9439ce9ed1cd91b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7763,6 +7803,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9262,7 +9306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &440691925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10128,6 +10172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10353,6 +10401,7 @@ Transform:
   - {fileID: 152491174}
   - {fileID: 1918359109}
   - {fileID: 1412561636}
+  - {fileID: 1291712054}
   m_Father: {fileID: 1778781339511956155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &497103416
@@ -10853,6 +10902,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12147,10 +12200,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1355307573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 184, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563650210
 MonoBehaviour:
@@ -12721,6 +12774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13112,6 +13169,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_Name
       value: Flour2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13509,6 +13570,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13940,7 +14005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517c3ee45ef1c394dbb4d700542be25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idCarrier: 0
   speedMove: 11.5
   animator: {fileID: 894427667}
   count: 0
@@ -14336,6 +14400,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19499,6 +19567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 696eb47ccaa83e04b9439ce9ed1cd91b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19874,6 +19946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20153,7 +20229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &743745882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20278,6 +20354,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cddefc604a8d8e641bb44d89e831bf76, type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cddefc604a8d8e641bb44d89e831bf76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20690,6 +20770,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a395102e9f432f44381877379606904b, type: 3}
       propertyPath: m_Name
       value: Vending
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a395102e9f432f44381877379606904b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21469,6 +21553,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22945,7 +23033,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 938531677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1007682637}
+        m_TargetAssemblyTypeName: ProgressGuysManager, Assembly-CSharp
+        m_MethodName: ProgressLevelSpeedPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &938531677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23055,6 +23155,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24420,6 +24524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cddefc604a8d8e641bb44d89e831bf76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24783,17 +24891,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007682628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d12ed714a9b7254c861cc1f0e18627b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  player: {fileID: 0}
-  playerLevelsCount: []
-  playerLevelsSpeed: []
-  helpers: []
-  helpersLevelsSpeed: []
+  inventory: {fileID: 1044915378}
+  player: {fileID: 1044915380}
+  playerLevelsCount:
+  - prise: 10
+    value: 4
+  - prise: 30
+    value: 5
+  - prise: 500
+    value: 6
+  levelCountText: {fileID: 1703917714}
+  priseCountText: {fileID: 1656932685}
+  playerLevelsSpeed:
+  - prise: 52
+    value: 3
+  - prise: 65
+    value: 2727
+  - prise: 2
+    value: 27
+  - prise: 27
+    value: 27
+  levelSpeedText: {fileID: 1995662852}
+  priseSpeedText: {fileID: 800992150}
 --- !u!1 &1013152873
 GameObject:
   m_ObjectHideFlags: 0
@@ -24932,6 +25056,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25379,6 +25507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25520,6 +25652,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26595,6 +26731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26765,6 +26905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26875,6 +27019,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27147,6 +27295,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28035,7 +28187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517c3ee45ef1c394dbb4d700542be25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idCarrier: 0
   speedMove: 11.5
   animator: {fileID: 1975429872}
   count: 0
@@ -34382,6 +34533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34554,6 +34709,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34761,6 +34920,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35078,6 +35241,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40526,35 +40693,43 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2081231050}
+    m_TransformParent: {fileID: 497103415}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 99.999985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 99.999985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.100786
+      value: -6.5000005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.520521
+      value: 2.0429997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.539029
+      value: 3.4928107
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.49999997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.50000006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.49999997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.50000006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c292092a9e8b5548a7e21f7a694c732, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -42574,7 +42749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341943747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43587,6 +43762,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45450,6 +45629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46357,7 +46540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517c3ee45ef1c394dbb4d700542be25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idCarrier: 0
   speedMove: 11.5
   animator: {fileID: 2077104451}
   count: 0
@@ -49443,39 +49625,47 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2081231050}
+    m_TransformParent: {fileID: 2100385006}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 118.09755
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 118.09755
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalScale.z
-      value: 118.09759
+      value: 118.097565
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.600786
+      value: -6.748182
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.788522
+      value: 2.4510005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4609709
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7040768
+      value: 0.4516201
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.065389596
+      value: 0.4516201
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.065389596
+      value: 0.544095
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7040768
+      value: 0.544095
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6beaab979d589ab4fa5e628eaae7f975, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -50448,6 +50638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50787,6 +50981,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -57293,10 +57491,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1355307573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 131, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767602110
 MonoBehaviour:
@@ -58259,10 +58457,10 @@ RectTransform:
   - {fileID: 574183785}
   m_Father: {fileID: 1235268849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -262}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1825903951
 GameObject:
@@ -58398,6 +58596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58455,7 +58657,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1845650856
 Transform:
@@ -59158,10 +59360,10 @@ RectTransform:
   - {fileID: 1262950101}
   m_Father: {fileID: 1235268849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -156}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1889319342
 GameObject:
@@ -59480,6 +59682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59521,10 +59727,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1355307573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -25}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900553584
 MonoBehaviour:
@@ -60352,6 +60558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60559,6 +60769,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61181,6 +61395,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
       propertyPath: m_Name
       value: Fence (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62277,6 +62495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3cebf1a032e4b0a4cadad37ae2adb0ff, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63075,6 +63297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fee9679157d464140b91d0bbcdb63ad2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63234,8 +63460,6 @@ Transform:
   - {fileID: 279017717}
   - {fileID: 781271705}
   - {fileID: 621851843}
-  - {fileID: 1291712054}
-  - {fileID: 1674866909}
   m_Father: {fileID: 53444667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084265400
@@ -63593,6 +63817,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1674866909}
   - {fileID: 1125982573}
   - {fileID: 1304226395}
   - {fileID: 2137284163}
@@ -63956,10 +64181,10 @@ RectTransform:
   - {fileID: 387768077}
   m_Father: {fileID: 1235268849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2114180888
 PrefabInstance:

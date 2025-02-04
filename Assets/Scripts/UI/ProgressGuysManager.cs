@@ -1,75 +1,88 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ProgressGuysManager : MonoBehaviour
 {
-    [Header("Player")]
     [Space]
+    [Header("Player")]
     [SerializeField] Inventory inventory;
     [SerializeField] PlayerController player;
-    [SerializeField] List<LevelsProgressGuys> playerLevelsCount;
-    [SerializeField] List<LevelsProgressGuys> playerLevelsSpeed;
 
-    [Header("Helpers")]
     [Space]
-    [SerializeField] List<NavMeshAgent> helpers;
-    [SerializeField] List<LevelsProgressGuys> helpersLevelsSpeed;
+    [SerializeField] List<LevelsProgressGuys> playerLevelsCount;
+    [SerializeField] TextMeshProUGUI levelCountText;
+    [SerializeField] TextMeshProUGUI priseCountText;
 
-    private int _playerLevelCount = 0;
-    private int _playerLevelSpeed = 0;
-    
+    [SerializeField] List<LevelsProgressGuys> playerLevelsSpeed;
+    [SerializeField] TextMeshProUGUI levelSpeedText;
+    [SerializeField] TextMeshProUGUI priseSpeedText;
+
 
     private void Start()
     {
         StartValues();
-    }
+    }  
 
-    public void ProgressCountPlayer()
+    public void ProgressLevelCountPlayer()
     {
-        if (playerLevelsCount[_playerLevelCount] == null)
+        var id = PlayerPrefs.GetInt("PlayerProgressCount");
+
+        if(id >= playerLevelsCount.Count)
             return;
 
-        inventory.count += playerLevelsCount[_playerLevelCount].value;
-        PlayerPrefs.SetInt("ProgressCount", inventory.count);
-        PlayerPrefs.SetInt("PlayerCount", _playerLevelCount++);
+        inventory.count = playerLevelsCount[id].value;
+
+        id++;
+        PlayerPrefs.SetInt("PlayerProgressCount", id);
+
+        UpdateText(priseCountText, playerLevelsCount[id].prise.ToString());
+        UpdateText(levelCountText, (id + "/" + playerLevelsCount.Count).ToString());
     }
 
-    public void ProgressSpeedPlayer()
+    public void ProgressLevelSpeedPlayer()
     {
-        if (playerLevelsSpeed[_playerLevelSpeed] == null)
+        var id = PlayerPrefs.GetInt("PlayerProgressSpeed");
+
+        if (id >= playerLevelsSpeed.Count)
             return;
 
-        float saveValue = 0;
-        player.ChangeSpeed(playerLevelsSpeed[_playerLevelSpeed].value, saveValue);
-        PlayerPrefs.SetFloat("ProgressSpeed", saveValue);
-        PlayerPrefs.SetInt("PlayerSpeed", _playerLevelSpeed++);
+        player.speed = playerLevelsSpeed[id].value;
+
+        id++;
+        PlayerPrefs.SetInt("PlayerProgressSpeed", id);
+
+        UpdateText(priseSpeedText, playerLevelsSpeed[id].prise.ToString());
+        UpdateText(levelSpeedText, (id + "/" + playerLevelsSpeed.Count).ToString());
     }
 
     private void StartValues()
     {
-        if (HasKeyCheck("ProgressCount"))
-        {
-            inventory.count = PlayerPrefs.GetInt("ProgressCount");
-        }
+        var idCount = PlayerPrefs.GetInt("PlayerProgressCount") - 1;
 
-        _playerLevelCount = PlayerPrefs.GetInt("PlayerCount");
-        _playerLevelSpeed = PlayerPrefs.GetInt("PlayerSpeed");
+        UpdateText(priseCountText, playerLevelsCount[idCount].prise.ToString());
+        UpdateText(levelCountText, (idCount + "/" + playerLevelsCount.Count).ToString());
+
+        var idSpeed = PlayerPrefs.GetInt("PlayerProgressSpeed") - 1;
+
+        UpdateText(priseSpeedText, playerLevelsSpeed[idSpeed].prise.ToString());
+        UpdateText(levelSpeedText, (idSpeed + "/" + playerLevelsSpeed.Count).ToString());
+    }
+
+    private void UpdateText(TextMeshProUGUI textGameObject, string text)
+    {
+        textGameObject.text = text;
     }
 
     private bool HasKeyCheck(string key)
     {
-        if(PlayerPrefs.HasKey(key))
-            return true;
-        else 
-            return false;
+        return PlayerPrefs.HasKey(key);
     }
 }
 
 [System.Serializable]
 public class LevelsProgressGuys
 {
-    public int level;
     public int prise;
     public int value;
 }

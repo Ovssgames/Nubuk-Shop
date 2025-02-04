@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] int idCarrier;
     public float speedMove;
     public Animator animator;
 
@@ -17,18 +16,6 @@ public class Inventory : MonoBehaviour
     public List<GameObject> spawners;
 
     public bool isHelper;
-
-    private void Start()
-    {
-        if (PlayerPrefs.HasKey("ProgressCount" + idCarrier))
-            count = PlayerPrefs.GetInt("ProgressCount" + idCarrier);
-    }
-
-    public void ProgressCount()
-    {
-        count++;
-        PlayerPrefs.SetInt("ProgressCount" + idCarrier, count);
-    }
 
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {

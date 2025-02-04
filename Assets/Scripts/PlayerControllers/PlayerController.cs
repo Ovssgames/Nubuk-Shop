@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed;
+    public float speed;
     
     [SerializeField] CharacterController characterController;
     [SerializeField] Animator animator;
@@ -74,12 +74,6 @@ public class PlayerController : MonoBehaviour
 
         RotateModel();
         //Debug.Log(_direction);
-    }
-
-    public void ChangeSpeed(float newSpeed, float saveFloat)
-    {
-        speed += newSpeed;
-        saveFloat = speed;
     }
 
     private void MobilePlayerController()
