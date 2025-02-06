@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     private List<GameObject> _things;
     private Inventory _inventory;
     private List<Inventory> _inventories = new List<Inventory>();
+    private AudioSource _audioSource;
 
     private float _timer;
     private float _randomTime;
@@ -59,6 +60,7 @@ public class Spawner : MonoBehaviour
             _things.Add(null);
 
         _randomTime = spawnTime * Random.Range(0f, 0.15f);
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void EnterTriggerInventory(Collider other)
@@ -155,6 +157,7 @@ public class Spawner : MonoBehaviour
         {
             var obj = Instantiate(propertisObject.model);
             obj.transform.SetParent(transform.GetChild(0));
+            _audioSource.Play();
 
             for (int i = 0; i < _things.Count; i++)
             {

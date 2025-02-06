@@ -16,6 +16,7 @@ public class CashRegister : MonoBehaviour
     private bool _isWorking;
     private bool _isTrigger;
     private bool _isSeller = false;
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class CashRegister : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Seller"))
             _isSeller = true;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private IEnumerator BuyProducts()
@@ -63,6 +66,7 @@ public class CashRegister : MonoBehaviour
                 }
             }
             moneyAnimation.MoneyChange(sumMoney);
+            _audioSource.Play();
             yield return null;
 
             BuyerController buyer = buyers[0].GetComponent<BuyerController>();

@@ -37,6 +37,7 @@ public class Manufacture : MonoBehaviour
     private bool _isWorking = false;
     private bool _isTrigger = false;
     private Inventory _inventory;
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -88,6 +89,7 @@ public class Manufacture : MonoBehaviour
         }
 
         animator.SetInteger("Index", indexAnimator);
+        _audioSource = GetComponent<AudioSource>();
     }
     private void StartThingsForMashine(Collider other)
     {
@@ -206,6 +208,7 @@ public class Manufacture : MonoBehaviour
     {
         _isWorking = true;
         animator.SetBool("IsWork", true);
+        _audioSource.Play();
         int counter = 0;
         List<GameObject> destroyedObj = new List<GameObject>();
 
@@ -247,6 +250,7 @@ public class Manufacture : MonoBehaviour
 
         _isWorking = false;
         animator.SetBool("IsWork", false);
+        _audioSource.Stop();
         counter = 0;
         countFinish++;
     }

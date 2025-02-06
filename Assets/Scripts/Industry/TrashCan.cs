@@ -5,6 +5,13 @@ using UnityEngine;
 public class TrashCan : MonoBehaviour
 {
     [SerializeField] List<GameObject> animPosition;
+    private AudioSource _audioSourse;
+
+    private void Start()
+    {
+        _audioSourse = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var inventory = other.GetComponent<Inventory>();
@@ -19,17 +26,16 @@ public class TrashCan : MonoBehaviour
                     inventory.count--;
                 }
             }
+            _audioSourse.Play();
         }
     }
     
     private IEnumerator DestroyObjects(Inventory inv, int index)
     {
-        inv.thing[index].transform.SetParent(null);
         yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[0]));
         yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[1]));
         Destroy(inv.thing[index]);
-        yield return null;
         inv.thing[index] = null;
-        yield return null;
+        yield break;
     }
 }

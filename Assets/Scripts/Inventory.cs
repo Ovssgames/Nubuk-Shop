@@ -17,9 +17,19 @@ public class Inventory : MonoBehaviour
 
     public bool isHelper;
 
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {
         var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
+
+        GameObject s = prefab.transform.parent.parent.parent.parent.gameObject;
+
         if (count == 0)
         {
             animator.SetBool("IsHand", false);
@@ -30,6 +40,9 @@ public class Inventory : MonoBehaviour
             animator.SetBool("IsHand", true);
             animator.SetLayerWeight(1, 1);
         }
+
+        if(!_audioSource.isPlaying && s.GetComponent<PlayerController>() != null)
+            _audioSource.Play();
 
         while (distanse > 0.01f)
         {

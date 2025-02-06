@@ -98,8 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsStep", false);
         }
+
         model.rotation = Quaternion.Lerp(model.rotation, _rotation, speedRotation * Time.deltaTime);
     }
-
-    
 }
