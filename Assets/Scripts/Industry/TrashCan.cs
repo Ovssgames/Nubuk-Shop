@@ -1,3 +1,5 @@
+using NUnit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,20 +24,14 @@ public class TrashCan : MonoBehaviour
             {
                 if (inventory.thing[i] != null)
                 {
-                    StartCoroutine(DestroyObjects(inventory, i));
+                    Destroy(inventory.thing[i]);
+                    inventory.animator.SetBool("IsHand", false);
+                    inventory.animator.SetLayerWeight(1, 0);
+                    inventory.thing[i] = null;
                     inventory.count--;
                 }
             }
             _audioSourse.Play();
         }
-    }
-    
-    private IEnumerator DestroyObjects(Inventory inv, int index)
-    {
-        yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[0]));
-        yield return StartCoroutine(inv.PrefabAnimation(inv.thing[index], animPosition[1]));
-        Destroy(inv.thing[index]);
-        inv.thing[index] = null;
-        yield break;
     }
 }

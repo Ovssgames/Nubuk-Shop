@@ -16,7 +16,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         canvasRectTransform = canvas.GetComponent<RectTransform>();
         background.gameObject.SetActive(false);
 
-        if (PlayerController.platform != "Mobile")
+        //if (PlayerController.platform != "Mobile")
             gameObject.SetActive(false);
     }
 

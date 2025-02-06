@@ -11,19 +11,10 @@ public class PlayerController : MonoBehaviour
     [Header("Model Parametrs")]
     [SerializeField] Transform model;
     [SerializeField] float speedRotation;
-
-    public static string platform;
     
     private Vector3 _direction;
     private Quaternion _rotation;
     private Joystick _joystick;
-
-    private void Awake()
-    {
-        
-        //CheckDevice(platform);
-        platform = "Desctop";
-    }
 
     private void Start()
     {
@@ -33,34 +24,10 @@ public class PlayerController : MonoBehaviour
             speed = PlayerPrefs.GetFloat("ProgressSpeed");
     }
 
-    private void CheckDevice(string platform)
-    {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                platform = "Mobile";
-                return;
-            }
-            else
-            {
-                platform = "Desctop";
-                return;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("»гра не запущена в WebGL.");
-        }
-    }
-
 
     private void Update()
     {
-        if (platform == "Desctop")
-            DesctopPlayerController();
-        else
-            MobilePlayerController();
+        DesctopPlayerController();
     }
 
 

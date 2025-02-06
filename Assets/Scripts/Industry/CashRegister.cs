@@ -8,6 +8,7 @@ public class CashRegister : MonoBehaviour
     public List<Transform> queueBuyers;
     [SerializeField] float serviseTime;
     [SerializeField] CashRegisterBuyer cashRegisterBuyer;
+    [SerializeField] ParticleSystem particle;
 
     public List<GameObject> buyers = new List<GameObject>();
 
@@ -39,12 +40,14 @@ public class CashRegister : MonoBehaviour
             _isSeller = true;
 
         _audioSource = GetComponent<AudioSource>();
+        particle.Stop();
     }
 
     private IEnumerator BuyProducts()
     {
         Debug.Log("StartCashRegisterCoroutine");
         _isWorking = true;
+        particle.Play();
         yield return new WaitForSeconds(serviseTime);
 
         if (_isTrigger || _isSeller)
@@ -87,6 +90,7 @@ public class CashRegister : MonoBehaviour
         }
 
         _isWorking = false;
+        particle.Stop();
         yield break;
     }
 

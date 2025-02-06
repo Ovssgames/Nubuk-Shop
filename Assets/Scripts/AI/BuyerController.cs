@@ -1,11 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
+using UnityEngine;
 
 public class BuyerController : MonoBehaviour
 {
     public Range range;
+
     public List<SellShalf> sellShalfs;
 
     [SerializeField] NavMeshAgent navMeshAgent;
@@ -13,147 +14,185 @@ public class BuyerController : MonoBehaviour
     [SerializeField] BuyerInventory buyerInventory;
     [SerializeField] Animator animator;
 
-    [HideInInspector] public int countProduct;
-    [HideInInspector] public int countProductMax;
-    [HideInInspector] public List<Transform> exits = new List<Transform>();
-    [HideInInspector] public Transform targetPosition;
+    [HideInInspector]
+    public int countProduct;
+    [HideInInspector]
+    public int countProductMax;
+    [HideInInspector]
+    public List<Transform> exits = new List<Transform>();
 
     private Dictionary<int, int> route = new Dictionary<int, int>();
-    private CashRegister cashRegister;
+    private CashRegister _cashRegister;
     private List<int> idProductsDefault = new List<int>();
     private List<int> idProductsRare = new List<int>();
-    private Dictionary<int, Transform> shelves = new Dictionary<int, Transform>();
+    private Dictionary<int, Transform> shalfs = new Dictionary<int, Transform>();
 
-    private int productDefaultCount;
-    private int productRareCount;
+    private int _productDefault;
+    private int _productRare;
+
+    [HideInInspector]
+    public Transform targetPosition;
 
     private void Awake()
     {
-        InitializeValues();
+        AwakeValues();
     }
 
     private void Start()
     {
-        GenerateRoute();
-        StartCoroutine(BuyerBehavior());
+        FindRoute();
+        StartCoroutine(AiBuyer());
     }
 
     private void Update()
     {
-        UpdateMovement();
+        MoveBuyer();
     }
 
-    private void UpdateMovement()
+    private void MoveBuyer()
     {
-        if (targetPosition == null) return;
-
         navMeshAgent.destination = targetPosition.position;
-        bool isMoving = Vector3.Distance(transform.position, targetPosition.position) > 0.5f;
-        animator.SetBool("IsStep", isMoving);
-    }
 
-    private void GenerateRoute()
-    {
-        AddProductsToRoute(idProductsDefault);
-        AddProductsToRoute(idProductsRare);
-        Debug.Log($"Route count: {route.Count}");
-    }
-
-    private void AddProductsToRoute(List<int> productList)
-    {
-        for (int i = route.Count; i < route.Count + productList.Count; i++)
+        var tarPos = new Vector3(targetPosition.position.x, navMeshAgent.destination.y, targetPosition.position.z);
+        if (transform.position != tarPos)
         {
-            int randomIndex = Random.Range(0, productList.Count);
-            route.Add(i, productList[randomIndex]);
-            productList.RemoveAt(randomIndex);
+            animator.SetBool("IsStep", true);
+        }
+        else
+
+        {
+            animator.SetBool("IsStep", false);
+        }
+
+    }
+
+    private void FindRoute()
+    {
+        for (int i = 0; i < _productDefault; i++)
+        {
+            if (idProductsDefault.Count == 0)
+                break;
+            int product = idProductsDefault[(int)Random.Range(0, idProductsDefault.Count)];
+            route.Add(i, product);
+            idProductsDefault.Remove(product);
+        }
+        for (int i = _productDefault; i < _productRare + _productDefault; i++)
+        {
+            if (idProductsRare.Count == 0)
+                break;
+            int product = idProductsRare[(int)Random.Range(0, idProductsRare.Count)];
+            route.Add(i, product);
+            idProductsRare.Remove(product);
         }
     }
 
-    private void InitializeValues()
+    private void AwakeValues()
     {
-        productDefaultCount = Random.Range(range.minProductDefault, range.maxProductDefault + 1);
-        productRareCount = Random.Range(range.minProductRare, range.maxProductRare + 1);
+        _productDefault = (int)Random.Range(range.minProductDefault, range.maxProductDefault + 1);
+        _productRare = (int)Random.Range(range.minProductRare, range.maxProductRare + 1);
 
         Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>(), GetComponent<Collider>());
 
-        foreach (SellShalf shelf in sellShalfs)
+        foreach (SellShalf item in sellShalfs)
         {
-            if (!shelf.gameObject.activeSelf) continue;
+            if (item.gameObject.activeSelf == true)
+            {
+                if (item.type.rarely == ScObjFood.Rarely.Default)
+                {
+                    idProductsDefault.Add(item.type.id);
+                }
 
-            var productType = shelf.type;
-            if (productType.rarely == ScObjFood.Rarely.Default)
-                idProductsDefault.Add(productType.id);
-            else
-                idProductsRare.Add(productType.id);
 
-            shelves[productType.id] = shelf.GetComponentInChildren<FinishShalfPosition>().transform;
+
+                else
+                {
+                    idProductsRare.Add(item.type.id);
+                }
+
+                shalfs.Add(item.type.id, item.GetComponentInChildren<FinishShalfPosition>().transform);
+            }
+
         }
+        _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
 
-        cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
-
-        var targetObj = Instantiate(targetPositionPrefab);
-        targetPosition = targetObj.transform;
+        var targetPos = Instantiate(targetPositionPrefab);
+        targetPosition = targetPos.transform;
 
         navMeshAgent.avoidancePriority = Random.Range(55, 99);
 
-        foreach (GameObject exit in GameObject.FindGameObjectsWithTag("Exit"))
+        GameObject[] exit = GameObject.FindGameObjectsWithTag("Exit");
+
+        for (int i = 0; i < exit.Length; i++)
         {
-            exits.Add(exit.transform);
+            exits.Add(exit[i].transform);
         }
     }
 
-    private IEnumerator BuyerBehavior()
+    private IEnumerator AiBuyer()
     {
-        Debug.Log("Buyer started");
-
-        foreach (var step in route)
+        Debug.Log("StartBuyer");
+        for (int i = 0; i < route.Count; i++)
         {
-            if (!shelves.TryGetValue(step.Value, out Transform shelfPosition)) continue;
+            foreach (var item in sellShalfs)
+            {
+                if (item.type.id == route[i])
+                {
+                    targetPosition.position = shalfs[route[i]].position;
+                    buyerInventory.idProduct = route[i];
+                    countProductMax = item.type.rarely == ScObjFood.Rarely.Default ? (int)Random
+                        .Range(range.minCountDefault, range.maxCountDefault + 1) : (int)Random.Range(range.minCountRare, range.maxCountRare + 1);
+                    break;
+                }
+            }
 
-            targetPosition.position = shelfPosition.position;
-            buyerInventory.idProduct = step.Value;
-            countProductMax = Random.Range(
-                route[step.Key] < productDefaultCount ? range.minCountDefault : range.minCountRare,
-                route[step.Key] < productDefaultCount ? range.maxCountDefault : range.maxCountRare
-            );
+            while (countProduct < countProductMax)
+            {
+                yield return null;
+            }
+            yield return null;
 
-            yield return new WaitUntil(() => countProduct >= countProductMax);
+
+
+
+
+
+
             countProduct = 0;
         }
+        yield return null;
+        Debug.Log("CashRegisterGoBuyer");
 
-        MoveToCashRegister();
+        for (int i = 0; i < _cashRegister.queueBuyers.Count; i++)
 
-        yield return new WaitUntil(() => IsAtExit());
+
+
+
+
+
+
+        {
+            if (_cashRegister.buyers[i] == null)
+
+
+            {
+                _cashRegister.buyers[i] = gameObject;
+                targetPosition.position = _cashRegister.queueBuyers[i].position;
+                break;
+            }
+        }
+        yield return null;
+        while (transform.position.x != exits[0].position.x && transform.position.x != exits[1].position.x)
+
+
+        {
+            yield return null;
+
+
+
+        }
+
         SpawnerBuyers.countBuyers--;
-        Cleanup();
-    }
 
-    private void MoveToCashRegister()
-    {
-        Debug.Log("MovingToCashRegister");
-
-        for (int i = 0; i < cashRegister.queueBuyers.Count; i++)
-        {
-            if (cashRegister.buyers[i] != null) continue;
-
-            cashRegister.buyers[i] = gameObject;
-            targetPosition.position = cashRegister.queueBuyers[i].position;
-            break;
-        }
-    }
-
-    private bool IsAtExit()
-    {
-        foreach (var exit in exits)
-        {
-            if (Vector3.Distance(transform.position, exit.position) <= 0.1f)
-                return true;
-        }
-        return false;
-    }
-
-    private void Cleanup()
-    {
         Destroy(gameObject);
         Destroy(targetPosition.gameObject);
     }
@@ -163,14 +202,18 @@ public class BuyerController : MonoBehaviour
 public class Range
 {
     [Header("Default Product")]
+    [Header("   Count Products")]
     public int minProductDefault;
     public int maxProductDefault;
+    [Header("    Count Things")]
     public int minCountDefault;
     public int maxCountDefault;
 
     [Header("Rare Product")]
+    [Header("   Count Products")]
     public int minProductRare;
     public int maxProductRare;
+    [Header("   Count Things")]
     public int minCountRare;
     public int maxCountRare;
 }

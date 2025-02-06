@@ -15,6 +15,7 @@ public class OpenIndustryItem : MonoBehaviour
 
     [SerializeField] UnityEvent OnBuyProgress;
     [SerializeField] SaveData saveData;
+    [SerializeField] AudioSource audioSource;
 
     private MoneyAnimation _moneyAnimation;
     private ListProgressObject _listProgress;
@@ -86,6 +87,7 @@ public class OpenIndustryItem : MonoBehaviour
         {
             _moneyAnimation.MoneyChange(-prise);
             saveData.SaveValues(Money.money - prise);
+            audioSource.Play();
 
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Collider>().enabled = false;
