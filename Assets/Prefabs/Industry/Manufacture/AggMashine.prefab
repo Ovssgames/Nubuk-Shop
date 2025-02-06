@@ -379,12 +379,14 @@ MonoBehaviour:
   - {fileID: 5029031187948132590}
   - {fileID: 6380456506523781556}
   - {fileID: 9199585398651661253}
+  startKeyProduct: apple
   finishType: {fileID: 11400000, guid: c00276034ae4c8d4bbab798b6ad8fdb1, type: 2}
   finishCells:
   - {fileID: 1173502309627058776}
   - {fileID: 5123055695652092051}
   - {fileID: 1925916935010734697}
   - {fileID: 7579939758181722472}
+  finishKeyProduct: agg
   countFinish: 0
   countStart: 0
   maxCountStart: 0

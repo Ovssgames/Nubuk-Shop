@@ -354,12 +354,14 @@ MonoBehaviour:
   - {fileID: 4540633308840228872}
   - {fileID: 1018153830630319735}
   - {fileID: 5701643818234140309}
+  startKeyProduct: potato
   finishType: {fileID: 11400000, guid: 1524182bd60765d42870b97a3fe73f4c, type: 2}
   finishCells:
   - {fileID: 8521752572905416008}
   - {fileID: 7257310348979099905}
   - {fileID: 4983381768941983486}
   - {fileID: 65414647545452683}
+  finishKeyProduct: cheeps
   countFinish: 0
   countStart: 0
   maxCountStart: 0

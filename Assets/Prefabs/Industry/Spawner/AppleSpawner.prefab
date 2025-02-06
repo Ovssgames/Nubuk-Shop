@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propertisObject: {fileID: 11400000, guid: 7209d6164a06e894f83e116fbc0fc3d6, type: 2}
+  keyProduct: apple
   spawnTime: 2
   spawners:
   - {fileID: 2469535787370986397}

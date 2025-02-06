@@ -30087,9 +30087,10 @@ GameObject:
   - component: {fileID: 1007682633}
   - component: {fileID: 1007682634}
   - component: {fileID: 1007682635}
+  - component: {fileID: 1007682639}
+  - component: {fileID: 1007682638}
   - component: {fileID: 1007682636}
   - component: {fileID: 1007682637}
-  - component: {fileID: 1007682638}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -30328,12 +30329,77 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007682628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 869c4c0436f73a847a060d01706b5a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1044915380}
+--- !u!114 &1007682639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007682628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1912da74b7aa5241b3a3aab7a5afb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productPoolObject:
+  - productKey: apple
+    productPrefab: {fileID: 7574387149273218255, guid: 6a183d8804ff5d74590a95bee99ab356, type: 3}
+    initialSize: 10
+    maxSize: 48
+  - productKey: agg
+    productPrefab: {fileID: 7574387149273218255, guid: 2a8a3cb71d72ece4596afa399c3353c9, type: 3}
+    initialSize: 8
+    maxSize: 24
+  - productKey: potato
+    productPrefab: {fileID: 7574387149273218255, guid: ea9ee6710bca1c8459cc9c90adf6e242, type: 3}
+    initialSize: 40
+    maxSize: 38
+  - productKey: wheat
+    productPrefab: {fileID: 7574387149273218255, guid: ef291ca25c663104493b9f82516b7802, type: 3}
+    initialSize: 10
+    maxSize: 48
+  - productKey: yogurt
+    productPrefab: {fileID: 7574387149273218255, guid: 45a9fab0e2fd8434dbd500cd3d2bf1a7, type: 3}
+    initialSize: 8
+    maxSize: 20
+  - productKey: bread
+    productPrefab: {fileID: 7574387149273218255, guid: 80a4a8f7ca92ff74494bffb24a4cbe9f, type: 3}
+    initialSize: 8
+    maxSize: 21
+  - productKey: cheeps
+    productPrefab: {fileID: 7574387149273218255, guid: e9a5854043959d14d8599fccb34d20f4, type: 3}
+    initialSize: 8
+    maxSize: 25
+  - productKey: cheese
+    productPrefab: {fileID: 7574387149273218255, guid: 45de5873a03d1d64d865c04d57d582d5, type: 3}
+    initialSize: 8
+    maxSize: 21
+  - productKey: fish
+    productPrefab: {fileID: 7574387149273218255, guid: 88993469108f353489fc14dbdd1fb09b, type: 3}
+    initialSize: 6
+    maxSize: 28
+  - productKey: jam
+    productPrefab: {fileID: 7574387149273218255, guid: 52a32743ae602cc4daf89d82b0281d07, type: 3}
+    initialSize: 8
+    maxSize: 25
+  - productKey: milk
+    productPrefab: {fileID: 7574387149273218255, guid: 2d35511ad9bd8204dbc6b5b789ada1d3, type: 3}
+    initialSize: 10
+    maxSize: 35
+  - productKey: potatoFree
+    productPrefab: {fileID: 7574387149273218255, guid: dfff51e420c204c44a38f2e1a64c0180, type: 3}
+    initialSize: 8
+    maxSize: 21
+  - productKey: preserves
+    productPrefab: {fileID: 7574387149273218255, guid: cccc9e69dc1df9c439c029356821801e, type: 3}
+    initialSize: 3
+    maxSize: 21
 --- !u!1 &1013152873
 GameObject:
   m_ObjectHideFlags: 0
@@ -30677,7 +30743,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 1cdba4574e383984bbd4e73bc2d28997, type: 3}
   m_Resource: {fileID: 8300000, guid: 1cdba4574e383984bbd4e73bc2d28997, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -64205,6 +64271,7 @@ GameObject:
   - component: {fileID: 1778626602}
   - component: {fileID: 1778626603}
   - component: {fileID: 1778626604}
+  - component: {fileID: 1778626605}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -64258,6 +64325,103 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1778626605
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778626601}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4048237328663307402, guid: dad8b7c55926c3a4fb4cd66d9d55cd2e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

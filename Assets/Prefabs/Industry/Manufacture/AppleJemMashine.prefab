@@ -735,12 +735,14 @@ MonoBehaviour:
   - {fileID: 2414874707431847996}
   - {fileID: 8358664879274244656}
   - {fileID: 7686964083837947716}
+  startKeyProduct: apple
   finishType: {fileID: 11400000, guid: 004de8a9780999d41b393de1fba6c300, type: 2}
   finishCells:
   - {fileID: 7243058057027430213}
   - {fileID: 6070344820684699575}
   - {fileID: 7015342316566324192}
   - {fileID: 5129480992500720210}
+  finishKeyProduct: jam
   countFinish: 0
   countStart: 0
   maxCountStart: 0

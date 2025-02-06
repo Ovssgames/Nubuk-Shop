@@ -642,12 +642,14 @@ MonoBehaviour:
   - {fileID: 5209287766006207402}
   - {fileID: 3534630429795240430}
   - {fileID: 3968208285998494556}
+  startKeyProduct: fish
   finishType: {fileID: 11400000, guid: b18a4e9f7aebf224e81b1f2d7e227fc2, type: 2}
   finishCells:
   - {fileID: 7024550311499750797}
   - {fileID: 8988176077238700457}
   - {fileID: 2952153760621484091}
   - {fileID: 2478956878843545816}
+  finishKeyProduct: preserves
   countFinish: 0
   countStart: 0
   maxCountStart: 0

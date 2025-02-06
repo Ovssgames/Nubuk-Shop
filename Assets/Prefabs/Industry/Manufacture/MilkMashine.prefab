@@ -580,12 +580,14 @@ MonoBehaviour:
   - {fileID: 7433033326646416667}
   - {fileID: 7965413320520403825}
   - {fileID: 7467378210915018861}
+  startKeyProduct: wheat
   finishType: {fileID: 11400000, guid: 23dc6913f5c8b5544afb75c8dd296455, type: 2}
   finishCells:
   - {fileID: 2478777762729840254}
   - {fileID: 2183462214378443580}
   - {fileID: 2121233313217528662}
   - {fileID: 7795084182857877796}
+  finishKeyProduct: milk
   countFinish: 0
   countStart: 0
   maxCountStart: 0

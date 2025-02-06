@@ -6,6 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public ScObjFood propertisObject;
+    [SerializeField] string keyProduct;
     [SerializeField] float spawnTime;
     [SerializeField] List<GameObject> spawners;
     [HideInInspector]
@@ -155,7 +156,7 @@ public class Spawner : MonoBehaviour
 
         if (_timer >= spawnTime + _randomTime)
         {
-            var obj = Instantiate(propertisObject.model);
+            var obj = PoolProducts.GetFromPool(keyProduct);
             obj.transform.SetParent(transform.GetChild(0));
             _audioSource.Play();
 

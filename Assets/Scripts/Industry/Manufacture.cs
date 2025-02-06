@@ -15,10 +15,12 @@ public class Manufacture : MonoBehaviour
     [Header("Start")]
     public ScObjFood startType;
     public List<GameObject> startCells;
+    [SerializeField] string startKeyProduct;
     
     [Header("Finish")]
     public ScObjFood finishType;
     public List<GameObject> finishCells;
+    [SerializeField] string finishKeyProduct;
 
     [HideInInspector]
     public int countFinish;
@@ -228,10 +230,13 @@ public class Manufacture : MonoBehaviour
 
         foreach (GameObject item in destroyedObj)
         {
-            Destroy(item);
+            PoolProducts.ReturnToPool(startKeyProduct, item);
         }
 
-        var finishObj = Instantiate(finishType.model, animationPoint.transform.position, animationPoint.transform.rotation);
+        var finishObj = PoolProducts.GetFromPool(finishKeyProduct);
+        finishObj.transform.position = animationPoint.transform.position;
+        finishObj.transform.rotation = animationPoint.transform.rotation;
+
         
         finishObj.transform.SetParent(transform.GetChild(1));
         GameObject finishCell = null;

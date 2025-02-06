@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propertisObject: {fileID: 11400000, guid: 39ea6beb0b5d4bf448ded55aed68d83c, type: 2}
+  keyProduct: wheat
   spawnTime: 4.5
   spawners:
   - {fileID: 5762053655361250758}

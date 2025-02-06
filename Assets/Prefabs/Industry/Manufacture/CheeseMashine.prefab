@@ -580,12 +580,14 @@ MonoBehaviour:
   - {fileID: 4514809055553969488}
   - {fileID: 6902625216922694628}
   - {fileID: 3439783187763088661}
+  startKeyProduct: milk
   finishType: {fileID: 11400000, guid: ad90dcb7cbe2a414e8ee52c18d45b5a1, type: 2}
   finishCells:
   - {fileID: 7688585411974459193}
   - {fileID: 8267830212224917916}
   - {fileID: 318666494976710083}
   - {fileID: 2562416210992044538}
+  finishKeyProduct: cheese
   countFinish: 0
   countStart: 0
   maxCountStart: 0

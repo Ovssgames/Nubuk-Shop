@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propertisObject: {fileID: 11400000, guid: 7d2fa612e58ab1341ae02938a4822230, type: 2}
+  keyProduct: fish
   spawnTime: 10
   spawners:
   - {fileID: 6189467384105847238}

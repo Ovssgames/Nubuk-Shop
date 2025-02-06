@@ -406,12 +406,14 @@ MonoBehaviour:
   - {fileID: 6387461216588936892}
   - {fileID: 5856386114377693030}
   - {fileID: 5092820425259610757}
+  startKeyProduct: potato
   finishType: {fileID: 11400000, guid: 9935e8da265cd1846a08d50cfc4fc6a9, type: 2}
   finishCells:
   - {fileID: 5484540359952996365}
   - {fileID: 585436145162294741}
   - {fileID: 3552422369552516553}
   - {fileID: 6236567970058437296}
+  finishKeyProduct: potatoFree
   countFinish: 0
   countStart: 0
   maxCountStart: 0

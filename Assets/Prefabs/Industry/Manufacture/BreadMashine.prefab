@@ -638,12 +638,14 @@ MonoBehaviour:
   - {fileID: 8980735968132712450}
   - {fileID: 3571807549428731362}
   - {fileID: 4943613889689126607}
+  startKeyProduct: wheat
   finishType: {fileID: 11400000, guid: e761afa1566088148a297778c9ea41b7, type: 2}
   finishCells:
   - {fileID: 8794179809424563381}
   - {fileID: 7959824449107777474}
   - {fileID: 2609431483334263519}
   - {fileID: 2077953268531717471}
+  finishKeyProduct: bread
   countFinish: 0
   countStart: 0
   maxCountStart: 0

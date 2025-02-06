@@ -35,6 +35,8 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("SoundVolume", _soundVolume);
     }
 
+
+
     private void LoadVolume()
     {
         _musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);

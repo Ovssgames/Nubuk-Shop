@@ -673,12 +673,14 @@ MonoBehaviour:
   - {fileID: 181836080307827395}
   - {fileID: 8273856022284979780}
   - {fileID: 962755752482499904}
+  startKeyProduct: milk
   finishType: {fileID: 11400000, guid: 6f39bcda249a9774cb842ddab6837452, type: 2}
   finishCells:
   - {fileID: 7742796421160341499}
   - {fileID: 4944264407854031931}
   - {fileID: 6033742496997131725}
   - {fileID: 8868993705782941425}
+  finishKeyProduct: yogurt
   countFinish: 0
   countStart: 0
   maxCountStart: 0

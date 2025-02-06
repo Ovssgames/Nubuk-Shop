@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propertisObject: {fileID: 11400000, guid: e853d51cd7906eb4b86614fc1d6b4881, type: 2}
+  keyProduct: potato
   spawnTime: 5.5
   spawners:
   - {fileID: 4934721551982247402}
