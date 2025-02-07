@@ -1,17 +1,16 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    
+
     [SerializeField] CharacterController characterController;
     [SerializeField] Animator animator;
 
     [Header("Model Parametrs")]
     [SerializeField] Transform model;
     [SerializeField] float speedRotation;
-    
+
     private Vector3 _direction;
     private Quaternion _rotation;
     private Joystick _joystick;
@@ -24,34 +23,28 @@ public class PlayerController : MonoBehaviour
             speed = PlayerPrefs.GetFloat("ProgressSpeed");
     }
 
-
     private void Update()
     {
-        DesctopPlayerController();
+        Vector3 desktopDirection = GetDesktopInput();
+        Vector3 mobileDirection = GetMobileInput();
+
+        _direction = desktopDirection + mobileDirection; // Объединяем два ввода
+
+        if (_direction.magnitude > 1f) // Ограничиваем скорость нормализацией
+            _direction.Normalize();
+
+        characterController.Move(_direction * speed * Time.deltaTime);
+        RotateModel();
     }
 
-
-    private void DesctopPlayerController()
+    private Vector3 GetDesktopInput()
     {
-        _direction.x = -Input.GetAxisRaw("Horizontal");
-        _direction.z = -Input.GetAxisRaw("Vertical");
-
-        _direction = _direction.normalized;
-        characterController.Move(_direction * speed * Time.deltaTime);
-
-        RotateModel();
-        //Debug.Log(_direction);
+        return new Vector3(-Input.GetAxisRaw("Horizontal"), 0, -Input.GetAxisRaw("Vertical"));
     }
 
-    private void MobilePlayerController()
+    private Vector3 GetMobileInput()
     {
-        _direction.x = -_joystick.GetDirection().x;
-        _direction.z = -_joystick.GetDirection().y;
-
-        _direction = _direction.normalized;
-        characterController.Move(_direction * speed * Time.deltaTime);
-
-        RotateModel();
+        return new Vector3(-_joystick.GetDirection().x, 0, -_joystick.GetDirection().y);
     }
 
     private void RotateModel()
