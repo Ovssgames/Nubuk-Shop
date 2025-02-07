@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
             animator.SetLayerWeight(1, 1);
         }
 
-        if(!_audioSource.isPlaying && s.GetComponent<PlayerController>() != null)
+        if (_audioSource != null && !_audioSource.isPlaying && s.GetComponent<PlayerController>() != null)
             _audioSource.Play();
 
         while (distanse > 0.01f)
