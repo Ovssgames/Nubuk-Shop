@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSourceUI;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider sliderMusic;
     [SerializeField] Slider sliderSound;
@@ -16,6 +17,10 @@ public class AudioManager : MonoBehaviour
         LoadVolume();
     }
 
+    public void UISOund()
+    {
+        audioSourceUI.Play();
+    }
 
     public void SetMusicVolume()
     {
@@ -34,8 +39,6 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", _musicVolume);
         PlayerPrefs.SetFloat("SoundVolume", _soundVolume);
     }
-
-
 
     private void LoadVolume()
     {

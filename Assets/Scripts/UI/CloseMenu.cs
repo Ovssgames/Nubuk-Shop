@@ -1,12 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class CloseMenu : MonoBehaviour, IPointerClickHandler
+public class CloseMenu : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] GameObject menu;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Destroy(menu);
     }

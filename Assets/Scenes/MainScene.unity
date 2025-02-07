@@ -15537,9 +15537,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1723428274}
   - {fileID: 49720961}
   - {fileID: 1448323912}
-  - {fileID: 1723428274}
   - {fileID: 2089239273}
   - {fileID: 1472161000}
   - {fileID: 773106835}
@@ -32582,6 +32582,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 383802905}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1778626603}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: UISOund
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -66439,6 +66451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c7d26d48ab26c4da54b1a48641d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSourceUI: {fileID: 1778626605}
   audioMixer: {fileID: 24100000, guid: dad8b7c55926c3a4fb4cd66d9d55cd2e, type: 2}
   sliderMusic: {fileID: 1257704742}
   sliderSound: {fileID: 1108050285}
@@ -66552,7 +66565,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_Resource: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -67733,8 +67746,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1364254432}
   - {fileID: 658296083}
+  - {fileID: 1364254432}
   m_Father: {fileID: 472045272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -70107,6 +70120,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 383802905}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1778626603}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: UISOund
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
