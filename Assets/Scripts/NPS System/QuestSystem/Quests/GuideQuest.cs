@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class GuideQuest : MonoBehaviour
 {
@@ -32,9 +31,10 @@ public class GuideQuest : MonoBehaviour
 
     public void QuestBranchCompliete()
     {
-        questSystem.OnQuestComplite.Invoke();
+        questSystem.QuestComplite();
 
         EnableProgressObject();
+        PlayerPrefs.Save();
     }
 
     public void NextQuest()
@@ -42,5 +42,6 @@ public class GuideQuest : MonoBehaviour
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
 
         ProgressLevels[plotIndex].GetComponent<BoxCollider>().enabled = true;
+        PlayerPrefs.Save();
     }
 }

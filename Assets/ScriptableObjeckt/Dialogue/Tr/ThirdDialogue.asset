@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c1195f1f0b9ca4d9d5b0058e396e66, type: 3}
+  m_Name: ThirdDialogue
+  m_EditorClassIdentifier: 
+  textDialogue:
+  - "\u015Eimdi yumurta \xFCretip satmak i\xE7in k\xFC\xE7\xFCk bir tavuk k\xFCmesi
+    sat\u0131n al.\n"
+  - "\xD6ncekiler gibi: sat\u0131n alma noktas\u0131na git ve bekle.\n"
+  - "E\u011Fer yeterli paran yoksa, elma raf\u0131n\u0131 tekrar doldur.\n"
+  - "Ve m\xFC\u015Fterilerin onlar\u0131 sat\u0131n almas\u0131n\u0131 bekle.\n"
+  - "M\xFC\u015Fterilere hizmet etmek i\xE7in sadece kasan\u0131n arkas\u0131na ge\xE7.\n"
+  ifFinishDialogue: 0

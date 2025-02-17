@@ -393,7 +393,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1593,7 +1593,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: d3417229a28360447b0a7905a2d8b777, type: 3}
+    - sprite: {fileID: 21300000, guid: 9a5436a354735694aa195e7da445f692, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

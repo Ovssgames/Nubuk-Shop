@@ -63,7 +63,6 @@ public class BuyerController : MonoBehaviour
         {
             animator.SetBool("IsStep", false);
         }
-
     }
 
     private void FindRoute()
@@ -102,8 +101,6 @@ public class BuyerController : MonoBehaviour
                     idProductsDefault.Add(item.type.id);
                 }
 
-
-
                 else
                 {
                     idProductsRare.Add(item.type.id);
@@ -111,7 +108,6 @@ public class BuyerController : MonoBehaviour
 
                 shalfs.Add(item.type.id, item.GetComponentInChildren<FinishShalfPosition>().transform);
             }
-
         }
         _cashRegister = GameObject.FindGameObjectWithTag("CashRegister").GetComponent<CashRegister>();
 
@@ -151,29 +147,14 @@ public class BuyerController : MonoBehaviour
             }
             yield return null;
 
-
-
-
-
-
-
             countProduct = 0;
         }
         yield return null;
         Debug.Log("CashRegisterGoBuyer");
 
         for (int i = 0; i < _cashRegister.queueBuyers.Count; i++)
-
-
-
-
-
-
-
         {
             if (_cashRegister.buyers[i] == null)
-
-
             {
                 _cashRegister.buyers[i] = gameObject;
                 targetPosition.position = _cashRegister.queueBuyers[i].position;
@@ -181,14 +162,9 @@ public class BuyerController : MonoBehaviour
             }
         }
         yield return null;
-        while (transform.position.x != exits[0].position.x && transform.position.x != exits[1].position.x)
-
-
+        while (transform.position.z != exits[0].position.z && transform.position.z != exits[1].position.z)
         {
             yield return null;
-
-
-
         }
 
         SpawnerBuyers.countBuyers--;

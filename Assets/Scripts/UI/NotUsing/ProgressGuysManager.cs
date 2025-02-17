@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class ProgressGuysManager : MonoBehaviour
 {

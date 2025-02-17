@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9
   rarely: 1
-  prise: 30
+  prise: 26
   model: {fileID: 7574387149273218255, guid: cccc9e69dc1df9c439c029356821801e, type: 3}

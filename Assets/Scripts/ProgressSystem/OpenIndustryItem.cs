@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Cinemachine;
 using TMPro;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class OpenIndustryItem : MonoBehaviour
 {
-    [SerializeField] int prise;
+    public int prise;
     [SerializeField] float timeToBuy;
     [SerializeField] TextMeshPro textPrise;
     [SerializeField] ParticleSystem particle;
@@ -75,7 +74,7 @@ public class OpenIndustryItem : MonoBehaviour
         {
             PlayerPrefs.SetInt("NumberProgress", 1);
         }
-        OnBuyProgress.Invoke();
+        PlayerPrefs.Save();
     }
 
     private IEnumerator BuyIndustry()
@@ -85,9 +84,10 @@ public class OpenIndustryItem : MonoBehaviour
 
         if (_isTrigger)
         {
-            _moneyAnimation.MoneyChange(-prise);
             saveData.SaveValues(Money.money - prise);
+            _moneyAnimation.MoneyChange(-prise);
             audioSource.Play();
+            OnBuyProgress.Invoke();
 
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Collider>().enabled = false;
@@ -102,7 +102,7 @@ public class OpenIndustryItem : MonoBehaviour
                 _listProgress.NextProgress(number);
             }
             yield return new WaitForSeconds(1f);
-
+            OnBuyProgress.Invoke();
 
             if (_listProgress.OpenItems.Count > number)
             {

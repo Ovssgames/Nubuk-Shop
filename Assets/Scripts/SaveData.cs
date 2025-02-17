@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
+using YG;
 
 public class SaveData : MonoBehaviour
 {
@@ -34,7 +36,7 @@ public class SaveData : MonoBehaviour
     {
         _stopwatch.Restart();
         Values(money);
-        UnityEngine.Debug.Log("Save");
+        PlayerPrefs.Save();
     }
 
     private void ShowText()
@@ -52,12 +54,18 @@ public class SaveData : MonoBehaviour
     }
     private void Values(int money)
     {
+        int pastValue = PlayerPrefs.GetInt("Money", 0);
+        if (Money.money > pastValue)
+        {
+            YG2.SetLeaderboard("MaxMoney",Money.money);
+        }
+        
+        PlayerPrefs.SetInt("Money", money);
+
         foreach (SellShalf shalf in shalfs)
         {
             PlayerPrefs.SetInt("ShalfCount" + shalf.type.id, shalf.count);
         }
-
-        PlayerPrefs.SetInt("Money", money);
     }
 
     private void StartValues()
@@ -65,6 +73,6 @@ public class SaveData : MonoBehaviour
         _stopwatch = Stopwatch.StartNew();
         saveText.SetActive(false);
 
-        Money.money = PlayerPrefs.GetInt("Money");
+        Money.money = PlayerPrefs.GetInt("Money", 0);
     }
 }

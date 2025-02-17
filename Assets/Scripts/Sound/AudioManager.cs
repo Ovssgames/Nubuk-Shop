@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class AudioManager : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("MusicVolume", _musicVolume);
         PlayerPrefs.SetFloat("SoundVolume", _soundVolume);
+        PlayerPrefs.Save();
     }
 
     private void LoadVolume()

@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class NPSController : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class NPSController : MonoBehaviour
     public int idNps;
     [SerializeField] points firstPosition;
     [SerializeField] float distanseToFinish = 0.05f;
+    [SerializeField] Animator animator;
 
     [SerializeField] NavMeshAgent navMeshAgent;
 
@@ -79,6 +80,7 @@ public class NPSController : MonoBehaviour
 
     public void MoveAbroad()
     {
+        animator.SetBool("IsStep", true);
         PlayerPrefs.SetInt(_keySave, 1);
         _isPlace = false;
         _capsuleCollider.enabled = false;
@@ -99,29 +101,6 @@ public class NPSController : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         navMeshAgent.enabled = false;
         Debug.Log("FinishAbroad");
-    }
-
-    public void MoveShop()
-    {
-        PlayerPrefs.SetInt(_keySave, 0);
-        navMeshAgent.enabled = true;
-        navMeshAgent.destination = shopPoint.position;
-        transform.GetChild(0).gameObject.SetActive(true);
-        StartCoroutine(Shop());
-    }
-
-    private IEnumerator Shop()
-    {
-        float distanse = Vector3.Distance(transform.position, shopPoint.position);
-        while (distanse > distanseToFinish)
-        {
-            distanse = Vector3.Distance(transform.position, shopPoint.position);
-            yield return null;
-        }
-
-        _capsuleCollider.enabled = true;
-        _isPlace = true;
-        Debug.Log("FinishShop");
     }
 
     private void LookPlayer()

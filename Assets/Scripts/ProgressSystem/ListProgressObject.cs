@@ -1,10 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class ListProgressObject : MonoBehaviour
 {
     public List<OpenIndustryItem> OpenItems;
+    private RevardSize _revardSize;
 
     private void Awake()
     {
@@ -13,6 +14,8 @@ public class ListProgressObject : MonoBehaviour
 
     private void AwakeValues()
     {
+        _revardSize = GameObject.FindGameObjectWithTag("YGManager").GetComponent<RevardSize>();
+
         var number = PlayerPrefs.GetInt("NumberProgress");
 
         if (number != 0)
@@ -30,6 +33,8 @@ public class ListProgressObject : MonoBehaviour
         {
             OpenItems[number].gameObject.SetActive(true);
         }
+
+        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.5f);
     }
 
     public void NextProgress(int number)
@@ -37,5 +42,6 @@ public class ListProgressObject : MonoBehaviour
         GameObject progress = OpenItems[number].gameObject;
         if (progress != null)
             progress.SetActive(true);
+        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.5f);
     }
 }

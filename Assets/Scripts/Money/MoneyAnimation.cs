@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using PlayerPrefs = RedefineYG.PlayerPrefs;
 
 public class MoneyAnimation : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MoneyAnimation : MonoBehaviour
     [SerializeField] GameObject textParticle;
     [SerializeField] Transform spawnPosirion;
     [SerializeField] Transform finishPosition;
+    [SerializeField] SaveData saveData;
 
     [Header("Text Settings")]
     [SerializeField] float speed;
@@ -27,7 +29,7 @@ public class MoneyAnimation : MonoBehaviour
 
     private void StartValues()
     {
-        textMoney.text = Money.money.ToString();
+        textMoney.text = PlayerPrefs.GetInt("Money", 0).ToString();
     }
 
     public void MoneyChange(int count)
@@ -42,6 +44,7 @@ public class MoneyAnimation : MonoBehaviour
         prefab.transform.position = spawnPosirion.position;
         int moneyFinish = Money.money + count;
         Money.money = moneyFinish;
+        saveData.SaveValues(moneyFinish);
 
         TextMeshProUGUI textPrefab = prefab.GetComponent<TextMeshProUGUI>();
         if (count >= 0)
