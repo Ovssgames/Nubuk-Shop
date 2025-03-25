@@ -28,7 +28,7 @@ public class SaveData : MonoBehaviour
         if (_stopwatch.Elapsed.TotalSeconds >= timeToSave)
         {
             SaveValues(Money.money);
-            ShowText();
+            //ShowText();
         }
     }
 

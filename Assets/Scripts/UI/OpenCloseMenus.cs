@@ -9,10 +9,12 @@ public class OpenCloseMenus : MonoBehaviour
     {
         menu.SetActive(true);
         playerController.enabled = false;
+        Time.timeScale = 0f;
     }
     public void CloseMenu(GameObject menu)
     {
         menu.SetActive(false);
         playerController.enabled = true;
+        Time.timeScale = 1f;
     }
 }

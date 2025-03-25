@@ -16,9 +16,9 @@ public class TrashCan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var inventory = other.GetComponent<Inventory>();
+        Inventory inventory = other.GetComponent<Inventory>();
         
-        if (inventory != null)
+        if (inventory != null && inventory.count != 0)
         {
             for (int i = 0; i < inventory.thing.Count; i++)
             {

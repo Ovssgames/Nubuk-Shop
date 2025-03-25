@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   id: 4
-  rarely: 0
+  rarely: 1
   prise: 12
   model: {fileID: 7574387149273218255, guid: 80a4a8f7ca92ff74494bffb24a4cbe9f, type: 3}

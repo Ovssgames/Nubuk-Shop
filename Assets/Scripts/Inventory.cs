@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
 
     public IEnumerator PrefabAnimation(GameObject prefab, GameObject finish)
     {
+        float timer = 0f;
         var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
 
         GameObject s = prefab.transform.parent.parent.parent.parent.gameObject;
@@ -44,10 +45,12 @@ public class Inventory : MonoBehaviour
         if (_audioSource != null && !_audioSource.isPlaying && s.GetComponent<PlayerController>() != null)
             _audioSource.Play();
 
-        while (distanse > 0.01f)
+        while (distanse > 0.01f && timer <= 4f)
         {
             distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
             prefab.transform.position = Vector3.MoveTowards(prefab.transform.position, finish.transform.position, Time.deltaTime * speedMove);
+
+            timer += Time.deltaTime;
             yield return null;
         }
 

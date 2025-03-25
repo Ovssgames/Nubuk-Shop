@@ -109,7 +109,7 @@ public class NPSController : MonoBehaviour
         {
             Vector3 direction = new Vector3(_player.position.x, 0, _player.position.z);
 
-            transform.LookAt(direction);
+            transform.GetChild(0).LookAt(direction);
         }
     }
 }

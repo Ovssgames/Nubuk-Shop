@@ -7,6 +7,7 @@ public class GuideQuest : MonoBehaviour
     [Tooltip("Вставлять прогресс объекты")]
     [SerializeField] List<OpenIndustryItem> ProgressLevels;
     [SerializeField] QuestSystem questSystem;
+    [SerializeField] GameObject framePNS;
 
     private void Start()
     {
@@ -18,6 +19,11 @@ public class GuideQuest : MonoBehaviour
         EnableProgressObject();
         if (PlayerPrefs.GetInt("PlotIndex") > ProgressLevels.Count)
             Destroy(this);
+
+        if (!PlayerPrefs.HasKey("QuestComplite"))
+            framePNS.SetActive(true);
+        else
+            framePNS.SetActive(false);
     }
 
     private void EnableProgressObject()
@@ -32,6 +38,7 @@ public class GuideQuest : MonoBehaviour
     public void QuestBranchCompliete()
     {
         questSystem.QuestComplite();
+        framePNS.SetActive(true);
 
         EnableProgressObject();
         PlayerPrefs.Save();
@@ -40,6 +47,7 @@ public class GuideQuest : MonoBehaviour
     public void NextQuest()
     {
         var plotIndex = PlayerPrefs.GetInt("PlotIndex");
+        framePNS.SetActive(false);
 
         ProgressLevels[plotIndex].GetComponent<BoxCollider>().enabled = true;
         PlayerPrefs.Save();

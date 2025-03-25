@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuyerInventory : MonoBehaviour
 {
     public float speedMove;
-    [SerializeField] float timeToFinish;
     [SerializeField] Animator animator;
 
     [HideInInspector]
@@ -22,7 +21,9 @@ public class BuyerInventory : MonoBehaviour
     {
         float timer = 0;
         var distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
-        while (distanse > 0.01f && timer < timeToFinish)
+
+
+        while (distanse > 0.01f && timer <= 4f)
         {
             distanse = Vector3.Distance(prefab.transform.position, finish.transform.position);
             timer += Time.deltaTime;

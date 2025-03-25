@@ -1,0 +1,63 @@
+{
+    "stringKeys": [
+        "FirstStart",
+        "QuestComplite"
+    ],
+    "stringValues": [
+        "Oleg",
+        "oleg"
+    ],
+    "floatKeys": [
+        "MusicVolume",
+        "SoundVolume"
+    ],
+    "floatValues": [
+        0.0010000000474974514,
+        0.0010000000474974514
+    ],
+    "intKeys": [
+        "PlotIndex",
+        "Money",
+        "ShalfCount0",
+        "ShalfCount10",
+        "ShalfCount5",
+        "ShalfCount11",
+        "ShalfCount1",
+        "ShalfCount3",
+        "ShalfCount8",
+        "ShalfCount12",
+        "ShalfCount2",
+        "ShalfCount4",
+        "ShalfCount7",
+        "ShalfCount9",
+        "ShalfCount6",
+        "NumberProgress"
+    ],
+    "intValues": [
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+    ],
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 27
+}

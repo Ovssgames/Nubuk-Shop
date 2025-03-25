@@ -123,7 +123,12 @@ public class DialogueAnimation : MonoBehaviour
     {
         _playerController.enabled = meaning;
 
-        dialogueSystem.gameObject.SetActive(meaning == false);
+        if (!meaning)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
+
+            dialogueSystem.gameObject.SetActive(meaning == false);
         isOpen = meaning == false;
     }
 }

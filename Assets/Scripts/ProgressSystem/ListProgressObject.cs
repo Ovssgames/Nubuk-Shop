@@ -34,7 +34,7 @@ public class ListProgressObject : MonoBehaviour
             OpenItems[number].gameObject.SetActive(true);
         }
 
-        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.5f);
+        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.2f);
     }
 
     public void NextProgress(int number)
@@ -42,6 +42,6 @@ public class ListProgressObject : MonoBehaviour
         GameObject progress = OpenItems[number].gameObject;
         if (progress != null)
             progress.SetActive(true);
-        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.5f);
+        _revardSize.Revard = Mathf.FloorToInt(OpenItems[number].prise * 1.2f);
     }
 }

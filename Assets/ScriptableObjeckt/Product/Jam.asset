@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Jam
   m_EditorClassIdentifier: 
   id: 1
-  rarely: 0
+  rarely: 1
   prise: 7
   model: {fileID: 7574387149273218255, guid: 52a32743ae602cc4daf89d82b0281d07, type: 3}

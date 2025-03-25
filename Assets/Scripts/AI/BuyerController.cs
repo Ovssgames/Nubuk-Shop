@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.AI;
 using UnityEngine;
+using System.Threading;
 
 public class BuyerController : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class BuyerController : MonoBehaviour
     private List<int> idProductsDefault = new List<int>();
     private List<int> idProductsRare = new List<int>();
     private Dictionary<int, Transform> shalfs = new Dictionary<int, Transform>();
+    private float _time;
+    private Vector3 gg = Vector3.zero;
+    private Vector3 gg1 = Vector3.zero;
 
     private int _productDefault;
     private int _productRare;
@@ -47,6 +51,8 @@ public class BuyerController : MonoBehaviour
     private void Update()
     {
         MoveBuyer();
+
+        //if (IsDestroy()) Destroy(gameObject);
     }
 
     private void MoveBuyer()
@@ -172,6 +178,27 @@ public class BuyerController : MonoBehaviour
         Destroy(gameObject);
         Destroy(targetPosition.gameObject);
     }
+
+    //private bool IsDestroy()
+    //{
+    //    _time += Time.deltaTime;
+
+    //    if (_time >= 10f)
+    //    {
+    //        _time = 0;
+
+    //        if (gg == Vector3.zero)
+    //            gg = transform.position;
+    //        else
+    //        {
+    //            gg1 = transform.position;
+    //            gg = gg1 = Vector3.zero;
+
+    //            if (gg == gg1) return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 }
 
 [System.Serializable]
